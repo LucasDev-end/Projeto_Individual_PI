@@ -1,0 +1,128 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+/* :root{
+    --tamanho-header: 80px;
+    --tamanho-footer: 65px;
+    --tamanho-banner: calc(62vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-container: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-border-radius: 2px;
+} */
+
+:root {
+    --autura-header:10vh;
+    --largura-all:100vw;
+  }
+
+body{
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+}
+
+.header{
+    background-color: aqua;
+    height: var(--autura-header);
+    width: var(--largura-all);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+.menu{
+    background-color: blue;
+    height: 50%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid #08415C;
+    border-radius: 8px;
+}
+.menu div{
+    background-color: rgb(44, 203, 44);
+    text-align: center;
+    width: 16%;
+}
+.menu div:hover{
+    background-color: #70A9A1;
+}
+.acesso{
+    background-color: #aa2424;
+    width: 19%;
+    height: 43%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.acesso .login{
+    background-color: #08415C;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 0px 0px 8px;
+    border-right: 2px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #FB5012;
+}
+.acesso .cadastro{
+    background-color: #08415C;
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 8px 8px 0px;
+    border-left: 2px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #FB5012;
+}
+.acesso div:hover{
+    background-color: #FB5012;
+    color: #08415C;
+    cursor: pointer;
+}
+.login, .cadastrar{
+    background-color: #ffffff;
+    width: 80vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.campos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section{
+    background-color: rgb(136, 0, 255);
+    width: var(--largura-all);
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer{
+    background-color: rgb(226, 43, 174);
+    width: var(--largura-all);
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
