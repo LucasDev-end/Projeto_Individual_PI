@@ -60,3 +60,25 @@ insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
 insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
 insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+
+---------------------------------------------------------------------------------------------------------------------
+select * from usuario;
+
+alter table usuario
+add column cpf varchar(15);
+
+desc usuario;
+
+select * from aquario;
+select * from medida;
+
+insert into medida values
+(default,45.3, 26.5, 300.0, 25.8, 1, '2024-11-06 10:30:00', 1),
+(default,48.7, 27.2, 310.5, 26.1, 0, '2024-11-06 11:00:00', 1),
+(default,50.1, 28.0, 290.0, 27.0, 1, '2024-11-06 12:15:00', 2),
+(default,42.0, 25.0, 320.2, 24.5, 0, '2024-11-06 13:45:00', 2),
+(default,55.6, 29.4, 295.8, 28.3, 1, '2024-11-06 14:20:00', 2);
+
+insert into medida values
+(default,51.3, 28.5, 300.0, 28.8, 0, '2024-12-15 11:30:00', 1);
+
