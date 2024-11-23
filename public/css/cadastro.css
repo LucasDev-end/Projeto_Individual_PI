@@ -96,19 +96,6 @@ body{
     color: #000000;
     cursor: pointer;
 }
-.login, .cadastrar{
-    background-color: #ffffff;
-    width: 80vw;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.login span h4{
-    background-color: #241c9e;
-    font-size: 3vw;
-}
 
 .section{
     background-color: rgb(136, 0, 255);
@@ -120,15 +107,51 @@ body{
     justify-content: flex-start;
 }
 
-.campos{
-    background-color: #a2bdca;
+.box{
+    background-color: #ffffff;
+    width: 80vw;
+    height: 84vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.login-box{
+    background-color: #b6adad;
+    width: 75%;
+    height: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box .nome{
+    background-color: #241c9e;
+    font-size: 350%;
+    width: 25%;
+    height: 22%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.campos{
+    background-color: #a2bdca;
+    width: 90%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
 }
 .campos .campo{
+    font-size: 120%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+}
+.campo .titulo{
+    font-size: 2vw;
 }
