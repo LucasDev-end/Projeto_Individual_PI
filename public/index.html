@@ -15,10 +15,10 @@
         <div class="receitas">Receitas</div>
       </div>
       <div class="acesso">
-        <div class="login" onclick="logar()">
+        <div class="login" onclick="login()">
           <span>Login</span>
         </div>
-        <div class="cadastro" onclick="cadastrar()">
+        <div class="cadastro" onclick="cadastro()">
           <span>Cadastre-se</span>
         </div>
       </div>
@@ -117,9 +117,79 @@
           </p>
         </div>
       </div>
+      <div class="consulta-receitas">
+        <div class="selecionar">
+          <div class="campos">
+            <p>
+              Aqui voce escolhe o tipo de receita que você quer encontrar, e
+              vamos mostrar ao lado o que encontramos pra você
+            </p>
+            <span>
+              <h4>Selecione uma categoria:</h4>
+              <select id="slc_categoria">
+                <option value=""></option>
+                <option value="">Doce</option>
+                <option value="">Salgado</option>
+                <option value="">Massa</option>
+              </select>
+            </span>
+            <span>
+              <h4>Selecione o 1 ingrediente:</h4>
+              <select id="slc_ingrediente1">
+                <option value=""></option>
+                <option value="">Doce</option>
+                <option value="">Salgado</option>
+                <option value="">Massa</option>
+              </select>
+            </span>
+            <span>
+              <h4>Selecione o 2 ingrediente:</h4>
+              <select id="slc_ingrediente2">
+                <option value=""></option>
+                <option value="">Doce</option>
+                <option value="">Salgado</option>
+                <option value="">Massa</option>
+              </select>
+            </span>
+            <span>
+              <h4>Selecione o 3 ingrediente:</h4>
+              <select id="slc_ingrediente3">
+                <option value=""></option>
+                <option value="">Doce</option>
+                <option value="">Salgado</option>
+                <option value="">Massa</option>
+              </select>
+            </span>
+          </div>
+        </div>
+        <div class="mostrar">
+          <div class="mensagem">
+            sdadadadsad
+          </div>
+        </div>
+      </div>
     </div>
 
+    <div class="footer">
+      <div class="contato-info">
+        <h2>Contato</h2>
+          <span><img src="./assets/imgs/gps.png" alt="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP,
+            01414-001</span>
+          <span><img src="./assets/imgs/o-email.png" alt="">lucas.marcolino@sptech.school</span>
+        </div>
+        <span>Developed by. Lucas marcolino</span>
+        <span>Ra: 04242013</span>
+        <span>1CCO-B</span>
+      </div>
+    </div>
 
-    <div class="footer"></div>
   </body>
 </html>
+<script>
+  function login(){
+    window.location.href = 'login.html';
+  }
+  function cadastro(){
+    window.location.href = 'cadastro.html';
+  }
+</script>

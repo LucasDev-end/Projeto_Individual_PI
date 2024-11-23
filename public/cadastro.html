@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/login.css">
     <title>Home</title>
+    <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 
 <body>
-      <div class="header">
-      <div class="menu">
+  <div class="header">
+    <div class="menu">
       <div class="home">HOME</div>
       <div class="sobre">Sobre mim</div>
       <div class="contato">Contato</div>
@@ -21,57 +20,62 @@
       <div class="cadastro">
       <span>Cadastre-se</span>
       </div>
-      </div>
-      </div>
+    </div>
+  </div>
 
-      <div class="section">
-      <div class="login">
-      <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-      <span id="mensagem_erro"></span>
-      </div>
-      </div>
-
-      <div class="boxAcesso">
-      <div class="login">
+  <div class="section">
+    <div class="login">
       <span>
-      <h4>
-      LOGIN
-      </h4>
+        <h4>
+          LOGIN
+        </h4>
       </span>
       <div class="campos">
-      <div class="campo">
-      <span>Nome:</span>
-      <input id="nome_input" type="text" placeholder="Seu nome" />
+        <div class="campo">
+          <span class="titulo">Digite seu nome:</span>
+          <input id="nome_input" type="text" placeholder="nome sobrenome" />
+        </div>
+        <div class="campo">
+          <span class="titulo">Digite seu E-mail:</span>
+          <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+        </div>
+        <div class="campo">
+          <span class="titulo">Digite sua Cidade:</span>
+          <input id="cidade_input" type="text" placeholder="São Paulo" />
+        </div>
+        <div class="campo">
+          <span class="titulo">Escolha seu estado:</span>
+          <select id="estado">
+          </select>
+        </div>
+        <div class="campo">
+          <span class="titulo">Confirmação da Senha:</span>
+          <input id="confirmacao_senha_input" type="password" placeholder="******" />
+        </div>
+        <button class="botao" onclick="cadastrar()">Cadastrar</button>
       </div>
-      <div class="campo">
-      <span>E-mail:</span>
-      <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-      </div>
-      <div class="campo">
-      <span>Cidade:</span>
-      <input id="cidade_input" type="text" placeholder="São Paulo" />
-      </div>
-      <div>
-      <select id="estado">
-      <option value=""></option>
-      </select>
-      </div>
-      <div class="campo">
-      <span>Confirmação da Senha:</span>
-      <input id="confirmacao_senha_input" type="password" placeholder="******" />
-      </div>
-      <button class="botao" onclick="cadastrar()">Cadastrar</button>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
+  </div>
+
 </body>
 </html>
 
 <script>
+
+var estados= [
+  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
+  "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
+  "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+];
+var mostrar_estados = "";
+
+for (var i = 0; i < estados.length; i++) {
+  mostrar_estados += `<option value="${estados[i]}">${estados[i]}</option>`;
+}
+
+estado.innerHTML= mostrar_estados
+
 
   function cadastrar() {
     // aguardar();

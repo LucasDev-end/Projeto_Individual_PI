@@ -26,7 +26,7 @@ body{
     align-items: center;
     justify-content: flex-start;
     width: 100vw;
-    height: 450vh;
+    height: 420vh;
 }
 
 .header{
@@ -105,24 +105,19 @@ body{
     align-items: center;
     justify-content: center;
 }
-.campos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 .section{
     background-color: rgb(136, 0, 255);
     width: var(--largura-all);
-    height: 92%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
-
 .imagem{
     background-color: #08415C;
-    height: 20%;
+    height: 22%;
     width: 100%;
     background-image: url('../assets/imgs/home.svg');
     background-repeat: no-repeat;
@@ -131,7 +126,7 @@ body{
 
 .sobre-mim{
     background-color: #444444;
-    height: 24%;
+    height: 26%;
     width: var(--largura-all);
     display: flex;
     justify-content: center;
@@ -169,7 +164,7 @@ body{
 
 .sobre-mim2{
     background-color: #2a5c51;
-    height: 24%;
+    height: 26%;
     width: var(--largura-all);
     display: flex;
     flex-direction: row-reverse;
@@ -208,11 +203,73 @@ p{
     background-color: #e08e37;
     width: 95%;
 }
-.footer{
-    background-color: rgb(226, 43, 174);
+
+.consulta-receitas{
+    background-color: #7f3f92;
+    height: 26%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.consulta-receitas .selecionar{
+    background-color: #aff7a1;
+    height: 100%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selecionar .campos{
+    background-color: #e08e37;
+    height: 60%;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.campos span{
+    display: flex;
+}
+.consulta-receitas .mostrar{
+    background-color: #d3737b;
+    height: 100%;
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mostrar .mensagem{
+    background-color: #23465a;
+    height: 85%;
+    width: 70%;
+}
+
+
+.footer {
+    height: 7%;
     width: var(--largura-all);
-    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.contato {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contato-info {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+.contato-info img {
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
 }
