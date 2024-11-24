@@ -52,12 +52,12 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    var estados = req.body.estadosServer
-    var nome = req.body.nomeServer
-    var email = req.body.emailServer
-    var cidade = req.body.cidadeServer
-    var senha = req.body.senhaServer
-    var categoria = req.body.categoriaServer
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var cidade = req.body.cidadeServer;
+    var estados = req.body.estadosServer;
+    var senha = req.body.senhaServer;
+    var categoria = req.body.categoriaServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -65,39 +65,36 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Seu cpf está undefined!");
-    } else if (estados == undefined) {
+    }else if (estados == undefined) {
         res.status(400).send("Sua estados está undefined!");
     } else if (cidade == undefined) {
         res.status(400).send("Sua cidade está undefined!");
     }else {
+            usuarioModel.consultarCategoria(categoria)
+                .then((resultadoAutenticar) => {
+                    if (resultadoAutenticar.length > 0) {
+                        var id =  resultadoAutenticar[0].idCategoria
+                        console.log(id)
+                        usuarioModel.cadastrar(nome, email, senha, cidade, estados, id)
+                        .then(
+                            function (resultado) {
+                                res.json(resultado);
+                            }
+                        ).catch(
+                            function (erro) {
+                                console.log(erro);
+                                console.log(
+                                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                                    erro.sqlMessage
+                                );
+                                res.status(500).json(erro.sqlMessage);
+                            }
+                        );
 
-
-
-
-
-
-
-
-
-
-        
-        usuarioModel.cadastrar(nome, email, cpf, senha, cidade, estados)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+                    } else {
+                        res.status(204).json("Deu Erro AQUI!");
+                    }
+                })       
     }
 }
 

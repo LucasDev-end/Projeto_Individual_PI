@@ -7,9 +7,6 @@ idCategoria int primary key auto_increment,
 nome varchar(45)
 );
 
-insert into categoria values
-( default, 'doce'),
-( default, 'salgado');
 
 create table cadastro(
 idcadastro int primary key auto_increment,
@@ -38,6 +35,14 @@ create table ingredientes(
 idIngredientes int primary key auto_increment,
 nome varchar(45)
 );
+
+insert into ingredientes values
+( default, 'doce'),
+( default, 'salgado');
+
+select * from ingredientes;
+
+
 
 create table item(
 fkReceita int,

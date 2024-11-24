@@ -86,7 +86,7 @@
             </label>
           </form>
         </div>
-        <button>Cadastrar</button>
+        <button onclick="cadastrar()">Cadastrar</button>
       </div>
     </div>
   </div>
@@ -154,10 +154,6 @@ estado.innerHTML= mostrar_estados
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           // setTimeout(() => {
           //   window.location = "login.html";
