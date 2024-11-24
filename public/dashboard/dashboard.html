@@ -16,7 +16,7 @@
                 <div class="kpi">
                     <div class="box-kpi" id="kpi1">
                         <div class="titulo" style="background-color: #70A9A1;">
-                            <h2>Ingrediente mais ultilizado</h2>
+                            <h2>Categoria mais escolhida</h2>
                         </div>
                         <div class="kpi-num" style="background-color: #70A9A1;">
                             5.872
@@ -26,7 +26,7 @@
                     </div>
                     <div class="box-kpi" id="kpi2">
                         <div class="titulo" style="background-color: #E08E37;">
-                            <h2>dadadasda</h2>
+                            <h2>Região com mais cadastros</h2>
                         </div>
                         <div class="kpi-num" style="background-color: #E08E37;">
                             5.872
@@ -67,8 +67,8 @@
             </div>
             <div class="box">
                 <div class="menu">
-                    <div> <a href="dashboard.html">Dashboard</a></div>
-                    <div><a href="setores.html">Setores</a></div>
+                    <div onclick="dasboard()" style="background-color: #E08E37;">Dashboard</div>
+                    <div onclick="receitas()">Cadastrar receitas</div>
                 </div>
                 <div class="sair">
                     <div>
@@ -83,6 +83,14 @@
 
  <!-- script JS de connfiguração do chartJS -->
 <script>
+
+function dasboard(){
+    window.location.href = 'dasboard.html';
+}
+function receitas(){
+    window.location.href = 'cadastrar_receitas.html';
+}
+
 const grafico_geral = document.getElementById('myChart-grafico');
 const grafico_alta = document.getElementById('myChart-grafico-alta');
 

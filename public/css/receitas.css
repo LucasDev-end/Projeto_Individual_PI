@@ -1,0 +1,282 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
+@import url(https://fonts.gstatic.com/s/merriweather/v30/u-4m0qyriQwlOrhSvowK_l5-eRZBf-LHrw.woff2);
+
+:root{
+    --tamanho-header: 80px;
+    --tamanho-footer: 65px;
+    --tamanho-banner: calc(72vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-container: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-border-radius: 2px;
+}
+
+body{
+    background-color: #08415c;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    width: 100%;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+
+body .side{
+    background-color: #ffffff;
+    width: var(--tamanho-banner);
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.side .user{
+    width: 100%;
+    height: 33vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user .foto{
+    height: 20vh;
+    width: 45%;
+    display: flex;
+}
+.foto img{
+    width: 100%;
+    height: 85%;
+}
+
+.line{
+    width: 90%;
+    height: 33vh;
+    color: #08415c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 2px solid #08415c;
+}
+.side .box{
+    height: 67vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.menu{
+    height: 22vh;
+    font-size: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.menu div:hover{
+    background-color: #E08E37;
+    color: #08415c;
+    border-radius: var(--tamanho-border-radius);
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu div a {
+    color: #08415c;
+}
+ul{
+    list-style: none;
+}
+a span{
+    color: #08415c;
+}
+.sair{
+    height: 45vh;
+    font-size: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.sair div{
+    display: flex;
+    color: #08415c;
+}
+.sair div {
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+.sair .div h2{
+    background-color: blue;
+}
+.sair div h2 a span:hover{
+    background-color: #70A9A1;
+    color: #FFFF;
+    border-radius: var(--tamanho-border-radius);
+    width: 30vh;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.section {
+    width: var(--largura-all); /* Largura total baseada na variável */
+    height: 90%; /* Altura relativa à viewport */
+    display: flex; /* Flexbox para organizar itens */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: flex-start; /* Alinha itens ao início vertical */
+}
+
+/* Estilo da caixa dentro da seção */
+.box {
+    width: 80vw; /* Largura de 80% da viewport */
+    height: 92vh; /* Altura de % da viewport */
+    display: flex; /* Flexbox para organizar os itens */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+
+/* Estilo da caixa de login dentro da box principal */
+.login-box {
+    background-color: #515B3a;
+    width: 75%; /* Largura relativa à box */
+    height: 100%; /* Altura relativa à box */
+    display: flex; /* Flexbox para organizar itens */
+    flex-direction: column; /* Organiza itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Centraliza verticalmente */
+}
+
+/* Estilo do nome dentro da login-box */
+.login-box .nome {
+    font-size: 270%; /* Tamanho da fonte em escala maior */
+    width: 45%; /* Largura relativa à login-box */
+    height: 12%; /* Altura relativa à login-box */
+    display: flex; /* Flexbox para organizar texto */
+    align-items: flex-start; /* Alinha texto no início vertical */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Estilo dos campos de entrada dentro da login-box */
+.campos {
+    display: flex; /* Flexbox para organizar campos */
+    flex-direction: column; /* Organiza itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-end; /* Espaçamento uniforme entre itens */
+}
+
+/* Estilo dos elementos select dentro dos campos */
+.campos select {
+    height: 69%; /* Altura relativa ao item pai */
+    width: 22%; /* Largura relativa ao pai */
+}
+
+/* Estilo de uma classe específica para alinhamento e espaçamento */
+.slc {
+    color: #ffffff; /* Texto branco */
+    height: 7%; /* Altura relativa ao item pai */
+    width: 45%; /* Largura relativa ao item pai */
+    display: flex; /* Flexbox para organizar itens */
+    flex-direction: row; /* Organiza itens horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-evenly; /* Espaçamento uniforme */
+    font-size: 65%;
+}
+
+/* Configuração do formulário nos campos */
+.campos form {
+    overflow: hidden; /* Oculta conteúdo que excede o contêiner */
+    position: relative; /* Define posição relativa para elementos filhos */
+    width: 90%; /* Largura do formulário relativa aos campos */
+    height: auto; /* Altura relativa ao item pai */
+}
+
+/* Configuração dos inputs de texto */
+.campos input {
+    color: #fff; /* Texto branco */
+    font-size: 28px; /* Tamanho do texto */
+    width: 100%; /* Largura total do formulário */
+    height: 85%; /* Altura relativa ao item pai */
+    padding: 20px 5px 5px; /* Espaçamento interno (topo, laterais, base) */
+    background-color: #e08e37; /* Fundo laranja */
+    border: none; /* Remove bordas */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilo dos rótulos dos inputs */
+.campos label {
+    color: #fff; /* Texto branco */
+    position: absolute; /* Posição relativa ao pai */
+    left: 0; /* Alinha à esquerda */
+    bottom: 0; /* Alinha ao fundo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    pointer-events: none; /* Impede interação do mouse */
+}
+
+/* Configuração para os spans dentro dos labels */
+.campos span {
+    position: absolute; /* Posição relativa ao pai */
+    bottom: 5px; /* Margem inferior */
+    left: 5px; /* Margem à esquerda */
+    font-size: 12px; /* Tamanho do texto */
+    transition: all 0.3s ease; /* Transição suave para animações */
+}
+
+/* Transforma o título ao focar ou validar o input */
+.campos input:focus + label span,
+.campos input:valid + label span {
+    transform: translateY(-150%); /* Move o texto para cima */
+    font-size: 5px; /* Reduz o tamanho do texto */
+    bottom: 10px; /* Ajusta a posição inferior */
+    color: #000000; /* Altera a cor do texto */
+}
+.min{
+    width: 100%; /* Largura total */
+    height: 16%; /* Altura total */
+}
+.ingredientes{
+    width: 100%; /* Largura total */
+    height: auto; /* Altura total */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ingredientes input, .ingredientes select{
+    color: #fff;
+    background-color: #E08E37;
+}
+
+input::placeholder{
+    color: #fff;
+}
+button{
+    background-color: #e08e37;
+    color: #ffffff; /* Altera a cor do texto */
+    font-size: 175%; /* Reduz o tamanho do texto */
+    width: 25%; /* Largura total */
+    height: 10%; /* Altura total */
+}
+/* Alteração de estilo quando o mouse passa sobre o botao*/
+button:hover {
+    background-color: #70A9A1; /* Altera a cor de fundo */
+    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
+}

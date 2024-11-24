@@ -24,7 +24,7 @@ body{
     align-items: center; /* Alinha os itens no centro horizontalmente */
     justify-content: flex-start; /* Alinha os itens no topo */
     width: 100vw; /* Define a largura da tela como 100% da largura da janela */
-    height: 420vh; /* Define a altura como 420% da altura da janela */
+    height: 100vh; /* Define a altura como 420% da altura da janela */
 }
 
 /* Estilo do header */
@@ -85,8 +85,24 @@ body{
     color: #ffffff; /* Cor do texto branca */
 }
 
+/* Estilo para o botão de login */
+.acesso .login{
+    background-color: #70A9A1; /* Fundo azul claro */
+    width: 35%; /* Largura do botão */
+    height: 100%; /* Altura total do componente pai */
+    display: flex; /* Flexbox para centralizar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    border-radius: 8px 0 0 8px; /* Arredondamento apenas na esquerda */
+    border-right: 2px solid black; /* Borda direita preta */
+    border-left: 1px solid black; /* Borda esquerda preta */
+    border-top: 1px solid black; /* Borda superior preta */
+    border-bottom: 1px solid black; /* Borda inferior preta */
+    color: #ffffff; /* Cor do texto branca */
+}
+
 /* Estilo para o botão de cadastro */
-.acesso .cadastro {
+.acesso .cadastro{
     background-color: #70A9A1; /* Fundo azul claro */
     width: 65%; /* Largura do botão */
     height: 100%; /* Altura total do componente pai */
@@ -106,6 +122,16 @@ body{
     background-color: #e08e37; /* Altera a cor de fundo */
     color: #000000; /* Altera a cor do texto */
     cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
+}
+
+.login-box, .cadastrar-box{
+    background-color: #ffffff; /* Cor de fundo branca */
+    width: 80vw; /* Largura de 80% da largura da janela */
+    height: 80vh; /* Altura de 80% da altura da janela */
+    display: flex; /* Utiliza o modelo de layout flexbox */
+    flex-direction: column; /* Organiza os elementos em uma coluna */
+    align-items: center; /* Alinha os itens no centro horizontalmente */
+    justify-content: center; /* Alinha os itens no centro verticalmente */
 }
 
 /* Estilo da seção */
@@ -240,22 +266,4 @@ button{
 button:hover {
     background-color: #70A9A1; /* Altera a cor de fundo */
     cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
-}
-
-.chk{
-    width: 80%; /* Largura total do pai */
-    height: 80%; /* Altura relativa à login-box */
-    display: flex; /* Flexbox para organizar campos */
-    flex-direction: line; /* Organiza itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: space-evenly; /* Espaçamento uniforme entre itens */
-    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
-}
-.chk span{
-    width: auto; /* Largura total do pai */
-    height: auto; /* Altura relativa à login-box */
-    display: flex; /* Flexbox para organizar campos */
-    flex-direction: line; /* Organiza itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Espaçamento uniforme entre itens */
 }
