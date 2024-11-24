@@ -1,4 +1,6 @@
 var aquarioModel = require("../models/aquarioModel");
+var usuarioModel = require("../models/usuarioModel");
+
 
 function buscarAquariosPorEmpresa(req, res) {
   var idUsuario = req.params.idUsuario;
@@ -21,34 +23,35 @@ function cadastrar(req, res) {
   var nomeReceita = req.body.nomeReceitaServer;
   var tempoReceita = req.body.tempoReceitaServer;
   var categoria = req.body.categoriaServer;
-  var ingrediente1 = req.body.ingrediente1Server;
-  var ingrediente2 = req.body.ingrediente2Server;
-  var ingrediente3 = req.body.ingrediente3Server;
-  var ingrediente4 = req.body.ingrediente4Server;
-  var ingrediente5 = req.body.ingrediente5Server;
-  var ingrediente6 = req.body.ingrediente6Server;
-  var ingrediente7 = req.body.ingrediente7Server;
-  var ingrediente8 = req.body.ingrediente8Server;
-  var ingrediente9 = req.body.ingrediente9Server;
-  var ingrediente10 = req.body.ingrediente10Server;
+  var ingrediente1 = req.body.Ingrediente1Server;
+  var ingrediente2 = req.body.Ingrediente2Server;
+  var ingrediente3 = req.body.Ingrediente3Server;
+  var ingrediente4 = req.body.Ingrediente4Server;
+  var ingrediente5 = req.body.Ingrediente5Server;
+  var ingrediente6 = req.body.Ingrediente6Server;
+  var ingrediente7 = req.body.Ingrediente7Server;
+  var ingrediente8 = req.body.Ingrediente8Server;
+  var ingrediente9 = req.body.Ingrediente9Server;
+  var ingrediente10 = req.body.Ingrediente10Server;
 
   usuarioModel.consultarCategoria(categoria)
   .then((resultadoAutenticar) => {
       if (resultadoAutenticar.length > 0) {
-          var id =  resultadoAutenticar[0].Categoria;
+          var id =  resultadoAutenticar[0].idCategoria;
           console.log(id)
           aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id)
-          .then((resultado) => {
-            res.status(201).json(resultado);
-          }
-          ).catch((erro) => {
-            console.log(erro);
-            console.log(
-              "\nHouve um erro ao realizar o cadastro! Erro: ",
-              erro.sqlMessage
-            );
-            res.status(500).json(erro.sqlMessage);
-          });
+            .then((resultado) => {
+              console.log("Passei aqui dento")
+              return res.json(resultado);
+            }
+            ).catch((erro) => {
+              console.log(erro);
+              console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+              );
+              res.status(500).json(erro.sqlMessage);
+            });
 
       } else {
           res.status(204).json("Deu Erro AQUI!");
