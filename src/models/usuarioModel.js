@@ -22,7 +22,16 @@ function cadastrar(nome, email, cpf, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function consultarCategoria(categoria){   
+    var instrucaoSql = `
+        select * from ingredientes where nome = ${categoria};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    consultarCategoria
 };
