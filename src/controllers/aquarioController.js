@@ -60,10 +60,10 @@ function cadastrar(req, res) {
   }
 
   function listar(req, res) {
-    var categoria = req.query.categoriaServer;
-    var ingrediente1 = req.query.ingrediende1Server;
-    var ingrediente2 = req.query.ingrediende2Server;
-    var ingrediente3 = req.query.ingrediende3Server;
+    var categoria = req.body.categoriaderver;
+    var ingrediente1 = req.body.ingrediende1Server;
+    var ingrediente2 = req.body.ingrediende2Server;
+    var ingrediente3 = req.body.ingrediende3Server;
 
     aquarioModel.listar(categoria, ingrediente1, ingrediente2, ingrediente3).then(function (resultado) {
         if (resultado.length > 0) {

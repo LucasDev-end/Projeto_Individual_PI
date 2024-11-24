@@ -90,9 +90,9 @@
               <h4>Selecione o 1 ingrediente:</h4>
               <select id="slc_ingrediente1">
                 <option value=""></option>
-                <option value="Tomate">Tomate</option>
-                <option value="Queijo">Queijo</option>
+                <option value="Molho de tomate">Molho de Tomate</option>
                 <option value="Presunto">Presunto</option>
+                <option value="Farinha">Farinha</option>
               </select>
             </span>
             <span>
@@ -101,7 +101,7 @@
                 <option value=""></option>
                 <option value="Parmesão">Parmesão</option>
                 <option value="Frango grelhado">Frango grelhado</option>
-                <option value="Calabresa">Calabresa</option>
+                <option value="Queijo">Queijo</option>
               </select>
             </span>
             <span>
@@ -109,15 +109,16 @@
               <select id="slc_ingrediente3">
                 <option value=""></option>
                 <option value="Massa de pizza">Massa de pizza</option>
-                <option value="Farinha">Farinha</option>
                 <option value="Açúcar">Açúcar</option>
+                <option value="Calabresa">Calabresa</option>
               </select>
             </span>
-            <button>Buscar</button>
+            <button onclick="listar()">Buscar</button>
           </div>
         </div>
         <div class="mostrar">
-          <div class="mensagem">
+          <div class="mensagem" id="receita_public" style="display: flex; flex-direction: column;">
+
           </div>
         </div>
       </div>
@@ -158,7 +159,7 @@
     var ingrediente3 = slc_ingrediente3.value;
 
     fetch("/aquarios/listar", {
-        method: "GET", 
+        method: "POST", 
         headers: {
             "Content-Type": "application/json"
         },
@@ -177,10 +178,59 @@
             receita.json().then(function (receita) {
                 console.log("Receitas recebidss: ", JSON.stringify(receita));
 
-                for (let i = 0; i < receita.length; i++) {
+                for (let i = 0; i < 1; i++) {
                     var receita = receita[i];
 
+                    var nome = receita.nome;
+                    var tempoPreparo = receita.tempoPreparo;
+                    var nomeCategoria = receita.nomeCategoria;
+                    var ingrediente1 = receita.ingrediente1;
+                    var ingrediente2 = receita.ingrediente2;
+                    var ingrediente3 = receita.ingrediente3;
+                    var ingrediente4 = receita.ingrediente4;
+                    var ingrediente5 = receita.ingrediente5;
+                    var ingrediente6 = receita.ingrediente6;
+                    var ingrediente7 = receita.ingrediente7;
+                    var ingrediente8 = receita.ingrediente8;
+                    var ingrediente9 = receita.ingrediente9;
+                    var ingrediente10 = receita.ingrediente10;
 
+                    receita_public.innerHTML = `<span><b>${nome}</b></span><br>`
+                    receita_public.innerHTML += `<span>Tempo de preparo: ${tempoPreparo} minutos</span>`
+                    receita_public.innerHTML += `<span>Categoria: ${nomeCategoria}</span><br>`
+                    receita_public.innerHTML += `<span><b>Ingredientes Necessários</b></span><br>`
+
+                    if( ingrediente1 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
+                    }
+                    if( ingrediente2 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente2} </span>`                      
+                    }
+                    if( ingrediente3 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente3} </span>`                      
+                    }
+                    if( ingrediente4 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente4} </span>`                      
+                    }
+                    if( ingrediente5 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente5} </span>`                      
+                    }
+                    if( ingrediente6 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente6} </span>`                      
+                    }
+                    if( ingrediente7 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente7} </span>`                      
+                    }
+                    if( ingrediente8 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente8} </span>`                      
+                    }
+                    if( ingrediente9 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente9} </span>`                      
+                    }
+                    if( ingrediente10 != null){
+                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
+                    }
+                   
                 }
 
             });
