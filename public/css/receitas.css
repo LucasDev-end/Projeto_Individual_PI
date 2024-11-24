@@ -186,7 +186,7 @@ a span{
 /* Estilo dos elementos select dentro dos campos */
 .campos select {
     height: 69%; /* Altura relativa ao item pai */
-    width: 22%; /* Largura relativa ao pai */
+    width: 22%;
 }
 
 /* Estilo de uma classe específica para alinhamento e espaçamento */
@@ -206,19 +206,25 @@ a span{
     overflow: hidden; /* Oculta conteúdo que excede o contêiner */
     position: relative; /* Define posição relativa para elementos filhos */
     width: 90%; /* Largura do formulário relativa aos campos */
-    height: auto; /* Altura relativa ao item pai */
+    height: auto; 
+}
+
+.ingred-camp{
+    margin: 3px;
 }
 
 /* Configuração dos inputs de texto */
 .campos input {
     color: #fff; /* Texto branco */
-    font-size: 28px; /* Tamanho do texto */
+    font-size: 18px; /* Tamanho do texto */
     width: 100%; /* Largura total do formulário */
     height: 85%; /* Altura relativa ao item pai */
     padding: 20px 5px 5px; /* Espaçamento interno (topo, laterais, base) */
     background-color: #e08e37; /* Fundo laranja */
     border: none; /* Remove bordas */
     border-radius: 4px; /* Bordas arredondadas */
+    display: flex;
+    
 }
 
 /* Estilo dos rótulos dos inputs */
@@ -251,7 +257,7 @@ a span{
 }
 .min{
     width: 100%; /* Largura total */
-    height: 16%; /* Altura total */
+    height: 40px; /* Altura total */
 }
 .ingredientes{
     width: 100%; /* Largura total */
