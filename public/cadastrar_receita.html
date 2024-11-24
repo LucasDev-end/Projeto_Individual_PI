@@ -245,7 +245,6 @@ function receitas(){
     var Ingrediente8 = `${iptnome_Ingrediente8.value} ${iptqtd_Ingrediente8.value} ${slc_Ingrediente8.value}`;
     var Ingrediente9 = `${iptnome_Ingrediente9.value} ${iptqtd_Ingrediente9.value} ${slc_Ingrediente9.value}`;
     var Ingrediente10 = `${ipt_nome_Ingrediente10.value} ${ipt_qtd_Ingrediente10.value} ${slc_Ingrediente10.value}`;
-    console.log("Passei Aqui!");
 
     if (
       nomeReceita == "" ||
@@ -265,8 +264,25 @@ function receitas(){
       alert("Preencha todos os campo!")
       return false;
     }
+    
+    console.log("Nome: ", nomeReceita )
+    console.log("Tempo:  " , tempoReceita)
+    console.log("Categor i a: " , categoria)
+    console.log("1: " , Ingrediente1) 
+    console.log("2: " , Ingrediente2) 
+    console.log("3: " , Ingrediente3) 
+    console.log("4: " , Ingrediente4) 
+    console.log("5: " , Ingrediente5) 
+    console.log("6: " , Ingrediente6) 
+    console.log("7: " , Ingrediente7) 
+    console.log("8: " , Ingrediente8) 
+    console.log("9: " , Ingrediente9)
+    console.log("10: ", Ingrediente10 )
 
-    fetch("/aquario/cadastrar", {
+
+
+
+    fetch("/aquarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -274,19 +290,19 @@ function receitas(){
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeReceitaServer: nomeReceita,
-        tempoReceitaServer: tempoReceita,
-        categoriaServer: categoria, 
-        ingrediente1Server: ingrediente1, 
-        ingrediente2Server: ingrediente2, 
-        ingrediente3Server: ingrediente3, 
-        ingrediente4Server: ingrediente4, 
-        ingrediente5Server: ingrediente5, 
-        ingrediente6Server: ingrediente6, 
-        ingrediente7Server: ingrediente7, 
-        ingrediente8Server: ingrediente8, 
-        ingrediente9Server: ingrediente9, 
-        ingrediente10Server: ingrediente10
+        nomeReceitaServer : nomeReceita,
+        tempoReceitaServer : tempoReceita,
+        categoriaServer : categoria,
+        Ingrediente1Server : Ingrediente1,
+        Ingrediente2Server : Ingrediente2,
+        Ingrediente3Server : Ingrediente3,
+        Ingrediente4Server : Ingrediente4,
+        Ingrediente5Server : Ingrediente5,
+        Ingrediente6Server : Ingrediente6,
+        Ingrediente7Server : Ingrediente7,
+        Ingrediente8Server : Ingrediente8,
+        Ingrediente9Server : Ingrediente9,
+        Ingrediente10Server : Ingrediente10
       }),
     })
       .then(function (resposta) {
