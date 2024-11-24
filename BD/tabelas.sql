@@ -41,6 +41,7 @@ ingrediente8 varchar(100),
 ingrediente9 varchar(100),
 ingrediente10 varchar(100),
 fkCategoria int,
+descricao varchar (300),
 constraint fkCategoriaReceitas foreign key (fkcategoria)
 							references categoria(idCategoria)
 );

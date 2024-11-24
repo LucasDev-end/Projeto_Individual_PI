@@ -33,13 +33,14 @@ function cadastrar(req, res) {
   var ingrediente8 = req.body.Ingrediente8Server;
   var ingrediente9 = req.body.Ingrediente9Server;
   var ingrediente10 = req.body.Ingrediente10Server;
+  var descricao = req.body.categoriaServer;
 
   usuarioModel.consultarCategoria(categoria)
   .then((resultadoAutenticar) => {
       if (resultadoAutenticar.length > 0) {
           var id =  resultadoAutenticar[0].idCategoria;
           console.log(id)
-          aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id)
+          aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id, descricao)
             .then((resultado) => {
               console.log("Passei aqui dento")
               return res.json(resultado);
