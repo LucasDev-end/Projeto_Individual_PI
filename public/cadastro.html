@@ -98,6 +98,11 @@
 
 <script>
 
+  function login(){
+    window.location.href = 'login.html';
+    }
+    
+
 var estados= [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
   "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
@@ -155,9 +160,9 @@ estado.innerHTML= mostrar_estados
 
         if (resposta.ok) {
 
-          // setTimeout(() => {
-          //   window.location = "login.html";
-          // }, "2000");
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }

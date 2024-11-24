@@ -43,15 +43,15 @@
                       </span>
                     <div class="campos min">
                         <form>
-                            <input id="ipt_" required placeholder="Login"/>
+                            <input id="ipt_email" required placeholder="Email"/>
                         </form>
                     </div>
                     <div class="campos min">
                         <form>
-                          <input id="ipt_" type="password" required placeholder="Senha" />
+                          <input id="ipt_senha" type="password" required placeholder="Senha" />
                         </form>
                       </div>
-                      <button>Cadastrar</button>
+                      <button onclick="entrar()">Login</button>
                 </div>
             </div>
         </div>
@@ -60,31 +60,20 @@
 </body>
 </html>
     
-<script>
-
-
+<script>        
     function cadastro(){
     window.location.href = 'cadastro.html';
-  }
-        
-    function entrar() {
-        aguardar();
+    }
+    
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+    function entrar() {
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            alert("Preencha todos os campos!!")
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -110,7 +99,7 @@
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -121,7 +110,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 
@@ -130,10 +118,6 @@
         })
 
         return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 
 </script>
