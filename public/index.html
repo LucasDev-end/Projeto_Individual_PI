@@ -80,44 +80,44 @@
             <span>
               <h4>Selecione uma categoria:</h4>
               <select id="slc_categoria">
-                <option value=""></option>
-                <option value="">Doce</option>
-                <option value="">Salgado</option>
-                <option value="">Massa</option>
+                <option value="#"></option>
+                <option value="1">Doce</option>
+                <option value="2">Salgado</option>
+                <option value="3">Massa</option>
               </select>
             </span>
             <span>
               <h4>Selecione o 1 ingrediente:</h4>
               <select id="slc_ingrediente1">
                 <option value=""></option>
-                <option value="">Doce</option>
-                <option value="">Salgado</option>
-                <option value="">Massa</option>
+                <option value="Tomate">Tomate</option>
+                <option value="Queijo">Queijo</option>
+                <option value="Presunto">Presunto</option>
               </select>
             </span>
             <span>
               <h4>Selecione o 2 ingrediente:</h4>
               <select id="slc_ingrediente2">
                 <option value=""></option>
-                <option value="">Doce</option>
-                <option value="">Salgado</option>
-                <option value="">Massa</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Frango grelhado">Frango grelhado</option>
+                <option value="Calabresa">Calabresa</option>
               </select>
             </span>
             <span>
               <h4>Selecione o 3 ingrediente:</h4>
               <select id="slc_ingrediente3">
                 <option value=""></option>
-                <option value="">Doce</option>
-                <option value="">Salgado</option>
-                <option value="">Massa</option>
+                <option value="Massa de pizza">Massa de pizza</option>
+                <option value="Farinha">Farinha</option>
+                <option value="Açúcar">Açúcar</option>
               </select>
             </span>
+            <button>Buscar</button>
           </div>
         </div>
         <div class="mostrar">
           <div class="mensagem">
-            sdadadadsad
           </div>
         </div>
       </div>
@@ -145,4 +145,106 @@
   function cadastro(){
     window.location.href = 'cadastro.html';
   }
+
+
+
+
+
+  function listar() {
+
+    var categoria = slc_categoria.value;
+    var ingrediente1 = slc_ingrediente1.value;
+    var ingrediente2 = slc_ingrediente2.value;
+    var ingrediente3 = slc_ingrediente3.value;
+
+    fetch("/aquarios/listar", {
+        method: "GET", 
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+        categoriaderver: categoria, 
+        ingrediende1Server: ingrediente1, 
+        ingrediende2Server: ingrediente2, 
+        ingrediende3Server: ingrediente3
+      })
+    }).then(function (receita) {
+        if (receita.ok) {
+            if (receita.status == 204) {
+                throw "Nenhum resultado encontrado!!";
+            }
+
+            receita.json().then(function (receita) {
+                console.log("Receitas recebidss: ", JSON.stringify(receita));
+
+                for (let i = 0; i < receita.length; i++) {
+                    var receita = receita[i];
+
+
+                }
+
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (receita) {
+        console.error(receita);
+    });
+  }
+
+  
+
+
+
+
+
+
+  // function cadastrar() {
+  //   var categoria = slc_categoria.value
+  //   var ingrediente1 = slc_ingrediente1.value
+  //   var ingrediente2 = slc_ingrediente2.value
+  //   var ingrediente3 = slc_ingrediente3.value
+
+  //   if (
+  //     categoria == '' ||
+  //     ingrediente1 == '' ||
+  //     ingrediente2 == '' ||
+  //     ingrediente3 == ''
+  //   ) {
+  //     alert("Preencha todos os campos!")
+  //     return false;
+  //   }
+
+  //   fetch("/usuarios/cadastrar", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       // crie um atributo que recebe o valor recuperado aqui
+  //       // Agora vá para o arquivo routes/usuario.js
+  //       nomeServer: categoria,
+  //       emailServer: ingrediente1,
+  //       cidadeServer: ingrediente2, 
+  //       estadosServer: ingrediente3
+  //     }),
+  //   })
+  //     .then(function (resposta) {
+  //       console.log("resposta: ", resposta);
+
+  //       if (resposta.ok) {
+
+  //         setTimeout(() => {
+  //           window.location = "login.html";
+  //         }, "2000");
+  //       } else {
+  //         throw "Houve um erro ao tentar realizar o cadastro!";
+  //       }
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+
+  //   return false;
+  // }
 </script>

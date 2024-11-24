@@ -56,7 +56,27 @@ function cadastrar(req, res) {
   })  
   }
 
+  function listar(req, res) {
+    var categoria = req.query.categoriaServer;
+    var ingrediente1 = req.query.ingrediende1Server;
+    var ingrediente2 = req.query.ingrediende2Server;
+    var ingrediente3 = req.query.ingrediende3Server;
+
+    aquarioModel.listar(categoria, ingrediente1, ingrediente2, ingrediente3).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar por receitas: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
   buscarAquariosPorEmpresa,
-cadastrar
+  cadastrar,
+  listar
 }
