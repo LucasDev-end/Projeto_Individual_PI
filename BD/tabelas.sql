@@ -29,20 +29,19 @@ create table receitas(
 idReceitas int primary key auto_increment,
 nome varchar(45),
 tempoPreparo varchar(20),
+ingrediente1 varchar(45),
+ingrediente2 varchar(45),
+ingrediente3 varchar(45),
+ingrediente4 varchar(45),
+ingrediente5 varchar(45),
+ingrediente6 varchar(45),
+ingrediente7 varchar(45),
+ingrediente8 varchar(45),
+ingrediente9 varchar(45),
+ingrediente10 varchar(45),
 fkCategoria int,
 constraint fkCategoriaReceitas foreign key (fkcategoria)
 							references categoria(idCategoria)
-);
-
-create table ingredientes(
-idIngredientes int primary key auto_increment,
-nome varchar(45)
-);
-
-create table item(
-fkReceita int,
-fkIngrediente int,
-qtdIngrediente varchar(45)
 );
 
 
