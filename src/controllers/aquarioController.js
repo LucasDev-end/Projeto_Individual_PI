@@ -18,8 +18,18 @@ function buscarAquariosPorEmpresa(req, res) {
 
 
 function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
+  var nomeReceita = req.body.nomeReceita;
+  var tempoReceita = req.body.tempoReceita;
+  var ingrediente1 = req.body.ingrediente1;
+  var ingrediente2 = req.body.ingrediente2;
+  var ingrediente3 = req.body.ingrediente3;
+  var ingrediente4 = req.body.ingrediente4;
+  var ingrediente5 = req.body.ingrediente5;
+  var ingrediente6 = req.body.ingrediente6;
+  var ingrediente7 = req.body.ingrediente7;
+  var ingrediente8 = req.body.ingrediente8;
+  var ingrediente9 = req.body.ingrediente9;
+  var ingrediente10 = req.body.ingrediente10;
 
   if (descricao == undefined) {
     res.status(400).send("descricao está undefined!");
@@ -28,7 +38,7 @@ function cadastrar(req, res) {
   } else {
 
 
-    aquarioModel.cadastrar(descricao, idUsuario)
+    aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10)
       .then((resultado) => {
         res.status(201).json(resultado);
       }

@@ -27,6 +27,11 @@
                   <input id="ipt_senha" type="password" required placeholder="Tempo de preparo (digite o tempo em minutos):" />
                 </form>
               </div>
+              <div class="campos min">
+                <form>
+                  <input id="ipt_senha" type="password" required placeholder="categoria:" />
+                </form>
+              </div>
               <div class="ingredientes">
                 <div class="ingred-camp">
                   <form>
@@ -229,12 +234,30 @@ function receitas(){
   function cadastrar() {
     var nomeReceita = ipt_nomeReceita.value;
     var tempoReceita = ipt_tempoReceita.value;
-    var ingredientes = slc_ingredientes.value;
+    var ingrediente1 = slc_ingrediente1.value;
+    var ingrediente2 = slc_ingrediente2.value;
+    var ingrediente3 = slc_ingrediente3.value;
+    var ingrediente4 = slc_ingrediente4.value;
+    var ingrediente5 = slc_ingrediente5.value;
+    var ingrediente6 = slc_ingrediente6.value;
+    var ingrediente7 = slc_ingrediente7.value;
+    var ingrediente8 = slc_ingrediente8.value;
+    var ingrediente9 = slc_ingrediente9.value;
+    var ingrediente10 = slc_ingrediente10.value;
 
     if (
-      nomeReceita == '' ||
-      tempoReceita == '' ||
-      ingredientes == ''
+      nomeReceita == "" ||
+      tempoReceita == "" ||
+      ingrediente1 == "" ||
+      ingrediente2 == "" ||
+      ingrediente3 == "" ||
+      ingrediente4 == "" ||
+      ingrediente5 == "" ||
+      ingrediente6 == "" ||
+      ingrediente7 == "" ||
+      ingrediente8 == "" ||
+      ingrediente9 == "" ||
+      ingrediente10 == ""
     ) {
       alert("Preencha todos os campo!")
       return false;
@@ -248,9 +271,18 @@ function receitas(){
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeReceita : nomeReceitaVar,
-        tempoReceita : tempoReceitaVar,
-        ingredientes : ingredientesVar
+        nomeReceitaServer: nomeReceitaVar,
+        tempoReceitaServer: tempoReceitaVar, 
+        ingrediente1Server: ingrediente1Var, 
+        ingrediente2Server: ingrediente2Var, 
+        ingrediente3Server: ingrediente3Var, 
+        ingrediente4Server: ingrediente4Var, 
+        ingrediente5Server: ingrediente5Var, 
+        ingrediente6Server: ingrediente6Var, 
+        ingrediente7Server: ingrediente7Var, 
+        ingrediente8Server: ingrediente8Var, 
+        ingrediente9Server: ingrediente9Var, 
+        ingrediente10Server: ingrediente10Var
       }),
     })
       .then(function (resposta) {

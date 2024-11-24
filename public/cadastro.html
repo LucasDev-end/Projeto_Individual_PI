@@ -147,12 +147,12 @@ estado.innerHTML= mostrar_estados
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        estadosServer : estadosVar,
-        nomeServer : nomeVar,
-        emailServer : emailVar,
-        cidadeServer : cidadeVar,
-        senhaServer : senhaVar,
-        categoriaServer : categoriaVar
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        cidadeServer: cidadeVar, 
+        estadosServer: estadosVar,
+        senhaServer: senhaVar,
+        categoriaServer: categoriaVar
       }),
     })
       .then(function (resposta) {
