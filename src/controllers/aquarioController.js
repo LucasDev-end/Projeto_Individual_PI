@@ -35,7 +35,7 @@ function cadastrar(req, res) {
   usuarioModel.consultarCategoria(categoria)
   .then((resultadoAutenticar) => {
       if (resultadoAutenticar.length > 0) {
-          var id =  resultadoAutenticar[0].idCategoria;
+          var id =  resultadoAutenticar[0].Categoria;
           console.log(id)
           aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id)
           .then((resultado) => {
