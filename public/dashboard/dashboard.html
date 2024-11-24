@@ -1,83 +1,123 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
-
-    
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!--FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <script src="path/to/chartjs/dist/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Space Sense | DashBoard</title>
 </head>
-
-<!-- <body onload=" atualizarFeed()"> -->
-
 <body>
-
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    <div class="container">
+        <div class="dashboard">
+            <div class="grafico-esquerda">
+                <div class="kpi">
+                    <div class="box-kpi" id="kpi1">
+                        <div class="titulo" style="background-color: #70A9A1;">
+                            <h2>Ingrediente mais ultilizado</h2>
+                        </div>
+                        <div class="kpi-num" style="background-color: #70A9A1;">
+                            5.872
+                        </div>
+                        <div class="kpi-sub-texto" style="background-color: #70A9A1;">
+                        </div>
+                    </div>
+                    <div class="box-kpi" id="kpi2">
+                        <div class="titulo" style="background-color: #E08E37;">
+                            <h2>dadadasda</h2>
+                        </div>
+                        <div class="kpi-num" style="background-color: #E08E37;">
+                            5.872
+                        </div>
+                        <div class="kpi-sub-texto" style="background-color: #E08E37;">
+                        </div>
+                    </div>
+                    <div class="box-kpi" id="kpi3">
+                        <div class="titulo" style="background-color: #515B3A;">
+                            <h2>Setor</h2>
+                        </div>
+                        <div class="kpi-num" style="background-color: #515B3A;">
+                            5.872
+                        </div>
+                        <div class="kpi-sub-texto" style="background-color: #515B3A;">
+                        </div>
+                    </div>
+                </div>
+                <div class="grafico">
+                    <div id="grafico-geral">
+                        <h2>Popularidade Geral ao Mês</h2>
+                        <canvas id="myChart-grafico" style="width: 3px;"></canvas>
+                    </div>
+<!--                    <div id="grafico-alta">
+                        <h2>Setor em alta</h2>
+                        <canvas id="myChart-grafico-alta" style="width: 3px; "></canvas>
+                    </div>-->
+                </div>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
         </div>
-
-        <div class="dash">
-            <div id="alerta">
+        
+        <div class="side">
+            <div class="user">
+                <div class="line">
+                    <div class="foto"><img src="../assets/imgs/chef.webp"></div>
+                    <h3>Olá, Bem vindo</h3>
+                </div>
             </div>
-
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
+            <div class="box">
+                <div class="menu">
+                    <div> <a href="dashboard.html">Dashboard</a></div>
+                    <div><a href="setores.html">Setores</a></div>
+                </div>
+                <div class="sair">
+                    <div>
+                        <h2><a href="../index.html"><span>SAIR</span></a></h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>
+
+ <!-- script JS de connfiguração do chartJS -->
+<script>
+const grafico_geral = document.getElementById('myChart-grafico');
+const grafico_alta = document.getElementById('myChart-grafico-alta');
+
+new Chart(grafico_geral, {
+  type: 'bar',
+  data: {
+    labels: [
+        'Carnes',
+        'Bebidas',
+        'Congelados',
+        'Hortifruti',
+        'Limpeza',
+    ],
+    datasets: [{
+      label: 'Fluxo',
+      backgroundColor: ['rgb(000, 202, 220)',
+        'rgb(73, 195, 251)',
+        'rgb(101, 166, 250)',
+        'rgb(126, 128, 231)',
+        'rgb(155, 87, 204)',],
+      data: [13451, 11839, 10463,10338, 8692],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    // define a direcao do grafico (horizontal)
+    indexAxis: 'y',categoryPercentage: 1.0,barPercentage: 0.6,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+</script>
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;

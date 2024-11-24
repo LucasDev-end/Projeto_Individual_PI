@@ -1,157 +1,261 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: sans-serif;
+/* Resetando config. padrão do navegador */
+* {
+    margin: 0; /* Remove as margens padrão */
+    padding: 0; /* Remove os preenchimentos padrão */
+    box-sizing: border-box; /* Incluindo bordas e preenchimentos*/
+    text-decoration: none; /* Remove sublinhados de links por padrão */
+    font-family: sans-serif; /* Fonte padrão geral */
+}
+html {
+    scroll-behavior: smooth;
 }
 
-/* :root{
-    --tamanho-header: 80px;
-    --tamanho-footer: 65px;
-    --tamanho-banner: calc(62vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-    --tamanho-container: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-    --tamanho-border-radius: 2px;
-} */
-
+/* Variáveis CSS */
 :root {
-    --autura-header:14vh;
-    --largura-all:100vw;
-  }
+    --autura-header: 14vh; /* Altura do header */
+    --largura-all: 100vw; /* Largura total como 100% da largura da viewport */
+}
 
+/* Configurações body */
 body{
-    background-color: brown;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100vw;
-    height: 100vh;
+    background-color: #dddddd;
+    display: flex; /* Utiliza o modelo de layout flexbox */
+    flex-direction: column; /* Organiza os elementos em uma coluna */
+    align-items: center; /* Alinha os itens no centro horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
+    width: 100vw; /* Define a largura da tela como 100% da largura da janela */
+    height: 420vh; /* Define a altura como 420% da altura da janela */
 }
 
-.header{
-    background-color: rgb(255, 0, 0);
-    height: var(--autura-header);
-    width: var(--largura-all);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+/* Estilo do header */
+.header {
+    background-color: #08415c;
+    height: var(--autura-header); /* Altura baseada na variável */
+    width: var(--largura-all); /* Largura baseada na variável */
+    display: flex; /* Flexbox para organização dos itens */
+    align-items: center; /* Centraliza verticalmente os itens */
+    justify-content: space-around; /* Espaça os itens igualmente */
 }
-.menu{
-    background-color: blue;
-    height: 50%;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-bottom: 2px solid #08415C;
-    border-radius: 8px;
+
+/* Estilo do menu */
+.menu {
+    height: 50%; /* Metade da altura do cabeçalho */
+    width: 60%; /* Ocupa 60% da largura do cabeçalho */
+    display: flex; /* Flexbox para itens internos */
+    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: space-around; /* Espaçamento igual entre os itens */
+    border-bottom: 2px solid #70A9A1; /* Borda inferior azul escuro */
+    border-radius: 2px; /* Bordas arredondadas */
 }
-.menu div{
-    background-color: rgb(44, 203, 44);
-    text-align: center;
-    width: 16%;
+
+/* Estilo das tags filho do menu */
+.menu div, .menu div a{
+    text-align: center; /* Centraliza o texto */
+    width: 16%; /* Define a largura relativa */
+    color: #ffffff; /* Cor do texto branca */
 }
-.menu div:hover{
-    background-color: #879dc6;
+
+/* Estilo quando o mouse passa sobre os itens do menu */
+.menu div:hover, .menu div:hover a {
+    cursor: pointer; /* Define o tipo do cursor */
+    color: orange;/* Define a cor depois de passar o mouse em cima */
 }
-.acesso{
-    background-color: #aa2424;
-    width: 19%;
-    height: 43%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+
+/* Estilo da seção de acesso no cabeçalho */
+.acesso {
+    width: 19%; /* Largura relativa ao cabeçalho */
+    height: 43%; /* Altura relativa ao cabeçalho */
+    display: flex; /* Flexbox para organizar itens */
+    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: space-around; /* Espaçamento igual entre os itens */
 }
-.acesso .login{
-    background-color: #879dc6;
-    width: 35%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px 0px 0px 8px;
-    border-right: 2px solid black;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    color: #ffffff;
+
+/* Estilo para o botão de login */
+.acesso .login {
+    width: 35%; /* Largura do botão */
+    height: 100%; /* Altura total do componente pai */
+    display: flex; /* Flexbox para centralizar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    border-radius: 8px 0 0 8px; /* Arredondamento apenas na esquerda */
+    border-right: 2px solid black; /* Borda direita preta */
+    border-left: 1px solid black; /* Borda esquerda preta */
+    border-top: 1px solid black; /* Borda superior preta */
+    border-bottom: 1px solid black; /* Borda inferior preta */
+    color: #ffffff; /* Cor do texto branca */
 }
-.acesso .cadastro{
-    background-color: #879dc6;
-    width: 65%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0px 8px 8px 0px;
-    border-left: 2px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    color: #ffffff;
+
+/* Estilo para o botão de cadastro */
+.acesso .cadastro {
+    background-color: #70A9A1; /* Fundo azul claro */
+    width: 65%; /* Largura do botão */
+    height: 100%; /* Altura total do componente pai */
+    display: flex; /* Flexbox para centralizar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    border-radius: 0 8px 8px 0; /* Arredondamento apenas na direita */
+    border-left: 2px solid black; /* Borda esquerda preta */
+    border-top: 1px solid black; /* Borda superior preta */
+    border-right: 1px solid black; /* Borda direita preta */
+    border-bottom: 1px solid black; /* Borda inferior preta */
+    color: #ffffff; /* Cor do texto branca */
 }
-.acesso div:hover{
+
+/* Alteração de estilo quando o mouse passa sobre o cadastro e login*/
+.acesso div:hover {
+    background-color: #e08e37; /* Altera a cor de fundo */
+    color: #000000; /* Altera a cor do texto */
+    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
+}
+
+/* Estilo da seção */
+.section {
+    width: var(--largura-all); /* Largura total baseada na variável */
+    height: 90%; /* Altura relativa à viewport */
+    display: flex; /* Flexbox para organizar itens */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: flex-start; /* Alinha itens ao início vertical */
+}
+
+/* Estilo da caixa dentro da seção */
+.box {
+    width: 80vw; /* Largura de 80% da viewport */
+    height: 84vh; /* Altura de 84% da viewport */
+    display: flex; /* Flexbox para organizar os itens */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+/* Estilo da caixa de login dentro da box principal */
+.login-box {
+    background-color: #08415c;
+    width: 75%; /* Largura relativa à box */
+    height: 93%; /* Altura relativa à box */
+    display: flex; /* Flexbox para organizar itens */
+    flex-direction: column; /* Organiza itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+/* Estilo do nome dentro da login-box */
+.login-box .nome {
+    font-size: 270%; /* Tamanho da fonte em escala maior */
+    width: 45%; /* Largura relativa à login-box */
+    height: 18%; /* Altura relativa à login-box */
+    display: flex; /* Flexbox para organizar texto */
+    align-items: flex-start; /* Alinha texto no início vertical */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Estilo dos campos de entrada dentro da login-box */
+.campos {
+    width: 100%; /* Largura total do pai */
+    height: 10%; /* Altura relativa à login-box */
+    display: flex; /* Flexbox para organizar campos */
+    flex-direction: column; /* Organiza itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: space-between; /* Espaçamento uniforme entre itens */
+}
+
+/* Estilo dos elementos select dentro dos campos */
+.campos select {
+    height: 69%; /* Altura relativa ao item pai */
+    width: 22%; /* Largura relativa ao pai */
+}
+
+/* Estilo de uma classe específica para alinhamento e espaçamento */
+.slc {
+    color: #ffffff; /* Texto branco */
+    height: 7%; /* Altura relativa ao item pai */
+    width: 45%; /* Largura relativa ao item pai */
+    display: flex; /* Flexbox para organizar itens */
+    flex-direction: row; /* Organiza itens horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-evenly; /* Espaçamento uniforme */
+    font-size: 65%;
+}
+
+/* Configuração do formulário nos campos */
+.campos form {
+    overflow: hidden; /* Oculta conteúdo que excede o contêiner */
+    position: relative; /* Define posição relativa para elementos filhos */
+    width: 80%; /* Largura do formulário relativa aos campos */
+    height: 65%; /* Altura relativa ao item pai */
+}
+
+/* Configuração dos inputs de texto */
+.campos input {
+    color: #fff; /* Texto branco */
+    font-size: 28px; /* Tamanho do texto */
+    width: 100%; /* Largura total do formulário */
+    padding: 20px 5px 5px; /* Espaçamento interno (topo, laterais, base) */
+    background-color: #e08e37; /* Fundo laranja */
+    border: none; /* Remove bordas */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilo dos rótulos dos inputs */
+.campos label {
+    color: #fff; /* Texto branco */
+    position: absolute; /* Posição relativa ao pai */
+    left: 0; /* Alinha à esquerda */
+    bottom: 0; /* Alinha ao fundo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    pointer-events: none; /* Impede interação do mouse */
+    border-bottom: 1px solid #ffffff; /* Linha inferior branca */
+}
+
+/* Configuração para os spans dentro dos labels */
+.campos span {
+    position: absolute; /* Posição relativa ao pai */
+    bottom: 5px; /* Margem inferior */
+    left: 5px; /* Margem à esquerda */
+    font-size: 12px; /* Tamanho do texto */
+    transition: all 0.3s ease; /* Transição suave para animações */
+}
+
+/* Transforma o título ao focar ou validar o input */
+.campos input:focus + label span,
+.campos input:valid + label span {
+    transform: translateY(-150%); /* Move o texto para cima */
+    font-size: 14px; /* Reduz o tamanho do texto */
+    bottom: 10px; /* Ajusta a posição inferior */
+    color: #000000; /* Altera a cor do texto */
+}
+.min{
+    width: 100%; /* Largura total */
+    height: 25%; /* Altura total */
+}
+button{
     background-color: #e08e37;
-    color: #000000;
-    cursor: pointer;
+    color: #ffffff; /* Altera a cor do texto */
+    font-size: 175%; /* Reduz o tamanho do texto */
+    width: 25%; /* Largura total */
+    height: 10%; /* Altura total */
+}
+/* Alteração de estilo quando o mouse passa sobre o botao*/
+button:hover {
+    background-color: #70A9A1; /* Altera a cor de fundo */
+    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
 }
 
-.section{
-    background-color: rgb(136, 0, 255);
-    width: var(--largura-all);
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+.chk{
+    width: 80%; /* Largura total do pai */
+    height: 80%; /* Altura relativa à login-box */
+    display: flex; /* Flexbox para organizar campos */
+    flex-direction: line; /* Organiza itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: space-evenly; /* Espaçamento uniforme entre itens */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
 }
-
-.box{
-    background-color: #ffffff;
-    width: 80vw;
-    height: 84vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-box{
-    background-color: #b6adad;
-    width: 75%;
-    height: 93%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-box .nome{
-    background-color: #241c9e;
-    font-size: 350%;
-    width: 25%;
-    height: 22%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.campos{
-    background-color: #a2bdca;
-    width: 90%;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-.campos .campo{
-    font-size: 120%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.campo .titulo{
-    font-size: 2vw;
+.chk span{
+    width: auto; /* Largura total do pai */
+    height: auto; /* Altura relativa à login-box */
+    display: flex; /* Flexbox para organizar campos */
+    flex-direction: line; /* Organiza itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Espaçamento uniforme entre itens */
 }
