@@ -67,7 +67,7 @@ function cadastrar(req, res) {
                     if (resultadoAutenticar.length > 0) {
                         var id =  resultadoAutenticar[0].idCategoria
                         console.log(id)
-                        usuarioModel.cadastrar(nome, email, cidade, estados, senha, categoria)
+                        usuarioModel.cadastrar(nome, email, cidade, estados, senha, id)
                         .then(
                             function (resultado) {
                                 res.json(resultado);

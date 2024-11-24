@@ -18,40 +18,43 @@ function buscarAquariosPorEmpresa(req, res) {
 
 
 function cadastrar(req, res) {
-  var nomeReceita = req.body.nomeReceita;
-  var tempoReceita = req.body.tempoReceita;
-  var ingrediente1 = req.body.ingrediente1;
-  var ingrediente2 = req.body.ingrediente2;
-  var ingrediente3 = req.body.ingrediente3;
-  var ingrediente4 = req.body.ingrediente4;
-  var ingrediente5 = req.body.ingrediente5;
-  var ingrediente6 = req.body.ingrediente6;
-  var ingrediente7 = req.body.ingrediente7;
-  var ingrediente8 = req.body.ingrediente8;
-  var ingrediente9 = req.body.ingrediente9;
-  var ingrediente10 = req.body.ingrediente10;
+  var nomeReceita = req.body.nomeReceitaServer;
+  var tempoReceita = req.body.tempoReceitaServer;
+  var categoria = req.body.categoriaServer;
+  var ingrediente1 = req.body.ingrediente1Server;
+  var ingrediente2 = req.body.ingrediente2Server;
+  var ingrediente3 = req.body.ingrediente3Server;
+  var ingrediente4 = req.body.ingrediente4Server;
+  var ingrediente5 = req.body.ingrediente5Server;
+  var ingrediente6 = req.body.ingrediente6Server;
+  var ingrediente7 = req.body.ingrediente7Server;
+  var ingrediente8 = req.body.ingrediente8Server;
+  var ingrediente9 = req.body.ingrediente9Server;
+  var ingrediente10 = req.body.ingrediente10Server;
 
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
-  } else {
+  usuarioModel.consultarCategoria(categoria)
+  .then((resultadoAutenticar) => {
+      if (resultadoAutenticar.length > 0) {
+          var id =  resultadoAutenticar[0].idCategoria;
+          console.log(id)
+          aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id)
+          .then((resultado) => {
+            res.status(201).json(resultado);
+          }
+          ).catch((erro) => {
+            console.log(erro);
+            console.log(
+              "\nHouve um erro ao realizar o cadastro! Erro: ",
+              erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+          });
 
-
-    aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10)
-      .then((resultado) => {
-        res.status(201).json(resultado);
+      } else {
+          res.status(204).json("Deu Erro AQUI!");
       }
-      ).catch((erro) => {
-        console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage
-        );
-        res.status(500).json(erro.sqlMessage);
-      });
+  })  
   }
-}
 
 module.exports = {
   buscarAquariosPorEmpresa,
