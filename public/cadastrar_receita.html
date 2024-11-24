@@ -36,7 +36,7 @@
         </span>
         <div class="campos">
           <form>
-            <input id="ipt_" required />
+            <input id="ipt_nomeReceita" required />
             <label>
               <span>Nome da receita :</span>
             </label>
@@ -44,9 +44,9 @@
         </div>
         <div class="campos">
           <form>
-            <input id="ipt_" required type="number" />
+            <input id="ipt_tempoReceita" required type="number" />
             <label>
-              <span>Nome da receita (digite o tempo em minutos):</span>
+              <span>Tempo da receita (digite o tempo em minutos):</span>
             </label>
           </form>
         </div>
@@ -77,46 +77,20 @@
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var nomeReceita = ipt_nomeReceita.value;
+    var tempoReceita = Number(ipt_tempoReceita.value);
 
     // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      nomeReceita == "" ||
+      tempoReceita == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+      alert("Preencha todos os campos!")
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
     }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrar_receita", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
