@@ -4,7 +4,7 @@ use culinaria;
 
 create table categoria(
 idCategoria int primary key auto_increment,
-nome varchar(45)
+nomeCategoria varchar(45)
 );
 
 insert into categoria values
@@ -25,10 +25,11 @@ constraint fkCategoriaCadastro foreign key (fkcategoria)
 
 select * from cadastro;
 select * from categoria;
+select * from receitas;
 
 create table receitas(
 idReceitas int primary key auto_increment,
-nome varchar(45),
+nomeReceitas varchar(45),
 tempoPreparo varchar(20),
 ingrediente1 varchar(100),
 ingrediente2 varchar(100),
