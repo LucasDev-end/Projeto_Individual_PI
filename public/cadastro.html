@@ -62,11 +62,21 @@
           <h3>Estado:</h3>
           <select id="slc_estado"></select>
         </div>
-        <div class="campos">
+        <div class="campos slc">
           <form>
-            <input id="ipt_categoria" required />
-            <label>
-              <span>Categoria:</span>
+            <h3>Digite a categoria:</h3>
+            <select id="categoria" name="categoria">
+              <option value="Doce">Doce</option>
+              <option value="Salgado">Salgado</option>
+              <option value="Sobremesa">Sobremesa</option>
+              <option value="Entradas">Entradas</option>
+              <option value="Lanches">Lanches</option>
+              <option value="Sopas">Sopas</option>
+              <option value="Salada">Salada</option>
+              <option value="Carne">Carne</option>
+              <option value="Frango">Frango</option>
+              <option value="Fitness">Fitness</option>
+            </select>
             </label>
           </form>
         </div>
@@ -86,8 +96,8 @@
             </label>
           </form>
         </div>
-        <button onclick="cadastrar()">Cadastrar</button>
-        <div class="div_mensagem" id="div_mensagem"></div>
+        <button onclick="validar()">Cadastrar</button>
+        <div class="div_mensagem"></div>
       </div>
     </div>
   </div>
@@ -115,33 +125,32 @@
     window.location.href = 'login.html';
     }
 
-    function cadastrar() {
+    function validar() {
+      var nome = ipt_nome.value;
+      var email = ipt_email.value;
+      var cidade = ipt_cidade.value;
+      var estado = slc_estado.value;
+      var categoria = ipt_categoria.value;
+      var senha = ipt_senha.value;
+      var checksenha = ipt_checksenha.value;
+      var emailValido = false;
+      var senhaValida = true;
+      var temNumero = false;
+      var temEspecial = false;
+      var caracteresEspeciais = `!\#$%&'()*+,-./:;<=>?@[\\]^_`;
+      var mensagem = "";
 
-    var nome = ipt_nome.value;
-    var email = ipt_email.value;
-    var cidade = ipt_cidade.value;
-    var estado = slc_estado.value;
-    var categoria = ipt_categoria.value;
-    var senha = ipt_senha.value;
-    var checksenha = ipt_checksenha.value;
-    var emailValido = false;
-    var senhaValida = true;
-    var temNumero = false;
-    var temEspecial = false;
-    var caracteresEspeciais = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-    var mensagem = "";
-
-    // Verificação dos campos obrigatórios
+    // Verificação dos campos
     if (
-      estadosVar == '' ||
-      nomeVar == '' ||
-      emailVar == '' ||
-      categoriaVar == '' ||
-      cidadeVar == '' ||
-      senhaVar == '' ||
-      checksenhaVar == ''
+      estado == '' ||
+      nome == '' ||
+      email == '' ||
+      categoria == '' ||
+      cidade == '' ||
+      senha == '' ||
+      checksenha == ''
     ) {
-      alert("Preencha todos os campos!")
+      alert("Preencha todos os campos!");
       return false;
     }
 
@@ -151,15 +160,12 @@
         if (dominio && dominio.includes('.')) {
             emailValido = true;
         }
-    }
-    if (!emailValido) {
-        mensagem += `<span style='color:red; font-weight:bold;'><h1>Email inválido</h1></span><br>`;
+    }else{
+      mensagem += `<span style='color:red; font-weight:bold;'>Email Invalido</span><br>`;
     }
 
     // Validação da senha
-    if (senha.length < 8) {
-      senhaValida = false;
-    }
+    if (senha.length < 8) senhaValida = false;
 
     for (var i = 0; i < senha.length; i++) {
       if (!isNaN(Number(senha[i]))) {
@@ -167,9 +173,7 @@
         break;
       }
     }
-    if (!temNumero) {
-      senhaValida = false;
-    }
+    if (!temNumero) senhaValida = false;
 
     if (senha.toLowerCase() == senha || senha.toUpperCase() == senha) {
       senhaValida = false;
@@ -181,35 +185,34 @@
         break;
       }
     }
-    if (!temEspecial) {
-      senhaValida = false;
-    }
+    if (!temEspecial) senhaValida = false;
 
     if (!senhaValida) {
       mensagem += `<span style='color:red; font-weight:bold;'>Senha inválida</span><br>`;
     }
 
-    // Verificação da confirmação da senha
-    if (senha != checkSenha) {
+    //confirmação da senha
+    if (senha != checksenha) {
       mensagem += `<span style='color:red; font-weight:bold;'>As senhas não correspondem</span><br>`;
     }
 
-    // Exibição das mensagens de erro
+    // mensagens de erro
     if (mensagem == "") {
-      return alert("Cadastro realizado com sucesso!");
+        return cadastrar();
     } else {
-      return div_mensagem.innerHTML = `<span>${mensagem}</span>`;
+      document.querySelector('.div_mensagem').innerHTML = mensagem; // deu erro com innerHTML e com o getElement
     }
+
   }
 
+
   function cadastrar() {
-    var categoriaVar = ipt_categoria.value
-    var estadosVar = estado.value
-    var nomeVar = ipt_nome.value
-    var emailVar = ipt_email.value
-    var cidadeVar = ipt_cidade.value
-    var senhaVar = ipt_senha.value
-    var checksenhaVar = ipt_checksenha.value
+    var nome = ipt_nome.value;
+    var email = ipt_email.value;
+    var cidade = ipt_cidade.value;
+    var estado = slc_estado.value;
+    var categoria = ipt_categoria.value;
+    var senha = ipt_senha.value;
 
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -219,12 +222,12 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        cidadeServer: cidadeVar, 
-        estadosServer: estadosVar,
-        senhaServer: senhaVar,
-        categoriaServer: categoriaVar
+        nomeServer: nome,
+        emailServer: email,
+        cidadeServer: cidade, 
+        estadosServer: estado,
+        senhaServer: senha,
+        categoriaServer: categoria
       }),
     })
       .then(function (resposta) {

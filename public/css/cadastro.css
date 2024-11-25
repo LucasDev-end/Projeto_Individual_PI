@@ -162,14 +162,14 @@ body{
     display: flex; /* Flexbox para organizar itens */
     flex-direction: column; /* Organiza itens verticalmente */
     align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
+    justify-content: flex-startz; /* Centraliza verticalmente */
 }
 
 /* Estilo do nome dentro da login-box */
 .login-box .nome {
     font-size: 270%; /* Tamanho da fonte em escala maior */
     width: 45%; /* Largura relativa à login-box */
-    height: 18%; /* Altura relativa à login-box */
+    height: 9%; /* Altura relativa à login-box */
     display: flex; /* Flexbox para organizar texto */
     align-items: flex-start; /* Alinha texto no início vertical */
     justify-content: center; /* Centraliza horizontalmente */

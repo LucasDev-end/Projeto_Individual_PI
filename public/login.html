@@ -58,20 +58,6 @@
   function cadastro(){
     window.location.href = 'cadastro.html';
     }
-    
-    var estados= [
-    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
-    "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
-    "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
-    ];
-    var mostrar_estados = "";
-
-    for (var i = 0; i < estados.length; i++) {
-    mostrar_estados += `<option value="${estados[i]}">${estados[i]}</option>`;
-    }
-
-    estado.innerHTML= mostrar_estados
-
 
     function validar() {
     var email = document.getElementById('ipt_email').value;
@@ -135,7 +121,7 @@
     if (mensagem == "") {
         return entrar();
     } else {
-        document.getElementById('div_mensagem').innerHTML = mensagem;
+        div_mensagem.innerHTML = mensagem;
     }
 }
 

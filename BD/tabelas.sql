@@ -40,8 +40,16 @@ constraint fkCategoriaReceitas foreign key (fkcategoria)
 );
 
 insert into categoria values
-( default, 'doce'),
-( default, 'salgado');
+(default,'Doce'),
+(default,'Salgado'),
+(default,'Sobremesa'),
+(default,'Entradas'),
+(default,'Lanches'),
+(default,'Sopas'),
+(default,'Salada'),
+(default,'Carne'),
+(default,'Frango'),
+(default,'Fitness');
 
 INSERT INTO receitas 
 (nomeReceitas, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria)
