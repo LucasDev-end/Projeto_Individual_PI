@@ -1,269 +1,248 @@
-/* Resetando config. padrão do navegador */
+/* Resetando configurações padrão do navegador */
 * {
-    margin: 0; /* Remove as margens padrão */
-    padding: 0; /* Remove os preenchimentos padrão */
-    box-sizing: border-box; /* Incluindo bordas e preenchimentos*/
-    text-decoration: none; /* Remove sublinhados de links por padrão */
-    font-family: sans-serif; /* Fonte padrão geral */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
 }
+
 html {
     scroll-behavior: smooth;
 }
 
 /* Variáveis CSS */
 :root {
-    --autura-header: 14vh; /* Altura do header */
-    --largura-all: 100vw; /* Largura total como 100% da largura da viewport */
+    --autura-header: 14vh;
+    --largura-all: 100vw;
 }
 
-/* Configurações body */
-body{
+/* Configurações do body */
+body {
     background-color: #dddddd;
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: column; /* Organiza os elementos em uma coluna */
-    align-items: center; /* Alinha os itens no centro horizontalmente */
-    justify-content: flex-start; /* Alinha os itens no topo */
-    width: 100vw; /* Define a largura da tela como 100% da largura da janela */
-    height: 100vh; /* Define a altura como 420% da altura da janela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* Estilo do header */
 .header {
     background-color: #08415c;
-    height: var(--autura-header); /* Altura baseada na variável */
-    width: var(--largura-all); /* Largura baseada na variável */
-    display: flex; /* Flexbox para organização dos itens */
-    align-items: center; /* Centraliza verticalmente os itens */
-    justify-content: space-around; /* Espaça os itens igualmente */
+    height: var(--autura-header);
+    width: var(--largura-all);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 /* Estilo do menu */
 .menu {
-    height: 50%; /* Metade da altura do cabeçalho */
-    width: 60%; /* Ocupa 60% da largura do cabeçalho */
-    display: flex; /* Flexbox para itens internos */
-    align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: space-around; /* Espaçamento igual entre os itens */
-    border-bottom: 2px solid #70A9A1; /* Borda inferior azul escuro */
-    border-radius: 2px; /* Bordas arredondadas */
+    height: 50%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid #70A9A1;
+    border-radius: 2px;
 }
 
-/* Estilo das tags filho do menu */
-.menu div, .menu div a{
-    text-align: center; /* Centraliza o texto */
-    width: 16%; /* Define a largura relativa */
-    color: #ffffff; /* Cor do texto branca */
+.menu div, .menu div a {
+    text-align: center;
+    width: 16%;
+    color: #ffffff;
 }
 
-/* Estilo quando o mouse passa sobre os itens do menu */
 .menu div:hover, .menu div:hover a {
-    cursor: pointer; /* Define o tipo do cursor */
-    color: orange;/* Define a cor depois de passar o mouse em cima */
+    cursor: pointer;
+    color: orange;
 }
 
-/* Estilo da seção de acesso no cabeçalho */
+/* Seção de acesso no cabeçalho */
 .acesso {
-    width: 19%; /* Largura relativa ao cabeçalho */
-    height: 43%; /* Altura relativa ao cabeçalho */
-    display: flex; /* Flexbox para organizar itens */
-    align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: space-around; /* Espaçamento igual entre os itens */
+    width: 19%;
+    height: 43%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-/* Estilo para o botão de login */
+/* Botão de login */
 .acesso .login {
-    width: 35%; /* Largura do botão */
-    height: 100%; /* Altura total do componente pai */
-    display: flex; /* Flexbox para centralizar conteúdo */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    border-radius: 8px 0 0 8px; /* Arredondamento apenas na esquerda */
-    border-right: 2px solid black; /* Borda direita preta */
-    border-left: 1px solid black; /* Borda esquerda preta */
-    border-top: 1px solid black; /* Borda superior preta */
-    border-bottom: 1px solid black; /* Borda inferior preta */
-    color: #ffffff; /* Cor do texto branca */
+    background-color: #70A9A1;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 0 0 8px;
+    border-right: 2px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #ffffff;
 }
 
-/* Estilo para o botão de login */
-.acesso .login{
-    background-color: #70A9A1; /* Fundo azul claro */
-    width: 35%; /* Largura do botão */
-    height: 100%; /* Altura total do componente pai */
-    display: flex; /* Flexbox para centralizar conteúdo */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    border-radius: 8px 0 0 8px; /* Arredondamento apenas na esquerda */
-    border-right: 2px solid black; /* Borda direita preta */
-    border-left: 1px solid black; /* Borda esquerda preta */
-    border-top: 1px solid black; /* Borda superior preta */
-    border-bottom: 1px solid black; /* Borda inferior preta */
-    color: #ffffff; /* Cor do texto branca */
+/* Botão de cadastro */
+.acesso .cadastro {
+    background-color: #70A9A1;
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 8px 8px 0;
+    border-left: 2px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #ffffff;
 }
 
-/* Estilo para o botão de cadastro */
-.acesso .cadastro{
-    background-color: #70A9A1; /* Fundo azul claro */
-    width: 65%; /* Largura do botão */
-    height: 100%; /* Altura total do componente pai */
-    display: flex; /* Flexbox para centralizar conteúdo */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    border-radius: 0 8px 8px 0; /* Arredondamento apenas na direita */
-    border-left: 2px solid black; /* Borda esquerda preta */
-    border-top: 1px solid black; /* Borda superior preta */
-    border-right: 1px solid black; /* Borda direita preta */
-    border-bottom: 1px solid black; /* Borda inferior preta */
-    color: #ffffff; /* Cor do texto branca */
-}
-
-/* Alteração de estilo quando o mouse passa sobre o cadastro e login*/
 .acesso div:hover {
-    background-color: #e08e37; /* Altera a cor de fundo */
-    color: #000000; /* Altera a cor do texto */
-    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
+    background-color: #e08e37;
+    color: #000000;
+    cursor: pointer;
 }
 
-.login-box, .cadastrar-box{
-    background-color: #ffffff; /* Cor de fundo branca */
-    width: 80vw; /* Largura de 80% da largura da janela */
-    height: 80vh; /* Altura de 80% da altura da janela */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: column; /* Organiza os elementos em uma coluna */
-    align-items: center; /* Alinha os itens no centro horizontalmente */
-    justify-content: center; /* Alinha os itens no centro verticalmente */
+/* Login e cadastro boxes */
+.login-box, .cadastrar-box {
+    background-color: #ffffff;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Estilo da seção */
 .section {
-    width: var(--largura-all); /* Largura total baseada na variável */
-    height: 90%; /* Altura relativa à viewport */
-    display: flex; /* Flexbox para organizar itens */
-    flex-direction: column; /* Organiza os itens verticalmente */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    justify-content: flex-start; /* Alinha itens ao início vertical */
+    width: var(--largura-all);
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-/* Estilo da caixa dentro da seção */
+/* Caixa principal na seção */
 .box {
-    width: 80vw; /* Largura de 80% da viewport */
-    height: 84vh; /* Altura de 84% da viewport */
-    display: flex; /* Flexbox para organizar os itens */
-    flex-direction: column; /* Organiza os itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
+    width: 80vw;
+    height: 84vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Estilo da caixa de login dentro da box principal */
+/* Login-box principal */
 .login-box {
     background-color: #08415c;
-    width: 75%; /* Largura relativa à box */
-    height: 93%; /* Altura relativa à box */
-    display: flex; /* Flexbox para organizar itens */
-    flex-direction: column; /* Organiza itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-startz; /* Centraliza verticalmente */
+    width: 75%;
+    height: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-startz;
 }
 
-/* Estilo do nome dentro da login-box */
 .login-box .nome {
-    font-size: 270%; /* Tamanho da fonte em escala maior */
-    width: 45%; /* Largura relativa à login-box */
-    height: 9%; /* Altura relativa à login-box */
-    display: flex; /* Flexbox para organizar texto */
-    align-items: flex-start; /* Alinha texto no início vertical */
-    justify-content: center; /* Centraliza horizontalmente */
+    font-size: 270%;
+    width: 45%;
+    height: 9%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
-/* Estilo dos campos de entrada dentro da login-box */
+/* Campos de entrada dentro da login-box */
 .campos {
-    width: 100%; /* Largura total do pai */
-    height: 10%; /* Altura relativa à login-box */
-    display: flex; /* Flexbox para organizar campos */
-    flex-direction: column; /* Organiza itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: space-between; /* Espaçamento uniforme entre itens */
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* Estilo dos elementos select dentro dos campos */
 .campos select {
-    height: 69%; /* Altura relativa ao item pai */
-    width: 22%; /* Largura relativa ao pai */
+    height: 69%;
+    width: 22%;
 }
 
-/* Estilo de uma classe específica para alinhamento e espaçamento */
 .slc {
-    color: #ffffff; /* Texto branco */
-    height: 7%; /* Altura relativa ao item pai */
-    width: 45%; /* Largura relativa ao item pai */
-    display: flex; /* Flexbox para organizar itens */
-    flex-direction: row; /* Organiza itens horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: space-evenly; /* Espaçamento uniforme */
+    color: #ffffff;
+    height: 7%;
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     font-size: 65%;
 }
 
-/* Configuração do formulário nos campos */
+/* Configuração do formulário */
 .campos form {
-    overflow: hidden; /* Oculta conteúdo que excede o contêiner */
-    position: relative; /* Define posição relativa para elementos filhos */
-    width: 80%; /* Largura do formulário relativa aos campos */
-    height: 65%; /* Altura relativa ao item pai */
+    overflow: hidden;
+    position: relative;
+    width: 80%;
+    height: 65%;
 }
 
-/* Configuração dos inputs de texto */
 .campos input {
-    color: #fff; /* Texto branco */
-    font-size: 28px; /* Tamanho do texto */
-    width: 100%; /* Largura total do formulário */
-    padding: 20px 5px 5px; /* Espaçamento interno (topo, laterais, base) */
-    background-color: #e08e37; /* Fundo laranja */
-    border: none; /* Remove bordas */
-    border-radius: 4px; /* Bordas arredondadas */
+    color: #fff;
+    font-size: 28px;
+    width: 100%;
+    padding: 20px 5px 5px;
+    background-color: #e08e37;
+    border: none;
+    border-radius: 4px;
 }
 
-/* Estilo dos rótulos dos inputs */
 .campos label {
-    color: #fff; /* Texto branco */
-    position: absolute; /* Posição relativa ao pai */
-    left: 0; /* Alinha à esquerda */
-    bottom: 0; /* Alinha ao fundo */
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    pointer-events: none; /* Impede interação do mouse */
-    border-bottom: 1px solid #ffffff; /* Linha inferior branca */
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
-/* Configuração para os spans dentro dos labels */
 .campos span {
-    position: absolute; /* Posição relativa ao pai */
-    bottom: 5px; /* Margem inferior */
-    left: 5px; /* Margem à esquerda */
-    font-size: 12px; /* Tamanho do texto */
-    transition: all 0.3s ease; /* Transição suave para animações */
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
 }
 
-/* Transforma o título ao focar ou validar o input */
 .campos input:focus + label span,
 .campos input:valid + label span {
-    transform: translateY(-150%); /* Move o texto para cima */
-    font-size: 14px; /* Reduz o tamanho do texto */
-    bottom: 10px; /* Ajusta a posição inferior */
-    color: #000000; /* Altera a cor do texto */
+    transform: translateY(-150%);
+    font-size: 14px;
+    bottom: 10px;
+    color: #000000;
 }
-.min{
-    width: 100%; /* Largura total */
-    height: 25%; /* Altura total */
+
+.min {
+    width: 100%;
+    height: 25%;
 }
-button{
+
+/* Botão */
+button {
     background-color: #e08e37;
-    color: #ffffff; /* Altera a cor do texto */
-    font-size: 175%; /* Reduz o tamanho do texto */
-    width: 25%; /* Largura total */
-    height: 10%; /* Altura total */
+    color: #ffffff;
+    font-size: 175%;
+    width: 25%;
+    height: 10%;
 }
-/* Alteração de estilo quando o mouse passa sobre o botao*/
+
 button:hover {
-    background-color: #70A9A1; /* Altera a cor de fundo */
-    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
+    background-color: #70A9A1;
+    cursor: pointer;
 }

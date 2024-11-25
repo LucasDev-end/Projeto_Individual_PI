@@ -1,10 +1,10 @@
 /* Resetando config. padrão do navegador */
 * {
-    margin: 0; /* Remove as margens padrão */
-    padding: 0; /* Remove os preenchimentos padrão */
-    box-sizing: border-box; /* Incluindo bordas e preenchimentos*/
-    text-decoration: none; /* Remove sublinhados de links por padrão */
-    font-family: sans-serif; /* Fonte padrão geral */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
 }
 html {
     scroll-behavior: smooth;
@@ -12,283 +12,274 @@ html {
 
 /* Variáveis CSS */
 :root {
-    --autura-header: 14vh; /* Altura do header */
-    --largura-all: 100vw; /* Largura total como 100% da largura da viewport */
+    --autura-header: 14vh;
+    --largura-all: 100vw;
 }
 
 /* Configurações body */
-body{
+body {
     background-color: #dddddd;
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: column; /* Organiza os elementos em uma coluna */
-    align-items: center; /* Alinha os itens no centro horizontalmente */
-    justify-content: flex-start; /* Alinha os itens no topo */
-    width: 100vw; /* Define a largura da tela como 100% da largura da janela */
-    height: 420vh; /* Define a altura como 420% da altura da janela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 420vh;
 }
 
 /* Estilo do header */
 .header {
     background-color: #08415c;
-    height: var(--autura-header); /* Altura baseada na variável */
-    width: var(--largura-all); /* Largura baseada na variável */
-    display: flex; /* Flexbox para organização dos itens */
-    align-items: center; /* Centraliza verticalmente os itens */
-    justify-content: space-around; /* Espaça os itens igualmente */
+    height: var(--autura-header);
+    width: var(--largura-all);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 /* Estilo do menu */
 .menu {
-    height: 50%; /* Metade da altura do cabeçalho */
-    width: 60%; /* Ocupa 60% da largura do cabeçalho */
-    display: flex; /* Flexbox para itens internos */
-    align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: space-around; /* Espaçamento igual entre os itens */
-    border-bottom: 2px solid #70A9A1; /* Borda inferior azul escuro */
-    border-radius: 2px; /* Bordas arredondadas */
+    height: 50%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid #70A9A1;
+    border-radius: 2px;
 }
 
 /* Estilo das tags filho do menu */
-.menu div, .menu div a{
-    text-align: center; /* Centraliza o texto */
-    width: 16%; /* Define a largura relativa */
-    color: #ffffff; /* Cor do texto branca */
+.menu div, .menu div a {
+    text-align: center;
+    width: 16%;
+    color: #ffffff;
 }
 
-/* Estilo quando o mouse passa sobre os itens do menu */
+/* Efeito hover no menu */
 .menu div:hover, .menu div:hover a {
-    cursor: pointer; /* Define o tipo do cursor */
-    color: orange;/* Define a cor depois de passar o mouse em cima */
+    cursor: pointer;
+    color: orange;
 }
 
 /* Estilo da seção de acesso no cabeçalho */
 .acesso {
-    width: 19%; /* Largura relativa ao cabeçalho */
-    height: 43%; /* Altura relativa ao cabeçalho */
-    display: flex; /* Flexbox para organizar itens */
-    align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: space-around; /* Espaçamento igual entre os itens */
+    width: 19%;
+    height: 43%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 /* Estilo para o botão de login */
 .acesso .login {
-    width: 35%; /* Largura do botão */
-    height: 100%; /* Altura total do componente pai */
-    display: flex; /* Flexbox para centralizar conteúdo */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    border-radius: 8px 0 0 8px; /* Arredondamento apenas na esquerda */
-    border-right: 2px solid black; /* Borda direita preta */
-    border-left: 1px solid black; /* Borda esquerda preta */
-    border-top: 1px solid black; /* Borda superior preta */
-    border-bottom: 1px solid black; /* Borda inferior preta */
-    color: #ffffff; /* Cor do texto branca */
-}
-
-/* Estilo para o botão de login */
-.acesso .login{
-    background-color: #70A9A1; /* Fundo azul claro */
-    width: 35%; /* Largura do botão */
-    height: 100%; /* Altura total do componente pai */
-    display: flex; /* Flexbox para centralizar conteúdo */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    border-radius: 8px 0 0 8px; /* Arredondamento apenas na esquerda */
-    border-right: 2px solid black; /* Borda direita preta */
-    border-left: 1px solid black; /* Borda esquerda preta */
-    border-top: 1px solid black; /* Borda superior preta */
-    border-bottom: 1px solid black; /* Borda inferior preta */
-    color: #ffffff; /* Cor do texto branca */
+    background-color: #70A9A1;
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 0 0 8px;
+    border-right: 2px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #ffffff;
 }
 
 /* Estilo para o botão de cadastro */
-.acesso .cadastro{
-    background-color: #70A9A1; /* Fundo azul claro */
-    width: 65%; /* Largura do botão */
-    height: 100%; /* Altura total do componente pai */
-    display: flex; /* Flexbox para centralizar conteúdo */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
-    border-radius: 0 8px 8px 0; /* Arredondamento apenas na direita */
-    border-left: 2px solid black; /* Borda esquerda preta */
-    border-top: 1px solid black; /* Borda superior preta */
-    border-right: 1px solid black; /* Borda direita preta */
-    border-bottom: 1px solid black; /* Borda inferior preta */
-    color: #ffffff; /* Cor do texto branca */
-}
-
-/* Alteração de estilo quando o mouse passa sobre o cadastro e login*/
-.acesso div:hover {
-    background-color: #e08e37; /* Altera a cor de fundo */
-    color: #000000; /* Altera a cor do texto */
-    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
-}
-
-.login-box, .cadastrar-box{
-    background-color: #ffffff; /* Cor de fundo branca */
-    width: 80vw; /* Largura de 80% da largura da janela */
-    height: 80vh; /* Altura de 80% da altura da janela */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: column; /* Organiza os elementos em uma coluna */
-    align-items: center; /* Alinha os itens no centro horizontalmente */
-    justify-content: center; /* Alinha os itens no centro verticalmente */
-}
-
-.section{
-    width: var(--largura-all); /* Largura definida por uma variável CSS */
-    height: 90%; /* Altura de 90% */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: column; /* Organiza os elementos em uma coluna */
-    align-items: center; /* Alinha os itens no centro horizontalmente */
-    justify-content: flex-start; /* Alinha os itens no topo */
-}
-
-.imagem{
-    height: 22%; /* Altura de 22% */
-    width: 100%; /* Largura de 100% */
-    background-image: url('../assets/imgs/home.svg'); /* Define uma imagem de fundo */
-    background-repeat: no-repeat; /* A imagem de fundo não se repete */
-    background-position: center top; /* A imagem de fundo é posicionada no topo central */
-}
-
-.sobre-mim{
-    background-color: #08415c; /* Cor de fundo cinza escuro */
-    height: 26%; /* Altura de 26% */
-    width: var(--largura-all); /* Largura definida por uma variável CSS */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
-}
-
-.doma{
-    background-repeat: no-repeat; /* A imagem de fundo não se repete */
-    background-position: center; /* A imagem de fundo é posicionada no centro */
-    height: 65%; /* Altura de 65% */
-    width: 63%; /* Largura de 63% */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-}
-
-.pai-imagem{
-    height: 72%; /* Altura de 72% */
-    width: 25%; /* Largura de 25% */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    align-items: center; /* Alinha os itens no centro verticalmente */
-    justify-content: flex-end; /* Alinha os itens ao final */
-}
-
-.doma img{
-    height: 100%; /* A imagem ocupa toda a altura da div */
-}
-
-.sobre-mim .sobre-texto{
-    height: 78%; /* Altura de 78% */
-    width: 61%; /* Largura de 61% */
+.acesso .cadastro {
+    background-color: #70A9A1;
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 8px 8px 0;
+    border-left: 2px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     color: #ffffff;
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: column;
-    align-items: center; /* Alinha os itens no centro verticalmente */
-    justify-content: center; /* Centraliza os itens horizontalmente */
 }
-.sobre-texto span, .sobre-texto2 span{
-    height: 15%; /* Altura de 78% */
-    width: 25%; /* Largura de 61% */
+
+/* Alteração de estilo quando o mouse passa sobre o cadastro e login */
+.acesso div:hover {
+    background-color: #e08e37;
+    color: #000000;
+    cursor: pointer;
+}
+
+.login-box, .cadastrar-box {
+    background-color: #ffffff;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo da seção principal */
+.section {
+    width: var(--largura-all);
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Imagem principal */
+.imagem {
+    height: 22%;
+    width: 100%;
+    background-image: url('../assets/imgs/home.svg');
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+/* Seção "Sobre Mim" */
+.sobre-mim {
+    background-color: #08415c;
+    height: 26%;
+    width: var(--largura-all);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.doma {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65%;
+    width: 63%;
+    display: flex;
+    justify-content: center;
+}
+
+.pai-imagem {
+    height: 72%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.doma img {
+    height: 100%;
+}
+
+.sobre-mim .sobre-texto {
+    height: 78%;
+    width: 61%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sobre-texto span, .sobre-texto2 span {
+    height: 15%;
+    width: 25%;
     font-size: 250%;
     color: #e08e37;
     text-align: center;
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    align-items: center; /* Alinha os itens no centro verticalmente */
-    justify-content: center; /* Centraliza os itens horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* As classes 'sobre-mim2' e 'eu' são definidas da mesma forma que as classes acima, mas com cores e comportamentos ligeiramente diferentes. */
-.sobre-mim2{
-    height: 26%; /* Altura de 26% */
-    width: var(--largura-all); /* Largura definida por uma variável CSS */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    flex-direction: row-reverse; /* Organiza os elementos em linha reversa */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
+/* Seção "Sobre Mim 2" */
+.sobre-mim2 {
+    height: 26%;
+    width: var(--largura-all);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
 }
 
-.eu{
-    background-repeat: no-repeat; /* A imagem de fundo não se repete */
-    background-position: center; /* A imagem de fundo é posicionada no centro */
-    height: 65%; /* Altura de 65% */
-    width: 63%; /* Largura de 63% */
-    display: flex; /* Utiliza o modelo de layout flexbox */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-}
-.pai-imagem2{
-    height: 72%; /* Altura da div em 72% */
-    width: 25%; /* Largura da div em 25% */
-    display: flex; /* Usa flexbox para o layout */
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: center; /* Alinha os itens horizontalmente ao início */
+.eu {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65%;
+    width: 63%;
+    display: flex;
+    justify-content: center;
 }
 
-.eu img{
-    height: 100%; /* Define a altura da imagem para 100% do seu contêiner */
+.pai-imagem2 {
+    height: 72%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.sobre-mim2 .sobre-texto2{
-    height: 78%; /* Altura do contêiner de texto em 78% */
-    width: 61%; /* Largura do contêiner de texto em 61% */
-    display: flex; /* Flexbox é utilizado */
+.eu img {
+    height: 100%;
+}
+
+.sobre-mim2 .sobre-texto2 {
+    height: 78%;
+    width: 61%;
+    display: flex;
     flex-direction: column;
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: center; /* Alinha os itens horizontalmente no centro */
+    align-items: center;
+    justify-content: center;
 }
 
-.sobre-mim p, .sobre-mim2 p{
-    width: 95%; /* Largura dos parágrafos em 95% do contêiner */
+.sobre-mim p, .sobre-mim2 p {
+    width: 95%;
     font-size: 105%;
 }
 
-.consulta-receitas{
-    background-color: #08415c; /* Cor de fundo roxa */
-    height: 26%; /* Altura da seção em 26% */
-    width: 100%; /* Largura de 100% do contêiner */
-    display: flex; /* Utiliza flexbox */
-    flex-direction: row; /* Disposição dos itens em linha */
+/* Seção de consulta de receitas */
+.consulta-receitas {
+    background-color: #08415c;
+    height: 26%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
-.consulta-receitas .selecionar{
-    height: 100%; /* Altura de 100% */
-    width: 45%; /* Largura de 45% */
-    display: flex; /* Flexbox é utilizado */
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: center; /* Alinha os itens horizontalmente no centro */
+.consulta-receitas .selecionar {
+    height: 100%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.selecionar .campos-receita{
-    height: 60%; /* Altura do contêiner de campos em 60% */
-    width: 60%; /* Largura de 60% */
-    flex-direction: column; /* Disposição dos itens em coluna */
-    justify-content: space-evenly; /* Distribui os itens igualmente ao longo do eixo vertical */
+.selecionar .campos-receita {
+    height: 60%;
+    width: 60%;
+    flex-direction: column;
+    justify-content: space-evenly;
     color: #ffffff;
 }
 
-.campos-receita span{
-    height: 18%; /* Altura do item em 18% */
-    width: 100%; /* Largura de 100% */
-    display: flex; /* Utiliza flexbox */
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: center; /* Alinha os itens horizontalmente no centro */
+.campos-receita span {
+    height: 18%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.consulta-receitas .mostrar{
-    height: 100%; /* Altura de 100% */
-    width: 55%; /* Largura de 55% */
-    display: flex; /* Flexbox é utilizado */
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: center; /* Alinha os itens horizontalmente no centro */
+.consulta-receitas .mostrar {
+    height: 100%;
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.mostrar .mensagem{
-    background-color: #e08e37; /* Cor de fundo azul escuro */
-    height: 85%; /* Altura da mensagem em 85% */
-    width: 70%; /* Largura da mensagem em 70% */
+.mostrar .mensagem {
+    background-color: #e08e37;
+    height: 85%;
+    width: 70%;
     color: #ffffff;
     border-radius: 4px;
     text-align: justify;
@@ -297,45 +288,47 @@ body{
     align-items: center;
 }
 
+/* Botão */
+button {
+    background-color: #e08e37;
+    color: #ffffff;
+    font-size: 175%;
+    width: 35%;
+    height: 10%;
+}
+
+button:hover {
+    background-color: #70A9A1;
+    cursor: pointer;
+}
+
+/* Rodapé */
 .footer {
-    height: 7%; /* Altura do rodapé em 7% */
-    width: var(--largura-all); /* Largura definida por uma variável CSS */
-    display: flex; /* Flexbox é utilizado */
-    flex-direction: column; /* Disposição dos itens em coluna */
-    align-items: center; /* Alinha os itens horizontalmente no centro */
-    justify-content: space-between; /* Distribui os itens com espaçamento entre eles */
+    height: 7%;
+    width: var(--largura-all);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .contato {
-    display: flex; /* Flexbox é utilizado */
-    justify-content: center; /* Alinha os itens horizontalmente no centro */
-    flex-direction: column; /* Disposição dos itens em coluna */
-    width: 100%; /* Largura de 100% do contêiner */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 .contato-info {
-    height: 50%; /* Altura da seção de contato em 50% */
-    display: flex; /* Flexbox é utilizado */
-    flex-direction: column; /* Disposição dos itens em coluna */
-    justify-content: center; /* Alinha os itens verticalmente no centro */
-    align-items: center; /* Alinha os itens horizontalmente no centro */
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .contato-info img {
-    height: 20px; /* Define a altura da imagem */
-    width: 20px; /* Define a largura da imagem */
-    margin-right: 20px; /* Adiciona um espaçamento de 20px à direita da imagem */
-}
-
-button{
-    background-color: #e08e37;
-    color: #ffffff; /* Altera a cor do texto */
-    font-size: 175%; /* Reduz o tamanho do texto */
-    width: 25%; /* Largura total */
-    height: 10%; /* Altura total */
-}
-/* Alteração de estilo quando o mouse passa sobre o botao*/
-button:hover {
-    background-color: #70A9A1; /* Altera a cor de fundo */
-    cursor: pointer; /* Mostra o ícone de mão ao passar o mouse */
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
 }

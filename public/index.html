@@ -78,14 +78,15 @@
               vamos mostrar ao lado o que encontramos pra você
             </p>
             <span>
-              <h4>Selecione uma categoria:</h4>
-                <select id="slc_categoria">
-                  <option value="Doce">Doce</option>
-                  <option value="Salgado">Salgado</option>
-                  <option value="Sobremesa">Sobremesa</option>
-                  <option value="Entradas">Entradas</option>
-                  <option value="Lanches">Lanches</option>
-                  <option value="Sopas">Sopas</option>
+              <h4>Categoria:</h4>
+              <select id="slc_categoria">
+                  <option value=""disabled selected>Selecione uma categoria</option>
+                  <option value=1>Doce</option>
+                  <option value=2>Salgado</option>
+                  <option value="3">Sobremesa</option>
+                  <option value="4">Entradas</option>
+                  <option value="5">Lanches</option>
+                  <option value="6">Sopas</option>
                   <option value="Salada">Salada</option>
                   <option value="Carne">Carne</option>
                   <option value="Frango">Frango</option>
@@ -93,30 +94,68 @@
                 </select>
             </span>
             <span>
-              <h4>Selecione o 1 ingrediente:</h4>
+              <h4>1º ingrediente:</h4>
               <select id="slc_ingrediente1">
-                <option value=""></option>
-                <option value="Molho de tomate">Molho de Tomate</option>
-                <option value="Presunto">Presunto</option>
+                <option value=""disabled selected>Selecione Um ingrediente</option>
                 <option value="Farinha">Farinha</option>
-              </select>
-            </span>
-            <span>
-              <h4>Selecione o 2 ingrediente:</h4>
-              <select id="slc_ingrediente2">
-                <option value=""></option>
-                <option value="Parmesão">Parmesão</option>
-                <option value="Frango grelhado">Frango grelhado</option>
-                <option value="Queijo">Queijo</option>
-              </select>
-            </span>
-            <span>
-              <h4>Selecione o 3 ingrediente:</h4>
-              <select id="slc_ingrediente3">
-                <option value=""></option>
-                <option value="Massa de pizza">Massa de pizza</option>
                 <option value="Açúcar">Açúcar</option>
+                <option value="Chocolate em pó">Chocolate em pó</option>
+                <option value="Ovos">Ovos</option>
+                <option value="Leite">Leite</option>
+                <option value="Massa de pizza">Massa de pizza</option>
+                <option value="Molho de tomate">Molho de tomate</option>
                 <option value="Calabresa">Calabresa</option>
+                <option value="Queijo">Queijo</option>
+                <option value="Cebola">Cebola</option>
+                <option value="Alface">Alface</option>
+                <option value="Croutons">Croutons</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Molho Caesar">Molho Caesar</option>
+                <option value="Frango grelhado">Frango grelhado</option>
+              </select>
+              </select>
+            </span>
+            <span>
+              <h4>2º ingrediente:</h4>
+              <select id="slc_ingrediente2">
+                <option value=""disabled selected>Selecione Um ingrediente</option>
+                <option value="Farinha">Farinha</option>
+                <option value="Açúcar">Açúcar</option>
+                <option value="Chocolate em pó">Chocolate em pó</option>
+                <option value="Ovos">Ovos</option>
+                <option value="Leite">Leite</option>
+                <option value="Massa de pizza">Massa de pizza</option>
+                <option value="Molho de tomate">Molho de tomate</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Queijo">Queijo</option>
+                <option value="Cebola">Cebola</option>
+                <option value="Alface">Alface</option>
+                <option value="Croutons">Croutons</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Molho Caesar">Molho Caesar</option>
+                <option value="Frango grelhado">Frango grelhado</option>
+              </select>
+              </select>
+            </span>
+            <span>
+              <h4>3º ingrediente:</h4>
+              <select id="slc_ingrediente3">
+                <option value=""disabled selected>Selecione Um ingrediente</option>
+                <option value="Farinha">Farinha</option>
+                <option value="Açúcar">Açúcar</option>
+                <option value="Chocolate em pó">Chocolate em pó</option>
+                <option value="Ovos">Ovos</option>
+                <option value="Leite">Leite</option>
+                <option value="Massa de pizza">Massa de pizza</option>
+                <option value="Molho de tomate">Molho de tomate</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Queijo">Queijo</option>
+                <option value="Cebola">Cebola</option>
+                <option value="Alface">Alface</option>
+                <option value="Croutons">Croutons</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Molho Caesar">Molho Caesar</option>
+                <option value="Frango grelhado">Frango grelhado</option>
               </select>
             </span>
             <button onclick="listar()">Buscar</button>
@@ -124,7 +163,6 @@
         </div>
         <div class="mostrar">
           <div class="mensagem" id="receita_public" style="display: flex; flex-direction: column;">
-
           </div>
         </div>
       </div>
@@ -152,9 +190,6 @@
   function cadastro(){
     window.location.href = 'cadastro.html';
   }
-
-
-
 
 
   function listar() {
@@ -189,7 +224,8 @@
 
                     var nome = receita.nome;
                     var tempoPreparo = receita.tempoPreparo;
-                    var nomeCategoria = receita.nomeCategoria;
+                    var nomeCategoria = receita.nome;
+                    var descricao = receita.descricao;
                     var ingrediente1 = receita.ingrediente1;
                     var ingrediente2 = receita.ingrediente2;
                     var ingrediente3 = receita.ingrediente3;
@@ -201,10 +237,11 @@
                     var ingrediente9 = receita.ingrediente9;
                     var ingrediente10 = receita.ingrediente10;
 
-                    receita_public.innerHTML = `<span><b>${nome}</b></span><br>`
-                    receita_public.innerHTML += `<span>Tempo de preparo: ${tempoPreparo} minutos</span>`
-                    receita_public.innerHTML += `<span>Categoria: ${nomeCategoria}</span><br>`
-                    receita_public.innerHTML += `<span><b>Ingredientes Necessários</b></span><br>`
+                    receita_public.innerHTML = `<div class="sobre-texto"><b>${nome}</span><br>`
+                    receita_public.innerHTML += `<span>Tempo de preparo:</span>${tempoPreparo} minutos`
+                    receita_public.innerHTML += `<span>Categoria:</span> ${nomeCategoria}<br>`
+                    receita_public.innerHTML += `<span>Ingredientes Necessários</span></span><br>`
+                    receita_public.innerHTML += `<span>Modo de preparo:</span> ${descricao}<br></div>`  
 
                     if( ingrediente1 != null){
                         receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
@@ -241,66 +278,11 @@
 
             });
         } else {
+          receita_public.innerHTML += `<span class="text_ingredientes"><h1>Ingredientes invalidos, selecione  os ingredientes da categoria correspondente</h1> </span>`
             throw ('Houve um erro na API!');
         }
     }).catch(function (receita) {
         console.error(receita);
     });
   }
-
-  
-
-
-
-
-
-
-  // function cadastrar() {
-  //   var categoria = slc_categoria.value
-  //   var ingrediente1 = slc_ingrediente1.value
-  //   var ingrediente2 = slc_ingrediente2.value
-  //   var ingrediente3 = slc_ingrediente3.value
-
-  //   if (
-  //     categoria == '' ||
-  //     ingrediente1 == '' ||
-  //     ingrediente2 == '' ||
-  //     ingrediente3 == ''
-  //   ) {
-  //     alert("Preencha todos os campos!")
-  //     return false;
-  //   }
-
-  //   fetch("/usuarios/cadastrar", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       // crie um atributo que recebe o valor recuperado aqui
-  //       // Agora vá para o arquivo routes/usuario.js
-  //       nomeServer: categoria,
-  //       emailServer: ingrediente1,
-  //       cidadeServer: ingrediente2, 
-  //       estadosServer: ingrediente3
-  //     }),
-  //   })
-  //     .then(function (resposta) {
-  //       console.log("resposta: ", resposta);
-
-  //       if (resposta.ok) {
-
-  //         setTimeout(() => {
-  //           window.location = "login.html";
-  //         }, "2000");
-  //       } else {
-  //         throw "Houve um erro ao tentar realizar o cadastro!";
-  //       }
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-
-  //   return false;
-  // }
 </script>

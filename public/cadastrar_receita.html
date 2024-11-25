@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>cadastrar Receita</title>
     <link rel="stylesheet" href="../css/receitas.css">
 </head>
 
@@ -14,7 +14,7 @@
           <div class="login-box">
               <span class="nome">
                   <h4>
-                    LOGIN
+                    Cadastre Sua receita
                   </h4>
                 </span>
               <div class="campos min">
@@ -29,7 +29,19 @@
               </div>
               <div class="campos min">
                 <form>
-                  <input id="ipt_categoria" type="text" required placeholder="Categoria:" />
+                  <h3>Digite a categoria:</h3>
+                  <select id="ipt_categoria">
+                    <option value="Doce">Doce</option>
+                    <option value="Salgado">Salgado</option>
+                    <option value="Sobremesa">Sobremesa</option>
+                    <option value="Entradas">Entradas</option>
+                    <option value="Lanches">Lanches</option>
+                    <option value="Sopas">Sopas</option>
+                    <option value="Salada">Salada</option>
+                    <option value="Carne">Carne</option>
+                    <option value="Frango">Frango</option>
+                    <option value="Fitness">Fitness</option>
+                  </select>
                 </form>
               </div>
               <div class="campos min">
@@ -230,10 +242,10 @@
 <script>
 
 function dasboard(){
-    window.location.href = './dashboard/dasboard.html';
+    window.location.href = './dashboard.html';
 }
 function receitas(){
-    window.location.href = 'cadastrar_receitas.html';
+    window.location.href = './cadastrar_receitas.html';
 }
 
   function cadastrar_receita() {

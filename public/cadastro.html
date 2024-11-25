@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Tela de cadastro</title>
     <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 
@@ -61,11 +61,8 @@
         <div class="campos slc">
           <h3>Estado:</h3>
           <select id="slc_estado"></select>
-        </div>
-        <div class="campos slc">
-          <form>
             <h3>Digite a categoria:</h3>
-            <select id="categoria" name="categoria">
+            <select id="ipt_categoria" name="categoria">
               <option value="Doce">Doce</option>
               <option value="Salgado">Salgado</option>
               <option value="Sobremesa">Sobremesa</option>
@@ -198,7 +195,9 @@
 
     // mensagens de erro
     if (mensagem == "") {
-        return cadastrar();
+        alert()
+        cadastrar()
+        return;
     } else {
       document.querySelector('.div_mensagem').innerHTML = mensagem; // deu erro com innerHTML e com o getElement
     }
@@ -246,6 +245,7 @@
         console.log(`#ERRO: ${resposta}`);
       });
 
+      alert("Cadastro Realizado com sucesso!")
     return false;
   }
 </script>
