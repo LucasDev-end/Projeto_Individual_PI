@@ -239,7 +239,6 @@ function receitas(){
   function cadastrar_receita() {
     var nomeReceita = ipt_nome.value;
     var tempoReceita = ipt_tempo.value;
-    var categoria = ipt_descricao.value;
     var categoria = ipt_categoria.value;
     var Ingrediente1 = `${iptnome_Ingrediente1.value} ${iptqtd_Ingrediente1.value} ${slc_Ingrediente1.value}`;
     var Ingrediente2 = `${iptnome_Ingrediente2.value} ${iptqtd_Ingrediente2.value} ${slc_Ingrediente2.value}`;
@@ -251,6 +250,7 @@ function receitas(){
     var Ingrediente8 = `${iptnome_Ingrediente8.value} ${iptqtd_Ingrediente8.value} ${slc_Ingrediente8.value}`;
     var Ingrediente9 = `${iptnome_Ingrediente9.value} ${iptqtd_Ingrediente9.value} ${slc_Ingrediente9.value}`;
     var Ingrediente10 = `${ipt_nome_Ingrediente10.value} ${ipt_qtd_Ingrediente10.value} ${slc_Ingrediente10.value}`;
+    var descricao = ipt_descricao.value;
 
     if (
       nomeReceita == "" ||
@@ -261,14 +261,9 @@ function receitas(){
       iptnome_Ingrediente3.value == "" || iptqtd_Ingrediente3.value == "" || slc_Ingrediente3.value == "" ||
       iptnome_Ingrediente4.value == "" || iptqtd_Ingrediente4.value == "" || slc_Ingrediente4.value == "" ||
       iptnome_Ingrediente5.value == "" || iptqtd_Ingrediente5.value == "" || slc_Ingrediente5.value == "" ||
-      iptnome_Ingrediente6.value == "" || iptqtd_Ingrediente6.value == "" || slc_Ingrediente6.value == "" ||
-      iptnome_Ingrediente7.value == "" || iptqtd_Ingrediente7.value == "" || slc_Ingrediente7.value == "" ||
-      iptnome_Ingrediente8.value == "" || iptqtd_Ingrediente8.value == "" || slc_Ingrediente8.value == "" ||
-      iptnome_Ingrediente9.value == "" || iptqtd_Ingrediente9.value == "" || slc_Ingrediente9.value == "" ||
-      ipt_nome_Ingrediente10.value == "" || ipt_qtd_Ingrediente10.value == "" || slc_Ingrediente10.value == ""
-      || ipt_descricao.value == ""
+      ipt_descricao.value == ""
     ) {
-      alert("Preencha todos os campo!")
+      alert("Preencha todos os campos! (numero minimo de 5 ingredientes para cadastrar uma receita)")
       return false;
     }
     

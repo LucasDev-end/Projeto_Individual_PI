@@ -60,7 +60,7 @@
         </div>
         <div class="campos slc">
           <h3>Estado:</h3>
-          <select id="estado"></select>
+          <select id="slc_estado"></select>
         </div>
         <div class="campos">
           <form>
@@ -87,6 +87,7 @@
           </form>
         </div>
         <button onclick="cadastrar()">Cadastrar</button>
+        <div class="div_mensagem" id="div_mensagem"></div>
       </div>
     </div>
   </div>
@@ -97,35 +98,40 @@
 </html>
 
 <script>
+  var estados= [
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
+    "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
+    "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+  ];
+  var mostrar_estados = "";
+  
+  for (var i = 0; i < estados.length; i++) {
+    mostrar_estados += `<option value="${estados[i]}">${estados[i]}</option>`;
+  }
+  
+  slc_estado.innerHTML= mostrar_estados;
 
   function login(){
     window.location.href = 'login.html';
     }
-    
 
-var estados= [
-  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
-  "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
-  "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
-];
-var mostrar_estados = "";
+    function cadastrar() {
 
-for (var i = 0; i < estados.length; i++) {
-  mostrar_estados += `<option value="${estados[i]}">${estados[i]}</option>`;
-}
+    var nome = ipt_nome.value;
+    var email = ipt_email.value;
+    var cidade = ipt_cidade.value;
+    var estado = slc_estado.value;
+    var categoria = ipt_categoria.value;
+    var senha = ipt_senha.value;
+    var checksenha = ipt_checksenha.value;
+    var emailValido = false;
+    var senhaValida = true;
+    var temNumero = false;
+    var temEspecial = false;
+    var caracteresEspeciais = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    var mensagem = "";
 
-estado.innerHTML= mostrar_estados
-
-
-  function cadastrar() {
-    var categoriaVar = ipt_categoria.value
-    var estadosVar = estado.value
-    var nomeVar = ipt_nome.value
-    var emailVar = ipt_email.value
-    var cidadeVar = ipt_cidade.value
-    var senhaVar = ipt_senha.value
-    var checksenhaVar = ipt_checksenha.value
-
+    // Verificação dos campos obrigatórios
     if (
       estadosVar == '' ||
       nomeVar == '' ||
@@ -135,9 +141,75 @@ estado.innerHTML= mostrar_estados
       senhaVar == '' ||
       checksenhaVar == ''
     ) {
-      alert("Preencha todos os campo!")
+      alert("Preencha todos os campos!")
       return false;
     }
+
+    // Verificação do email
+    if (email.includes('.') && email.includes('@')) {
+        var dominio = email.split('@')[1];
+        if (dominio && dominio.includes('.')) {
+            emailValido = true;
+        }
+    }
+    if (!emailValido) {
+        mensagem += `<span style='color:red; font-weight:bold;'><h1>Email inválido</h1></span><br>`;
+    }
+
+    // Validação da senha
+    if (senha.length < 8) {
+      senhaValida = false;
+    }
+
+    for (var i = 0; i < senha.length; i++) {
+      if (!isNaN(Number(senha[i]))) {
+        temNumero = true;
+        break;
+      }
+    }
+    if (!temNumero) {
+      senhaValida = false;
+    }
+
+    if (senha.toLowerCase() == senha || senha.toUpperCase() == senha) {
+      senhaValida = false;
+    }
+
+    for (var i = 0; i < senha.length; i++) {
+      if (caracteresEspeciais.includes(senha[i])) {
+        temEspecial = true;
+        break;
+      }
+    }
+    if (!temEspecial) {
+      senhaValida = false;
+    }
+
+    if (!senhaValida) {
+      mensagem += `<span style='color:red; font-weight:bold;'>Senha inválida</span><br>`;
+    }
+
+    // Verificação da confirmação da senha
+    if (senha != checkSenha) {
+      mensagem += `<span style='color:red; font-weight:bold;'>As senhas não correspondem</span><br>`;
+    }
+
+    // Exibição das mensagens de erro
+    if (mensagem == "") {
+      return alert("Cadastro realizado com sucesso!");
+    } else {
+      return div_mensagem.innerHTML = `<span>${mensagem}</span>`;
+    }
+  }
+
+  function cadastrar() {
+    var categoriaVar = ipt_categoria.value
+    var estadosVar = estado.value
+    var nomeVar = ipt_nome.value
+    var emailVar = ipt_email.value
+    var cidadeVar = ipt_cidade.value
+    var senhaVar = ipt_senha.value
+    var checksenhaVar = ipt_checksenha.value
 
     fetch("/usuarios/cadastrar", {
       method: "POST",

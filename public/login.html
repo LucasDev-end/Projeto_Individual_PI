@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./css/cadastro.css">
     <title>Home</title>
 </head>
-
 <body>
     <div class="header">
         <div class="menu">
@@ -15,30 +14,28 @@
             <div class="sobre"><a href="index.html#sobre">Sobre</a></div>
             <div class="contato"><a href="index.html#contato">Contato</a></div>
             <div class="receitas"><a href="index.html#receitas">Receitas</a></div>
-          </div>
-          <div class="acesso">
+        </div>
+        <div class="acesso">
             <div class="login" style="background-color: #e08e37;">
-              <span>Login</span>
+                <span>Login</span>
             </div>
             <div class="cadastro" onclick="cadastro()">
-              <span>Cadastre-se</span>
+                <span>Cadastre-se</span>
             </div>
         </div>
-      </div>
+    </div>
     <div class="section">
         <div class="login">
             <div class="alerta_erro">
-                <div class="card_erro" id="cardErro">
+                <div class="cardErro">
                     <span id="mensagem_erro"></span>
                 </div>
             </div>
             <div class="box" style="align-items: center;">
                 <div class="login-box">
                     <span class="nome">
-                        <h4>
-                          LOGIN
-                        </h4>
-                      </span>
+                        <h4>LOGIN</h4>
+                    </span>
                     <div class="campos min">
                         <form>
                             <input id="ipt_email" required placeholder="Email"/>
@@ -46,33 +43,105 @@
                     </div>
                     <div class="campos min">
                         <form>
-                          <input id="ipt_senha" type="password" required placeholder="Senha" />
+                            <input id="ipt_senha" type="password" required placeholder="Senha" />
                         </form>
-                      </div>
-                      <button onclick="entrar()">Login</button>
+                    </div>
+                    <button onclick="validar()">Login</button>
+                    <div class="div_mensagem" id="div_mensagem"></div>
                 </div>
             </div>
         </div>
-
     </div>
 </body>
-</html>
-    
-<script>        
-    function cadastro(){
+<script>
+
+  function cadastro(){
     window.location.href = 'cadastro.html';
     }
     
-    validar()
+    var estados= [
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
+    "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
+    "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+    ];
+    var mostrar_estados = "";
+
+    for (var i = 0; i < estados.length; i++) {
+    mostrar_estados += `<option value="${estados[i]}">${estados[i]}</option>`;
+    }
+
+    estado.innerHTML= mostrar_estados
+
+
+    function validar() {
+    var email = document.getElementById('ipt_email').value;
+    var senha = document.getElementById('ipt_senha').value;
+    var emailValido = false;
+    var senhaValida = true;
+    var temNumero = false;
+    var temEspecial = false;
+    var caracteresEspeciais = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    var mensagem = "";
+    
+    if (email == "" || senha == "") {
+        alert("Preencha todos os campos!!");
+        return false;
+    }
+
+    // Verificação do email
+    if (email.includes('.') && email.includes('@')) {
+        var dominio = email.split('@')[1];
+        if (dominio && dominio.includes('.')) {
+            emailValido = true;
+        }
+    }
+    if (!emailValido) {
+        mensagem += `<span style='color:red; font-weight:bold;'><h1>Email inválido</h1></span><br>`;
+    }
+
+    // Validação de senha
+    if (senha.length < 8) {
+        senhaValida = false;
+    }
+
+    for (var i = 0; i < senha.length; i++) {
+        if (!isNaN(Number(senha[i]))) {
+            temNumero = true;
+            break;
+        }
+    }
+    if (!temNumero) {
+        senhaValida = false;
+    }
+
+    if (senha.toLowerCase() == senha || senha.toUpperCase() == senha) {
+        senhaValida = false;
+    }
+
+    for (var i = 0; i < senha.length; i++) {
+        if (caracteresEspeciais.includes(senha[i])) {
+            temEspecial = true;
+            break;
+        }
+    }
+    if (!temEspecial) {
+        senhaValida = false;
+    }
+
+    if (!senhaValida) {
+        mensagem += `<span style='color:red; font-weight:bold;'><h1>Senha inválida</h1></span><br>`;
+    }
+
+    if (mensagem == "") {
+        return entrar();
+    } else {
+        document.getElementById('div_mensagem').innerHTML = mensagem;
+    }
+}
 
     function entrar() {
-        var emailVar = ipt_email.value;
-        var senhaVar = ipt_senha.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            alert("Preencha todos os campos!!")
-            return false;
-        }
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -80,8 +149,8 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+                emailServer: email,
+                senhaServer: senha
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")

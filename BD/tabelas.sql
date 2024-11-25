@@ -4,12 +4,8 @@ use culinaria;
 
 create table categoria(
 idCategoria int primary key auto_increment,
-nomeCategoria varchar(45)
+nome varchar(45)
 );
-
-insert into categoria values
-( default, 'doce'),
-( default, 'salgado');
 
 create table cadastro(
 idcadastro int primary key auto_increment,
@@ -22,10 +18,6 @@ fkCategoria int,
 constraint fkCategoriaCadastro foreign key (fkcategoria)
 							references categoria(idCategoria)
 );
-
-select * from cadastro;
-select * from categoria;
-select * from receitas;
 
 create table receitas(
 idReceitas int primary key auto_increment,
@@ -47,60 +39,35 @@ constraint fkCategoriaReceitas foreign key (fkcategoria)
 							references categoria(idCategoria)
 );
 
-INSERT INTO receitas 
-(nome, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria)
-VALUES
-('Bolo de Chocolate', '60 minutos', 'Farinha', 'Açúcar', 'Chocolate em pó', 'Ovos', 'Leite', 1);
+insert into categoria values
+( default, 'doce'),
+( default, 'salgado');
 
 INSERT INTO receitas 
-(nome, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria)
+(nomeReceitas, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria)
 VALUES
-('Pizza de Calabresa', '45 minutos', 'Massa de pizza', 'Molho de tomate', 'Calabresa', 'Queijo', 'Cebola', 2);
-
-INSERT INTO receitas 
-(nome, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria)
-VALUES
+('Bolo de Chocolate', '60 minutos', 'Farinha', 'Açúcar', 'Chocolate em pó', 'Ovos', 'Leite', 1),
+('Pizza de Calabresa', '45 minutos', 'Massa de pizza', 'Molho de tomate', 'Calabresa', 'Queijo', 'Cebola', 2),
 ('Salada Caesar', '15 minutos', 'Alface', 'Croutons', 'Parmesão', 'Molho Caesar', 'Frango grelhado', 1);
 
 select * from receitas;
+select * from cadastro;
+select * from categoria;
 
 SELECT *
 FROM receitas r
 JOIN categoria c ON r.fkCategoria = c.idCategoria
 WHERE r.fkCategoria = 2
-  AND (
-      ingrediente1 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente2 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente3 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente4 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente5 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente6 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente7 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente8 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente9 IN ('Tomate', 'Queijo', 'Presunto') OR
-      ingrediente10 IN ('Tomate', 'Queijo', 'Presunto')
-      )
-      limit 1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+AND (
+  ingrediente1 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente2 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente3 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente4 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente5 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente6 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente7 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente8 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente9 IN ('Tomate', 'Queijo', 'Presunto') OR
+  ingrediente10 IN ('Tomate', 'Queijo', 'Presunto')
+  )
+  limit 1;

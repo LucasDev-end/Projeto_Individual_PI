@@ -33,7 +33,7 @@ function cadastrar(req, res) {
   var ingrediente8 = req.body.Ingrediente8Server;
   var ingrediente9 = req.body.Ingrediente9Server;
   var ingrediente10 = req.body.Ingrediente10Server;
-  var descricao = req.body.categoriaServer;
+  var descricao = req.body.descricaoServer;
 
   usuarioModel.consultarCategoria(categoria)
   .then((resultadoAutenticar) => {
