@@ -79,8 +79,75 @@ function cadastrar(req, res) {
     });
 }
 
+
+function plotarkpi1(req, res) {
+  aquarioModel.plotarkpi1()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function plotarkpi2(req, res) {
+  aquarioModel.plotarkpi2()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function plotarkpi3(req, res) {
+  aquarioModel.plotarkpi3()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function plotarDadosDoGrafico(req, res) {
+  aquarioModel.plotarDadosDoGrafico()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
   buscarAquariosPorEmpresa,
   cadastrar,
-  listar
+  listar,
+  plotarkpi1,
+  plotarkpi2,
+  plotarkpi3,
+  plotarDadosDoGrafico
 }

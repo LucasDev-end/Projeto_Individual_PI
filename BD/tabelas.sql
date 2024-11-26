@@ -95,3 +95,27 @@ and (
   ingrediente10 in ('Tomate', 'Queijo', 'Presunto')
   )
   limit 1;
+
+
+select c.nome as categoria, count(ca.idcadastro) as quantidade
+from cadastro ca
+join categoria c on ca.fkcategoria = c.idcategoria
+group by c.idcategoria
+order by quantidade desc
+limit 1;
+
+select concat(cidade, ', ', estado) as regiao
+from cadastro
+group by cidade, estado
+order by count(idcadastro) desc
+limit 1;
+
+select count(idreceitas) as quantidadereceitas
+from receitas;
+
+select c.nome as categoria, count(r.idreceitas) as quantidade
+from receitas r
+join categoria c on r.fkcategoria = c.idcategoria
+group by c.idcategoria
+order by quantidade desc
+limit 5;

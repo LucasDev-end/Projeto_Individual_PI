@@ -65,6 +65,8 @@
     var emailValido = false;
     var senhaValida = true;
     var temNumero = false;
+    var temMaiuscula = false;
+    var temMinuscula = false;
     var temEspecial = false;
     var caracteresEspeciais = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
     var mensagem = "";
@@ -75,19 +77,24 @@
     }
 
     // Verificação do email
-    if (email.includes('.') && email.includes('@')) {
-        var dominio = email.split('@')[1];
-        if (dominio && dominio.includes('.')) {
-            emailValido = true;
+    if (email.includes("@") && (email.includes(".com") || email.includes(".br"))) {
+        var arroba = email.indexOf("@");
+        var temPontoCom = email.indexOf(".com");
+        var temPontoBR = email.indexOf(".br");
+
+        if (arroba != -1 && temPontoCom != -1 && temPontoBR !== -1) {
+            if (arroba < temPontoCom && temPontoCom < temPontoBR) {
+                emailValido = true;
+            }
         }
-    }
-    if (!emailValido) {
-        mensagem += `<span style='color:red; font-weight:bold;'><h1>Email inválido</h1></span><br>`;
+    }else{
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>email invalido.</span><br>`;
     }
 
     // Validação de senha
     if (senha.length < 8) {
         senhaValida = false;
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter no minimo 8 caracteres.</span><br>`;
     }
 
     for (var i = 0; i < senha.length; i++) {
@@ -98,10 +105,20 @@
     }
     if (!temNumero) {
         senhaValida = false;
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter pelo menos um número.</span><br>`;
     }
 
-    if (senha.toLowerCase() == senha || senha.toUpperCase() == senha) {
+    for (var i = 0; i < senha.length; i++) {
+        if (senha[i] == senha[i].toUpperCase() && senha[i] != senha[i].toLowerCase()) {
+                temMaiuscula = true;
+            }
+            if (senha[i] == senha[i].toLowerCase() && senha[i] != senha[i].toUpperCase()) {
+                temMinuscula = true;
+        }
+        }
+    if (!temMaiuscula || !temMinuscula) {
         senhaValida = false;
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter pelo menos uma letra maiúscula e uma minúscula.</span><br>`;
     }
 
     for (var i = 0; i < senha.length; i++) {
@@ -112,10 +129,11 @@
     }
     if (!temEspecial) {
         senhaValida = false;
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter pelo menos um caractere especial.</span><br>`;
     }
 
     if (!senhaValida) {
-        mensagem += `<span style='color:red; font-weight:bold;'><h1>Senha inválida</h1></span><br>`;
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>Senha inválida</span><br>`;
     }
 
     if (mensagem == "") {
@@ -165,11 +183,12 @@
                 });
             }
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+        }).catch(function (resposta) {
+        alert("O login foi mal sucedido devido a um erro com o Banco de dados!")
+        console.log(`#ERRO: ${resposta}`);
+      });
 
-        alert("Cadastro Realizado com sucesso!");
+        alert("Login Realizado com sucesso!");
         return false;
     }
 

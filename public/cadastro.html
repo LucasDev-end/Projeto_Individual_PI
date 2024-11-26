@@ -60,9 +60,11 @@
         </div>
         <div class="campos slc">
           <h3>Estado:</h3>
-          <select id="slc_estado"></select>
+          <select id="slc_estado">
+          </select>
             <h3>Digite a categoria:</h3>
             <select id="ipt_categoria" name="categoria">
+              <option value=""selected></option>
               <option value="Doce">Doce</option>
               <option value="Salgado">Salgado</option>
               <option value="Sobremesa">Sobremesa</option>
@@ -106,7 +108,7 @@
 
 <script>
   var estados= [
-    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
+    "","AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", 
     "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
     "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
   ];
@@ -120,89 +122,104 @@
 
   function login(){
     window.location.href = 'login.html';
-    }
+  }
 
-    function validar() {
-      var nome = ipt_nome.value;
-      var email = ipt_email.value;
-      var cidade = ipt_cidade.value;
-      var estado = slc_estado.value;
-      var categoria = ipt_categoria.value;
-      var senha = ipt_senha.value;
-      var checksenha = ipt_checksenha.value;
-      var emailValido = false;
-      var senhaValida = true;
-      var temNumero = false;
-      var temEspecial = false;
-      var caracteresEspeciais = `!\#$%&'()*+,-./:;<=>?@[\\]^_`;
-      var mensagem = "";
+  function validar() {
+    var nome = ipt_nome.value;
+    var email = ipt_email.value;
+    var cidade = ipt_cidade.value;
+    var estado = slc_estado.value;
+    var categoria = ipt_categoria.value;
+    var senha = ipt_senha.value;
+    var checksenha = ipt_checksenha.value;
+    var emailValido = false;
+    var senhaValida = true;
+    var temNumero = false;
+    var temMaiuscula = false;
+    var temMinuscula = false;
+    var temEspecial = false;
+    var caracteresEspeciais = `!\#$%&'()*+,-./:;<=>?@[\\]^_`;
+    var mensagem = "";
 
     // Verificação dos campos
-    if (
-      estado == '' ||
-      nome == '' ||
-      email == '' ||
-      categoria == '' ||
-      cidade == '' ||
-      senha == '' ||
-      checksenha == ''
-    ) {
-      alert("Preencha todos os campos!");
-      return false;
+    if (estado == "" || nome == "" || email == "" || categoria == "" || cidade == "" || senha == "" || checksenha == "") {
+      alert(`Preencha todos os campos.`);
+        return;
     }
 
-    // Verificação do email
-    if (email.includes('.') && email.includes('@')) {
-        var dominio = email.split('@')[1];
-        if (dominio && dominio.includes('.')) {
-            emailValido = true;
+     // Verificação do email
+     if (email.includes("@") && (email.includes(".com") || email.includes(".br"))) {
+        var arroba = email.indexOf("@");
+        var temPontoCom = email.indexOf(".com");
+        var temPontoBR = email.indexOf(".br");
+
+        if (arroba != -1 && temPontoCom != -1 && temPontoBR !== -1) {
+            if (arroba < temPontoCom && temPontoCom < temPontoBR) {
+                emailValido = true;
+            }
         }
     }else{
-      mensagem += `<span style='color:red; font-weight:bold;'>Email Invalido</span><br>`;
+        mensagem += `<span style='color:#ffffff; font-weight:bold;'>email invalido.</span><br>`;
     }
 
-    // Validação da senha
-    if (senha.length < 8) senhaValida = false;
-
-    for (var i = 0; i < senha.length; i++) {
-      if (!isNaN(Number(senha[i]))) {
-        temNumero = true;
-        break;
-      }
-    }
-    if (!temNumero) senhaValida = false;
-
-    if (senha.toLowerCase() == senha || senha.toUpperCase() == senha) {
-      senhaValida = false;
+    // Validação de senha
+    if (senha.length < 8) {
+        senhaValida = false;
+        mensagem += `<span style="color: #ffffff">A senha tem que ter no minimo 8 caracteres.</span><br>`;
     }
 
     for (var i = 0; i < senha.length; i++) {
-      if (caracteresEspeciais.includes(senha[i])) {
-        temEspecial = true;
-        break;
-      }
+        if (!isNaN(Number(senha[i]))) {
+            temNumero = true;
+            break;
+        }
     }
-    if (!temEspecial) senhaValida = false;
+    if (!temNumero) {
+        senhaValida = false;
+        mensagem += `<span style="color: #ffffff">A senha tem que ter pelo menos um número.</span><br>`;
+    }
+
+    for (var i = 0; i < senha.length; i++) {
+        if (senha[i] == senha[i].toUpperCase() && senha[i] != senha[i].toLowerCase()) {
+                temMaiuscula = true;
+            }
+            if (senha[i] == senha[i].toLowerCase() && senha[i] != senha[i].toUpperCase()) {
+                temMinuscula = true;
+        }
+        }
+    if (!temMaiuscula || !temMinuscula) {
+        senhaValida = false;
+        mensagem += `<span style="color: #ffffff">A senha tem que ter pelo menos uma letra maiúscula e uma minúscula.</span><br>`;
+    }
+
+    for (var i = 0; i < senha.length; i++) {
+        if (caracteresEspeciais.includes(senha[i])) {
+            temEspecial = true;
+            break;
+        }
+    }
+    if (!temEspecial) {
+        senhaValida = false;
+        mensagem += `<span style="color: #ffffff">A senha tem que ter pelo menos um caractere especial.</span><br>`;
+    }
 
     if (!senhaValida) {
-      mensagem += `<span style='color:red; font-weight:bold;'>Senha inválida</span><br>`;
+        mensagem += `<span style="color: #ffffff">Senha inválida</span><br>`;
+    }
+    
+    if (senha !== checksenha) {
+        senhaValida = false;
+        mensagem += `<span style="color: #ffffff">As senhas não correspondem.</span><br>`;
     }
 
-    //confirmação da senha
-    if (senha != checksenha) {
-      mensagem += `<span style='color:red; font-weight:bold;'>As senhas não correspondem</span><br>`;
-    }
-
-    // mensagens de erro
-    if (mensagem == "") {
-        alert()
-        cadastrar()
-        return;
+    // Mensagens de erro ou sucesso
+    if (mensagem === "") {
+      cadastrar(); // Chama a função de cadastro
+      alert("Cadastro realizado com sucesso!");
     } else {
-      document.querySelector('.div_mensagem').innerHTML = mensagem; // deu erro com innerHTML e com o getElement
+        document.querySelector('.div_mensagem').innerHTML = mensagem; // Exibe as mensagens de erro
     }
-
-  }
+}
 
 
   function cadastrar() {
@@ -242,6 +259,7 @@
         }
       })
       .catch(function (resposta) {
+        alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
         console.log(`#ERRO: ${resposta}`);
       });
 

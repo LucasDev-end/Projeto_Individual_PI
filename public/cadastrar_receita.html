@@ -27,9 +27,9 @@
                   <input id="ipt_tempo" type="text" required placeholder="Tempo de preparo (digite o tempo em minutos):" />
                 </form>
               </div>
-              <div class="campos min">
+              <div class="campos min" style="display: flex; flex-direction:row; align-items: center; justify-content: center;">
+                <h3 style="width: 55%; text-align: end;">Digite a categoria:</h3>
                 <form>
-                  <h3>Digite a categoria:</h3>
                   <select id="ipt_categoria">
                     <option value="Doce">Doce</option>
                     <option value="Salgado">Salgado</option>
@@ -225,12 +225,12 @@
     </div>
     <div class="box">
         <div class="menu">
-          <div onclick="dasboard()">Dashboard</div>
-          <div onclick="receitas()" style="background-color: #E08E37;">Cadastrar receitas</div>
+          <div onclick="dasboard()" style="cursor: pointer;">Dashboard</div>
+          <div style="background-color: #E08E37;cursor: pointer;">Cadastrar receitas</div>
         </div>
         <div class="sair">
             <div>
-                <h2><a href="../index.html"><span>SAIR</span></a></h2>
+                <h2><a><span onclick="receitas()">SAIR</span></a></h2>
             </div>
         </div>
     </div>
@@ -246,6 +246,11 @@ function dasboard(){
 }
 function receitas(){
     window.location.href = './cadastrar_receitas.html';
+}
+
+function sair(){
+  sessionStorage.clear();
+  window.location.href = './index.html';
 }
 
   function cadastrar_receita() {
@@ -331,8 +336,8 @@ function receitas(){
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
-      })
-      .catch(function (resposta) {
+      }).catch(function (resposta) {
+        alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
         console.log(`#ERRO: ${resposta}`);
       });
 

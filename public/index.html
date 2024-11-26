@@ -236,53 +236,80 @@
                     var ingrediente8 = receita.ingrediente8;
                     var ingrediente9 = receita.ingrediente9;
                     var ingrediente10 = receita.ingrediente10;
-
-                    receita_public.innerHTML = `<div class="sobre-texto"><b>${nome}</span><br>`
-                    receita_public.innerHTML += `<span>Tempo de preparo:</span>${tempoPreparo} minutos`
-                    receita_public.innerHTML += `<span>Categoria:</span> ${nomeCategoria}<br>`
-                    receita_public.innerHTML += `<span>Ingredientes Necessários</span></span><br>`
-                    receita_public.innerHTML += `<span>Modo de preparo:</span> ${descricao}<br></div>`  
-
-                    if( ingrediente1 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
-                    }
-                    if( ingrediente2 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente2} </span>`                      
-                    }
-                    if( ingrediente3 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente3} </span>`                      
-                    }
-                    if( ingrediente4 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente4} </span>`                      
-                    }
-                    if( ingrediente5 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente5} </span>`                      
-                    }
-                    if( ingrediente6 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente6} </span>`                      
-                    }
-                    if( ingrediente7 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente7} </span>`                      
-                    }
-                    if( ingrediente8 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente8} </span>`                      
-                    }
-                    if( ingrediente9 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente9} </span>`                      
-                    }
-                    if( ingrediente10 != null){
-                        receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
-                    }
+                    var ingredientes = `
+                                        1. ${ingrediente1 || "N/A"}<br>
+                                        2. ${ingrediente2 || "N/A"}<br>
+                                        3. ${ingrediente3 || "N/A"}<br>
+                                        4. ${ingrediente4 || "N/A"}<br>
+                                        5. ${ingrediente5 || "N/A"}<br>
+                                        6. ${ingrediente6 || "N/A"}<br>
+                                        7. ${ingrediente7 || "N/A"}<br>
+                                        8. ${ingrediente8 || "N/A"}<br>
+                                        9. ${ingrediente9 || "N/A"}<br>
+                                        10. ${ingrediente10 || "N/A"}<br>
+                                      `;
+                    receita_public.innerHTML = `
+                                                <div id="receita">
+                                                  <div class="receita-info">
+                                                      <b>${nome}</b><br>
+                                                      <span>Tempo de preparo:</span>
+                                                      <p>${tempoPreparo} minutos</p>
+                                                      <span>Categoria:</span>
+                                                      <p>${nomeCategoria}</p>
+                                                      <span>Ingredientes Necessários:</span>
+                                                      <p>${ingredientes}</p>
+                                                      <span>Modo de preparo:</span>
+                                                      <p>${descricao}</p>
+                                                  </div>
+                                                </div>
+                                              `;
+                    // if( ingrediente1 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
+                    // }
+                    // if( ingrediente2 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente2} </span>`                      
+                    // }
+                    // if( ingrediente3 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente3} </span>`                      
+                    // }
+                    // if( ingrediente4 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente4} </span>`                      
+                    // }
+                    // if( ingrediente5 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente5} </span>`                      
+                    // }
+                    // if( ingrediente6 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente6} </span>`                      
+                    // }
+                    // if( ingrediente7 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente7} </span>`                      
+                    // }
+                    // if( ingrediente8 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente8} </span>`                      
+                    // }
+                    // if( ingrediente9 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente9} </span>`                      
+                    // }
+                    // if( ingrediente10 != null){
+                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
+                    // }
                    
                 }
 
             });
         } else {
-          receita_public.innerHTML += `<span class="text_ingredientes"><h1>Ingredientes invalidos, selecione  os ingredientes da categoria correspondente</h1> </span>`
+          receita_public.innerHTML = `
+                                      <span style='color:#881100; font-weight:bold;'>
+                                        Ingredientes invalidos, selecione  os ingredientes da categoria correspondente.<br><br>
+                                        Exemplo: categoria doce: Açúcar, Ovos, Leite.<br><br>
+                                        Exemplo: categoria salgado: Massa de pizza, calabresa , molho de tomate.<br>
+                                      </span>
+                                      <br>`;
             throw ('Houve um erro na API!');
         }
     }).catch(function (receita) {
-        console.error(receita);
-    });
+      alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
+      console.log(`#ERRO: ${receita}`);
+      });
   }
 </script>

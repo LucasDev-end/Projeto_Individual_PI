@@ -288,6 +288,30 @@ body {
     align-items: center;
 }
 
+#receita {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.receita-info b {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.receita-info span {
+    font-weight: bold;
+    color: #555;
+}
+
+.receita-info p {
+    margin: 5px 0 15px;
+    color: #666;
+}
+
 /* Botão */
 button {
     background-color: #e08e37;
