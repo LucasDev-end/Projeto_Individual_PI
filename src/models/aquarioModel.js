@@ -37,7 +37,7 @@ function plotarkpi1() {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   console.log("Passei aqui")
   var instrucaoSql = `
-                      select c.nomeCategoria as categoria, count(ca.idcadastro) as quantidade
+                      select c.nome as categoria, count(ca.idcadastro) as quantidade
                       from cadastro as ca
                       join categoria as c on ca.fkcategoria = c.idcategoria
                       group by c.idcategoria
@@ -71,7 +71,7 @@ function plotarkpi3() {
 function plotarDadosDoGrafico() {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucaoSql = `
-                      select c.nomeCategoria as categoria, count(r.idreceitas) as quantidade
+                      select c.nome as categoria, count(r.idreceitas) as quantidade
                       from receitas as r
                       join categoria as c on r.fkcategoria = c.idcategoria
                       group by c.idcategoria
