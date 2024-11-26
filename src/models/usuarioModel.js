@@ -22,7 +22,7 @@ function cadastrar(nome, email, cidade, estado, senha, categoria) {
 
 function consultarCategoria(categoria){   
     var instrucaoSql = `
-        select * from categoria where nome = '${categoria}';
+        select * from categoria where nomeCategoria = '${categoria}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

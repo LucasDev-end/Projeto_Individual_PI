@@ -2,23 +2,6 @@ var aquarioModel = require("../models/aquarioModel");
 var usuarioModel = require("../models/usuarioModel");
 
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
-
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
-    }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
-}
-
-
 function cadastrar(req, res) {
   var nomeReceita = req.body.nomeReceitaServer;
   var tempoReceita = req.body.tempoReceitaServer;
@@ -60,7 +43,7 @@ function cadastrar(req, res) {
   })  
   }
 
-  function listar(req, res) {
+ function listar(req, res) {
     var categoria = req.body.categoriaderver;
     var ingrediente1 = req.body.ingrediende1Server;
     var ingrediente2 = req.body.ingrediende2Server;
@@ -143,7 +126,6 @@ function plotarDadosDoGrafico(req, res) {
 
 
 module.exports = {
-  buscarAquariosPorEmpresa,
   cadastrar,
   listar,
   plotarkpi1,

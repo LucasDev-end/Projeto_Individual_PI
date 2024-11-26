@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="path/to/chartjs/dist/chart.js"></script>
+    <script src="js/dashboard.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>DashBoard</title>
 </head>
-<body>
+<body onload="plotarkpi1(), plotarkpi2(), plotarkpi3(), gerarGrafico()">
     <div class="container">
         <div class="dashboard">
             <div class="grafico-esquerda">
@@ -18,8 +18,8 @@
                         <div class="titulo" style="background-color: #70A9A1;">
                             <h2>Categoria mais escolhida</h2>
                         </div>
-                        <div class="kpi-num" style="background-color: #70A9A1;">
-                            5.872
+                        <div class="kpi-num" id="kpi-categoriaMaisEscolhida" style="background-color: #70A9A1;">
+                            
                         </div>
                         <div class="kpi-sub-texto" style="background-color: #70A9A1;">
                         </div>
@@ -28,8 +28,8 @@
                         <div class="titulo" style="background-color: #E08E37;">
                             <h2>Região com mais cadastros</h2>
                         </div>
-                        <div class="kpi-num" style="background-color: #E08E37;">
-                            5.872
+                        <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #E08E37;font-size: 50px;">
+                            
                         </div>
                         <div class="kpi-sub-texto" style="background-color: #E08E37;">
                         </div>
@@ -38,8 +38,8 @@
                         <div class="titulo" style="background-color: #515B3A;">
                             <h2>Quantidade de receitas cadastradas</h2>
                         </div>
-                        <div class="kpi-num" style="background-color: #515B3A;">
-                            5.872
+                        <div class="kpi-num" id="kpi-QtdReceitas" style="background-color: #515B3A;">
+                            
                         </div>
                         <div class="kpi-sub-texto" style="background-color: #515B3A;">
                         </div>
@@ -48,7 +48,7 @@
                 <div class="grafico">
                     <div id="grafico-geral">
                         <h2>Quantidade de receitas por categoria</h2>
-                        <canvas id="myChart-grafico" style="width: 3px;"></canvas>
+                        <canvas id="myChart-grafico" style="width:300px; height: 110px;"></canvas>
                     </div>
                 </div>
             </div>
@@ -84,27 +84,29 @@ function receitas(){
     window.location.href = 'cadastrar_receita.html';
 }
 
-    document.getElementById("grafico-geral").innerHTML = plotarDadosDoGrafico();
+    // document.getElementById("grafico-geral").innerHTML = plotarDadosDoGrafico();
 
-    function plotarkpi1 (){
-            fetch('/plotarkpi1')
+function plotarkpi1 (){
+    fetch('/aquarios/plotarkpi1')
         .then((response) => response.json())
         .then((dados) => {
             console.log(dados);
-            document.getElementById('categoria-destaque').innerText = dados[0].categoria;
-            document.getElementById('quantidade').innerText = dados[0].quantidade;
+
+            document.getElementById('kpi-categoriaMaisEscolhida').innerHTML = dados[0].categoria.toUpperCase();
+
+
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
         });
-    }
+}
 
     function plotarkpi2 (){
-            fetch('/plotarkpi2')
+            fetch('/aquarios/plotarkpi2')
         .then((response) => response.json())
         .then((dados) => {
-            console.log(dados);
-            document.getElementById('regiao-destaque').innerText = dados[0].regiao;
+            console.log("Dados recebidos:", dados);
+            document.getElementById('kpi-regiaoMaisCadastrada').innerHTML = dados[0].regiao.toUpperCase();
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
@@ -112,11 +114,11 @@ function receitas(){
     }
 
     function plotarkpi3 (){
-            fetch('/plotarkpi3')
+            fetch('/aquarios/plotarkpi3')
         .then((response) => response.json())
         .then((dados) => {
             console.log(dados);
-            document.getElementById('quantidade-receitas').innerText = dados[0].quantidadereceitas;
+            document.getElementById('kpi-QtdReceitas').innerHTML = dados[0].quantidadereceitas;
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
@@ -124,37 +126,41 @@ function receitas(){
     }
 
     function plotarDadosDoGrafico() {
-    fetch('/plotarDadosDoGrafico')
+    fetch('/aquarios/plotarDadosDoGrafico')
         .then((response) => response.json())
         .then((dados) => {
-            // Criando arrays separados para categoria e quantidade
+            console.log(dados)
+            var tamanho = dados.length
+            console.log("tamanho: ",tamanho)
             let categorias = [];
             let quantidades = [];
-            
-            dados.forEach((item) => {
-                categorias.push(item.categoria);  // Nome da categoria
-                quantidades.push(item.quantidade);  // Quantidade
-            });
+
+            for (let container = 0; container < tamanho; container++) {
+                const categoria_selecionada = dados[container];
+
+                var categoria = categoria_selecionada.categoria
+                var quantidade = categoria_selecionada.quantidade
+
+                categoria = categoria.toUpperCase()
+
+                categorias.push(categoria)
+                quantidades.push(quantidade)
+                
+            }
             
             // Exibindo os arrays no console (para verificar se estão corretos)
             console.log("Categorias:", categorias);
             console.log("Quantidades:", quantidades);
 
-            // Criando gráfico com os dados coletados
-            let ctx = document.getElementById('myChart-grafico').getContext('2d');  // Correção do id
-            let myChart = new Chart(ctx, {
-                type: 'bar',  // Tipo do gráfico (pode ser 'bar', 'line', etc.)
-                data: {
-                    labels: categorias,  // As categorias (eixo X)
-                    datasets: [{
-                        label: 'Quantidade de Categorias',
-                        data: quantidades,  // As quantidades (eixo Y)
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',  // Cor das barras
-                        borderColor: 'rgba(255, 99, 132, 1)',  // Cor da borda das barras
-                        borderWidth: 1
-                    }]
-                }
-            });
+            // chart.data.datasets[0].titles = categorias;
+            // chart.data.datasets[0].data = quantidades;  // Atualize os dados com lista_qtd
+            // chart.update();
+
+            chart.data.labels = categorias; 
+            chart.data.datasets[0].data = quantidades; 
+            chart.update(); 
+
+            
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
