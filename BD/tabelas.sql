@@ -74,6 +74,31 @@ insert into receitas (nomeReceitas, tempoPreparo, ingrediente1, ingrediente2, in
 ('Pão de Alho', '30 minutos', 'Farinha', 'Alho', 'Manteiga', 'Salsinha', 'Leite', 2, 'Misture os ingredientes, modelem os pães e asse até dourar.'),
 ('Strogonoff de Carne', '45 minutos', 'Carne', 'Creme de leite', 'Cebola', 'Alho', 'Molho de tomate', 8, 'Cozinhe a carne, adicione o molho e o creme de leite. Sirva com arroz e batata palha.');
 
+
+INSERT INTO cadastro (nome, email, cidade, estado, senha, fkCategoria)
+VALUES
+('joão silva', 'joao.silva@email.com', 'são paulo', 'SP', 'Senha@123', 1),
+('maria oliveira', 'maria.oliveira@email.com', 'rio de janeiro', 'RJ', 'Segura@456', 2),
+('pedro santos', 'pedro.santos@email.com', 'belo horizonte', 'MG', 'Forte#789', 3),
+('ana souza', 'ana.souza@email.com', 'curitiba', 'PR', 'Senha$101', 1),
+('lucas mendes', 'lucas.mendes@email.com', 'porto alegre', 'RS', 'Senha@202', 2),
+('beatriz lima', 'beatriz.lima@email.com', 'salvador', 'BA', 'Senha#303', 3),
+('carlos andrade', 'carlos.andrade@email.com', 'fortaleza', 'CE', 'Senha$404', 1),
+('fernanda costa', 'fernanda.costa@email.com', 'manaus', 'AM', 'Senha@505', 2),
+('rafael martins', 'rafael.martins@email.com', 'recife', 'PE', 'Senha#606', 3),
+('juliana alves', 'juliana.alves@email.com', 'goiânia', 'GO', 'Senha$707', 1),
+('gabriel rocha', 'gabriel.rocha@email.com', 'belém', 'PA', 'Senha@808', 2),
+('carla torres', 'carla.torres@email.com', 'são luís', 'MA', 'Senha#909', 3),
+('ricardo pereira', 'ricardo.pereira@email.com', 'florianópolis', 'SC', 'Senha$010', 1),
+('letícia freitas', 'leticia.freitas@email.com', 'vitória', 'ES', 'Senha@121', 2),
+('eduardo azevedo', 'eduardo.azevedo@email.com', 'campo grande', 'MS', 'Senha#232', 3),
+('patrícia fernandes', 'patricia.fernandes@email.com', 'aracaju', 'SE', 'Senha$343', 1),
+('diego moraes', 'diego.moraes@email.com', 'teresina', 'PI', 'Senha@454', 2),
+('tatiane ribeiro', 'tatiane.ribeiro@email.com', 'natal', 'RN', 'Senha#565', 3),
+('andré neves', 'andre.neves@email.com', 'joão pessoa', 'PB', 'Senha$676', 1),
+('mônica nogueira', 'monica.nogueira@email.com', 'maceió', 'AL', 'Senha@787', 2);
+
+
 select * from receitas;
 select * from cadastro;
 select * from categoria;
