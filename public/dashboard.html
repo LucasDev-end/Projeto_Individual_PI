@@ -28,7 +28,7 @@
                         <div class="titulo" style="background-color: #E08E37;">
                             <h2>Região com mais cadastros</h2>
                         </div>
-                        <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #E08E37;font-size: 50px;">
+                        <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #E08E37;font-size: 25px;">
                             
                         </div>
                         <div class="kpi-sub-texto" style="background-color: #E08E37;">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="box-kpi" id="kpi3">
                         <div class="titulo" style="background-color: #515B3A;">
-                            <h2>Quantidade de receitas cadastradas</h2>
+                            <h2>Total de receitas cadastradas</h2>
                         </div>
                         <div class="kpi-num" id="kpi-QtdReceitas" style="background-color: #515B3A;">
                             
@@ -91,10 +91,7 @@ function plotarkpi1 (){
         .then((response) => response.json())
         .then((dados) => {
             console.log(dados);
-
             document.getElementById('kpi-categoriaMaisEscolhida').innerHTML = dados[0].categoria.toUpperCase();
-
-
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
