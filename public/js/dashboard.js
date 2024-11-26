@@ -37,7 +37,7 @@ function gerarGrafico(){
             display: true,
             text: 'Categoria', // Título do eixo X
             font: {
-              size: 18, // Tamanho da fonte
+              size: 20, // Tamanho da fonte
               family: 'Roboto', // Fonte
               weight: 'bold' // Negrito
             },
@@ -56,7 +56,7 @@ function gerarGrafico(){
 
             text: 'Quantidade',// Título do eixo Y
             font: {
-              size: 18,
+              size: 20,
               family: 'Roboto',
               weight: 'bold'
             },
