@@ -123,41 +123,41 @@ function receitas(){
     });
     }
 
-    function plotarDadosDoGrafico(){
-        fetch('/plotarDadosDoGrafico')
-    .then((response) => response.json())
-    .then((dados) => {
-        // Criando arrays separados para categoria e quantidade
-        let categorias = [];
-        let quantidades = [];
-        
-        dados.forEach((item) => {
-            categorias.push(item.categoria);  // Nome da categoria
-            quantidades.push(item.quantidade);  // Quantidade
-        });
-        
-        // Exibindo os arrays no console (para verificar se estão corretos)
-        console.log("Categorias:", categorias);
-        console.log("Quantidades:", quantidades);
+    function plotarDadosDoGrafico() {
+    fetch('/plotarDadosDoGrafico')
+        .then((response) => response.json())
+        .then((dados) => {
+            // Criando arrays separados para categoria e quantidade
+            let categorias = [];
+            let quantidades = [];
+            
+            dados.forEach((item) => {
+                categorias.push(item.categoria);  // Nome da categoria
+                quantidades.push(item.quantidade);  // Quantidade
+            });
+            
+            // Exibindo os arrays no console (para verificar se estão corretos)
+            console.log("Categorias:", categorias);
+            console.log("Quantidades:", quantidades);
 
-        // Aqui você pode usar os arrays 'categorias' e 'quantidades' para alimentar o gráfico
-        let ctx = document.getElementById('myChart').getContext('2d');
-        let myChart = new Chart(ctx, {
-            type: 'bar',  // Tipo do gráfico (pode ser 'bar', 'line', etc.)
-            data: {
-                labels: categorias,  // As categorias (eixo X)
-                datasets: [{
-                    label: 'Quantidade de Categorias',
-                    data: quantidades,  // As quantidades (eixo Y)
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',  // Cor das barras
-                    borderColor: 'rgba(255, 99, 132, 1)',  // Cor da borda das barras
-                    borderWidth: 1
-                }]
-            }
+            // Criando gráfico com os dados coletados
+            let ctx = document.getElementById('myChart-grafico').getContext('2d');  // Correção do id
+            let myChart = new Chart(ctx, {
+                type: 'bar',  // Tipo do gráfico (pode ser 'bar', 'line', etc.)
+                data: {
+                    labels: categorias,  // As categorias (eixo X)
+                    datasets: [{
+                        label: 'Quantidade de Categorias',
+                        data: quantidades,  // As quantidades (eixo Y)
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',  // Cor das barras
+                        borderColor: 'rgba(255, 99, 132, 1)',  // Cor da borda das barras
+                        borderWidth: 1
+                    }]
+                }
+            });
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar dados:", erro);
         });
-    })
-    .catch((erro) => {
-        console.error("Erro ao buscar dados:", erro);
-    });
-    }
+}
 </script>
