@@ -254,6 +254,8 @@
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
+          // alterando posição da mensagem de cadastro pois ela estava aparecendo mesmo quando o usuario nao efetuava o cadastro corretamente (alteração feita em 21/12/2024)
+          alert("Cadastro Realizado com sucesso!")
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
@@ -263,7 +265,6 @@
         console.log(`#ERRO: ${resposta}`);
       });
 
-      alert("Cadastro Realizado com sucesso!")
     return false;
   }
 </script>
