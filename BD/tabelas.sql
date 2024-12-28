@@ -116,9 +116,24 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
 'Misture 2 xícaras de farinha de trigo, 100 g de manteiga, 3 dentes de alho picados e 1 xícara de leite até formar uma massa homogênea. Modele pequenos pães e coloque em uma assadeira untada. Polvilhe salsinha por cima e asse a 180°C por cerca de 20 minutos ou até que fiquem dourados. Sirva quente como acompanhamento.'),
 
 ('Strogonoff de Carne', 'Média', '45 minutos', '500 g de carne', '1 xícara de creme de leite', '1 cebola', '2 dentes de alho', '1 xícara de molho de tomate', 8, 
-'Refogue 1 cebola e 2 dentes de alho picados em um pouco de óleo. Adicione 500 g de carne cortada em tiras e cozinhe até dourar. Acrescente 1 xícara de molho de tomate e 1 xícara de creme de leite, mexa bem e cozinhe por mais alguns minutos. Sirva com arroz branco e batata palha.');
+'Refogue 1 cebola e 2 dentes de alho picados em um pouco de óleo. Adicione 500 g de carne cortada em tiras e cozinhe até dourar. Acrescente 1 xícara de molho de tomate e 1 xícara de creme de leite, mexa bem e cozinhe por mais alguns minutos. Sirva com arroz branco e batata palha.'),
+
+('Omelete de Espinafre', 'Fácil', '15 minutos', '3 ovos', '1 xícara de espinafre', '1 colher de sopa de azeite', 'Sal', 'Pimenta', 10, 
+'Em uma tigela, bata 3 ovos com sal e pimenta. Aqueça 1 colher de sopa de azeite em uma frigideira, adicione 1 xícara de espinafre picado e refogue por 2 minutos. Despeje os ovos batidos e cozinhe até firmar. Sirva quente.'),
+
+('Canapés de Queijo', 'Fácil', '15 minutos', '1 baguete', '200 g de queijo cremoso', 'Tomate cereja', 'Manjericão', 'Azeite', 4, 
+'Corte a baguete em fatias e espalhe 200 g de queijo cremoso sobre cada uma. Decore com tomate cereja cortado ao meio e folhas de manjericão. Regue com azeite e sirva.');
+
+
 
 select * from receitas;
+SELECT 
+    fkCategoria, 
+    GROUP_CONCAT(DISTINCT dificuldade ORDER BY dificuldade ASC) AS dificuldades 
+FROM 
+    receitas 
+GROUP BY 
+    fkCategoria;
 select * from cadastro;
 select * from categoria;
 
@@ -171,31 +186,13 @@ limit 5;
 
 
 
-select c.nome as categoria, count(ca.idcadastro) as quantidade
-                      from cadastro as ca
-                      join categoria as c on ca.fkcategoria = c.idcategoria
-                      group by c.idcategoria
-                      order by quantidade desc
-                      limit 1;
 
 
+-- novos selects (Alterado 27/12/24)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select * from receitas as r
+join categoria as c on r.fkCategoria = c.idCategoria
+where r.categoria = 2 and r.dificuldade = 'Fácil';
 
 
 

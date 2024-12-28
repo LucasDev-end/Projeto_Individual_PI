@@ -74,11 +74,14 @@
         <div class="selecionar">
           <div class="campos-receita">
             <p>
-              Aqui voce escolhe o tipo de receita que você quer encontrar, e
-              vamos mostrar ao lado o que encontramos pra você
+              Aqui você escolhe o tipo de receita que quer encontrar, e
+              vamos mostrar ao lado o que encontramos pra você.
+            </p>
+            <p>
+              Preencha os capos a baixo e consulte uma receita
             </p>
             <span>
-              <h4>Categoria:</h4>
+              <h4>Qual a categoria de receita você desejada? </h4>
               <select id="slc_categoria">
                   <option value=""disabled selected>Selecione uma categoria</option>
                   <option value=1>Doce</option>
@@ -87,75 +90,21 @@
                   <option value="4">Entradas</option>
                   <option value="5">Lanches</option>
                   <option value="6">Sopas</option>
-                  <option value="Salada">Salada</option>
-                  <option value="Carne">Carne</option>
-                  <option value="Frango">Frango</option>
-                  <option value="Fitness">Fitness</option>
+                  <option value="7">Salada</option>
+                  <option value="8">Carne</option>
+                  <option value="9">Frango</option>
+                  <option value="10">Fitness</option>
                 </select>
             </span>
+            <!-- Alterando os campos para escolha dos ingredientes, e mudando para selecionar apenas a dificuldade para o preparo da receita (Alterado 27/12/24) -->
             <span>
-              <h4>1º ingrediente:</h4>
-              <select id="slc_ingrediente1">
-                <option value=""disabled selected>Selecione Um ingrediente</option>
-                <option value="Farinha">Farinha</option>
-                <option value="Açúcar">Açúcar</option>
-                <option value="Chocolate em pó">Chocolate em pó</option>
-                <option value="Ovos">Ovos</option>
-                <option value="Leite">Leite</option>
-                <option value="Massa de pizza">Massa de pizza</option>
-                <option value="Molho de tomate">Molho de tomate</option>
-                <option value="Calabresa">Calabresa</option>
-                <option value="Queijo">Queijo</option>
-                <option value="Cebola">Cebola</option>
-                <option value="Alface">Alface</option>
-                <option value="Croutons">Croutons</option>
-                <option value="Parmesão">Parmesão</option>
-                <option value="Molho Caesar">Molho Caesar</option>
-                <option value="Frango grelhado">Frango grelhado</option>
+              <h4>Qual o nivel de dificuldade para o preparo da receita? </h4>
+              <select id="slc_dificuldade">
+                <option value=""disabled selected>Escolha a dificuldade da receita</option>
+                <option value="Fácil">Fácil</option>
+                <option value="Média">Média</option>
+                <option value="Difícil">Difícil</option>
               </select>
-              </select>
-            </span>
-            <span>
-              <h4>2º ingrediente:</h4>
-              <select id="slc_ingrediente2">
-                <option value=""disabled selected>Selecione Um ingrediente</option>
-                <option value="Farinha">Farinha</option>
-                <option value="Açúcar">Açúcar</option>
-                <option value="Chocolate em pó">Chocolate em pó</option>
-                <option value="Ovos">Ovos</option>
-                <option value="Leite">Leite</option>
-                <option value="Massa de pizza">Massa de pizza</option>
-                <option value="Molho de tomate">Molho de tomate</option>
-                <option value="Calabresa">Calabresa</option>
-                <option value="Queijo">Queijo</option>
-                <option value="Cebola">Cebola</option>
-                <option value="Alface">Alface</option>
-                <option value="Croutons">Croutons</option>
-                <option value="Parmesão">Parmesão</option>
-                <option value="Molho Caesar">Molho Caesar</option>
-                <option value="Frango grelhado">Frango grelhado</option>
-              </select>
-              </select>
-            </span>
-            <span>
-              <h4>3º ingrediente:</h4>
-              <select id="slc_ingrediente3">
-                <option value=""disabled selected>Selecione Um ingrediente</option>
-                <option value="Farinha">Farinha</option>
-                <option value="Açúcar">Açúcar</option>
-                <option value="Chocolate em pó">Chocolate em pó</option>
-                <option value="Ovos">Ovos</option>
-                <option value="Leite">Leite</option>
-                <option value="Massa de pizza">Massa de pizza</option>
-                <option value="Molho de tomate">Molho de tomate</option>
-                <option value="Calabresa">Calabresa</option>
-                <option value="Queijo">Queijo</option>
-                <option value="Cebola">Cebola</option>
-                <option value="Alface">Alface</option>
-                <option value="Croutons">Croutons</option>
-                <option value="Parmesão">Parmesão</option>
-                <option value="Molho Caesar">Molho Caesar</option>
-                <option value="Frango grelhado">Frango grelhado</option>
               </select>
             </span>
             <button onclick="listar()">Buscar</button>
@@ -194,39 +143,40 @@
 
   function listar() {
 
-    var categoria = slc_categoria.value;
-    var ingrediente1 = slc_ingrediente1.value;
-    var ingrediente2 = slc_ingrediente2.value;
-    var ingrediente3 = slc_ingrediente3.value;
+    // removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
+    var categoria = Number(slc_categoria.value);
+    var dificuldade = slc_dificuldade.value;
 
     fetch("/aquarios/listar", {
         method: "POST", 
         headers: {
             "Content-Type": "application/json"
         },
+        //removendo variavel de ingredientes e adicionando variavel de dificuldade (Alterado 27/12/24)
         body: JSON.stringify({
-        categoriaderver: categoria, 
-        ingrediende1Server: ingrediente1, 
-        ingrediende2Server: ingrediente2, 
-        ingrediende3Server: ingrediente3
-      })
-    }).then(function (receita) {
+          categoriaderver: categoria, 
+          dificuldadeServer: dificuldade, 
+        })
+      }).then(function (receita) {
         if (receita.ok) {
-            if (receita.status == 204) {
-                throw "Nenhum resultado encontrado!!";
-            }
-
-            receita.json().then(function (receita) {
-                console.log("Receitas recebidss: ", JSON.stringify(receita));
-
-                for (let i = 0; i < 1; i++) {
-                    var receita = receita[i];
-
+          if (receita.status == 204) {
+            throw "Nenhum resultado encontrado!!";
+          }
+          
+          receita.json().then(function (receita) {
+            console.log("Receitas recebidss: ", JSON.stringify(receita));
+            
+            for (let i = 0; i < 1; i++) {
+              var receita = receita[i];
+              
+                    //Adicionando variavel de dificuldade (Alterado 27/12/24)
                     var nome = receita.nome;
+                    var dificuldade = receita.dificuldade;
                     var tempoPreparo = receita.tempoPreparo;
                     var nomeCategoria = receita.nome;
                     var descricao = receita.descricao;
                     var ingrediente1 = receita.ingrediente1;
+                    var ingrediente2 = receita.ingrediente2;
                     var ingrediente2 = receita.ingrediente2;
                     var ingrediente3 = receita.ingrediente3;
                     var ingrediente4 = receita.ingrediente4;
@@ -237,32 +187,35 @@
                     var ingrediente9 = receita.ingrediente9;
                     var ingrediente10 = receita.ingrediente10;
                     var ingredientes = `
-                                        1. ${ingrediente1 || "N/A"}<br>
-                                        2. ${ingrediente2 || "N/A"}<br>
-                                        3. ${ingrediente3 || "N/A"}<br>
-                                        4. ${ingrediente4 || "N/A"}<br>
-                                        5. ${ingrediente5 || "N/A"}<br>
-                                        6. ${ingrediente6 || "N/A"}<br>
-                                        7. ${ingrediente7 || "N/A"}<br>
-                                        8. ${ingrediente8 || "N/A"}<br>
-                                        9. ${ingrediente9 || "N/A"}<br>
-                                        10. ${ingrediente10 || "N/A"}<br>
-                                      `;
+                    1. ${ingrediente2 || "N/A"}<br>
+                    2. ${ingrediente2 || "N/A"}<br>
+                    3. ${ingrediente3 || "N/A"}<br>
+                    4. ${ingrediente4 || "N/A"}<br>
+                    5. ${ingrediente5 || "N/A"}<br>
+                    6. ${ingrediente6 || "N/A"}<br>
+                    7. ${ingrediente7 || "N/A"}<br>
+                    8. ${ingrediente8 || "N/A"}<br>
+                    9. ${ingrediente9 || "N/A"}<br>
+                    10. ${ingrediente10 || "N/A"}<br>
+                    `;
+                    //Adicionando campo para dificuldade (Alterado 27/12/24)
                     receita_public.innerHTML = `
                                                 <div id="receita">
                                                   <div class="receita-info">
-                                                      <b>${nome}</b><br>
-                                                      <span>Tempo de preparo:</span>
-                                                      <p>${tempoPreparo} minutos</p>
-                                                      <span>Categoria:</span>
-                                                      <p>${nomeCategoria}</p>
-                                                      <span>Ingredientes Necessários:</span>
-                                                      <p>${ingredientes}</p>
-                                                      <span>Modo de preparo:</span>
-                                                      <p>${descricao}</p>
+                                                    <b>${nome}</b><br>
+                                                    <span>Dificuldade:</span>
+                                                    <p>${dificuldade}</p>
+                                                    <span>Tempo de preparo:</span>
+                                                    <p>${tempoPreparo} minutos</p>
+                                                    <span>Categoria:</span>
+                                                    <p>${nomeCategoria}</p>
+                                                    <span>Ingredientes Necessários:</span>
+                                                    <p>${ingredientes}</p>
+                                                    <span>Modo de preparo:</span>
+                                                    <p>${descricao}</p>
                                                   </div>
                                                 </div>
-                                              `;
+                                                    `;
                     // if( ingrediente1 != null){
                     //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
                     // }
@@ -300,9 +253,7 @@
         } else {
           receita_public.innerHTML = `
                                       <span style='color:#881100; font-weight:bold;'>
-                                        Ingredientes invalidos, selecione  os ingredientes da categoria correspondente.<br><br>
-                                        Exemplo: categoria doce: Açúcar, Ovos, Leite.<br><br>
-                                        Exemplo: categoria salgado: Massa de pizza, calabresa , molho de tomate.<br>
+                                        Ingredientes erro ao consultar os dados, verifique se a informação esta correta
                                       </span>
                                       <br>`;
             throw ('Houve um erro na API!');

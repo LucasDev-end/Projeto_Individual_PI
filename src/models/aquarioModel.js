@@ -9,25 +9,14 @@ function cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingred
   return database.executar(instrucaoSql);
 }
 
-function listar(categoria,ingrediente1,ingrediente2,ingrediente3) {
+// alterando o insert para mostar de a cordo com a categoria e dificuldade da receita (alterado 27/12/24)
+function listar(categoria,dificuldade) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucaoSql = `
-  SELECT *
-  FROM receitas r
-  JOIN categoria c ON r.fkCategoria = c.idCategoria
-  WHERE r.fkCategoria = ${categoria}
-    AND (
-        ingrediente1 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente2 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente3 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente4 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente5 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente6 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente7 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente8 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente9 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente10 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}')
-        ) limit 1;`;
+  select * from receitas as r
+  join categoria as c on r.fkCategoria = c.idCategoria
+  where r.fkCategoria = ${categoria} and r.dificuldade = '${dificuldade}'
+  limit 1;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

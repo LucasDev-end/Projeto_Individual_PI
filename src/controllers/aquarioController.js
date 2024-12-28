@@ -43,13 +43,12 @@ function cadastrar(req, res) {
   })  
   }
 
+  //removendo variaveis de ingredientes e adicionando variavel de dificuldade (alterado 27/12/24)
  function listar(req, res) {
     var categoria = req.body.categoriaderver;
-    var ingrediente1 = req.body.ingrediende1Server;
-    var ingrediente2 = req.body.ingrediende2Server;
-    var ingrediente3 = req.body.ingrediende3Server;
+    var dificuldade = req.body.dificuldadeServer;
 
-    aquarioModel.listar(categoria, ingrediente1, ingrediente2, ingrediente3).then(function (resultado) {
+    aquarioModel.listar(categoria, dificuldade).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
