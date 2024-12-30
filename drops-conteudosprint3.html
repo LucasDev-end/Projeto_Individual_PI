@@ -70,4 +70,532 @@
 
     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // rota completa para o cadastro do usuario
+
+function cadastrar() {
+    var nome = ipt_nome.value;
+    var email = ipt_email.value;
+    var cidade = ipt_cidade.value;
+    var estado = slc_estado.value;
+    var categoria = ipt_categoria.value;
+    var senha = ipt_senha.value;
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nome,
+        emailServer: email,
+        cidadeServer: cidade, 
+        estadosServer: estado,
+        senhaServer: senha,
+        categoriaServer: categoria
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+      alert("Cadastro Realizado com sucesso!")
+    return false;
+  }
+
+  router.post("/cadastrar", function (req, res) {
+    usuarioController.cadastrar(req, res);
+})
+
+function cadastrar(req, res) {
+  var nome = req.body.nomeServer;
+  var email = req.body.emailServer;
+  var cidade = req.body.cidadeServer;
+  var estados = req.body.estadosServer;
+  var senha = req.body.senhaServer;
+  var categoria = req.body.categoriaServer;
+
+  if (nome == undefined) {
+      res.status(400).send("Seu nome está undefined!");
+  } else if (email == undefined) {
+      res.status(400).send("Seu email está undefined!");
+  } else if (senha == undefined) {
+      res.status(400).send("Sua senha está undefined!");
+  }else if (estados == undefined) {
+      res.status(400).send("Sua estados está undefined!");
+  } else if (cidade == undefined) {
+      res.status(400).send("Sua cidade está undefined!");
+  }else {
+          usuarioModel.consultarCategoria(categoria)
+              .then((resultadoAutenticar) => {
+                  if (resultadoAutenticar.length > 0) {
+                      var id =  resultadoAutenticar[0].idCategoria
+                      console.log(id)
+                      usuarioModel.cadastrar(nome, email, cidade, estados, senha, id)
+                      .then(
+                          function (resultado) {
+                              res.json(resultado);
+                          }
+                      ).catch(
+                          function (erro) {
+                              console.log(erro);
+                              console.log(
+                                  "\nHouve um erro ao realizar o cadastro! Erro: ",
+                                  erro.sqlMessage
+                              );
+                              res.status(500).json(erro.sqlMessage);
+                          }
+                      );
+
+                  } else {
+                      res.status(204).json("Deu Erro AQUI!");
+                  }
+              })       
+  }
+}
+
+function cadastrar(nome, email, cidade, estado, senha, categoria) {
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha, cidade, estado);
+  
+  var instrucaoSql = `
+      insert into cadastro(nome, email, senha, cidade, estado, fkCategoria) values ( '${nome}', '${email}', '${senha}','${cidade}', '${estado}', ${categoria});
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
+
+
+
+
+
+// rota completa para a consulta das receitas
+
+function listar() {
+
+  // removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
+  var categoria = slc_categoria.value;
+  var dificuldade = slc_dificuldade.value;
+
+  fetch("/aquarios/listar", {
+      method: "POST", 
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+      categoriaderver: categoria, 
+      dificuldadeServer: dificuldade, 
+    })
+  }).then(function (receita) {
+      if (receita.ok) {
+          if (receita.status == 204) {
+              throw "Nenhum resultado encontrado!!";
+          }
+
+          receita.json().then(function (receita) {
+              console.log("Receitas recebidss: ", JSON.stringify(receita));
+
+              for (let i = 0; i < 1; i++) {
+                  var receita = receita[i];
+
+                  var nome = receita.nome;
+                  var tempoPreparo = receita.tempoPreparo;
+                  var nomeCategoria = receita.nome;
+                  var descricao = receita.descricao;
+                  var ingrediente1 = receita.ingrediente1;
+                  var ingrediente2 = receita.ingrediente2;
+                  var ingrediente2 = receita.ingrediente2;
+                  var ingrediente3 = receita.ingrediente3;
+                  var ingrediente4 = receita.ingrediente4;
+                  var ingrediente5 = receita.ingrediente5;
+                  var ingrediente6 = receita.ingrediente6;
+                  var ingrediente7 = receita.ingrediente7;
+                  var ingrediente8 = receita.ingrediente8;
+                  var ingrediente9 = receita.ingrediente9;
+                  var ingrediente10 = receita.ingrediente10;
+                  var ingredientes = `
+                                      1. ${ingrediente2 || "N/A"}<br>
+                                      2. ${ingrediente2 || "N/A"}<br>
+                                      3. ${ingrediente3 || "N/A"}<br>
+                                      4. ${ingrediente4 || "N/A"}<br>
+                                      5. ${ingrediente5 || "N/A"}<br>
+                                      6. ${ingrediente6 || "N/A"}<br>
+                                      7. ${ingrediente7 || "N/A"}<br>
+                                      8. ${ingrediente8 || "N/A"}<br>
+                                      9. ${ingrediente9 || "N/A"}<br>
+                                      10. ${ingrediente10 || "N/A"}<br>
+                                    `;
+                  receita_public.innerHTML = `
+                                              <div id="receita">
+                                                <div class="receita-info">
+                                                    <b>${nome}</b><br>
+                                                    <span>Tempo de preparo:</span>
+                                                    <p>${tempoPreparo} minutos</p>
+                                                    <span>Categoria:</span>
+                                                    <p>${nomeCategoria}</p>
+                                                    <span>Ingredientes Necessários:</span>
+                                                    <p>${ingredientes}</p>
+                                                    <span>Modo de preparo:</span>
+                                                    <p>${descricao}</p>
+                                                </div>
+                                              </div>
+                                            `;
+                  // if( ingrediente1 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
+                  // }
+                  // if( ingrediente2 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente2} </span>`                      
+                  // }
+                  // if( ingrediente3 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente3} </span>`                      
+                  // }
+                  // if( ingrediente4 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente4} </span>`                      
+                  // }
+                  // if( ingrediente5 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente5} </span>`                      
+                  // }
+                  // if( ingrediente6 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente6} </span>`                      
+                  // }
+                  // if( ingrediente7 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente7} </span>`                      
+                  // }
+                  // if( ingrediente8 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente8} </span>`                      
+                  // }
+                  // if( ingrediente9 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente9} </span>`                      
+                  // }
+                  // if( ingrediente10 != null){
+                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
+                  // }
+                 
+              }
+
+          });
+      } else {
+        receita_public.innerHTML = `
+                                    <span style='color:#881100; font-weight:bold;'>
+                                      Ingredientes invalidos, selecione  os ingredientes da categoria correspondente.<br><br>
+                                      Exemplo: categoria doce: Açúcar, Ovos, Leite.<br><br>
+                                      Exemplo: categoria salgado: Massa de pizza, calabresa , molho de tomate.<br>
+                                    </span>
+                                    <br>`;
+          throw ('Houve um erro na API!');
+      }
+  }).catch(function (receita) {
+    alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
+    console.log(`#ERRO: ${receita}`);
+    });
+}
+
+router.post("/listar", function (req, res) {
+  aquarioController.listar(req, res);
+});
+
+function listar(req, res) {
+  var categoria = req.body.categoriaderver;
+  var ingrediente1 = req.body.ingrediende1Server;
+  var ingrediente2 = req.body.ingrediende2Server;
+  var ingrediente3 = req.body.ingrediende3Server;
+
+  aquarioModel.listar(categoria, ingrediente1, ingrediente2, ingrediente3).then(function (resultado) {
+      if (resultado.length > 0) {
+          res.status(200).json(resultado);
+      } else {
+          res.status(204).send("Nenhum resultado encontrado!")
+      }
+  }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar por receitas: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function listar(categoria,ingrediente1,ingrediente2,ingrediente3) {
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  var instrucaoSql = `
+  SELECT *
+  FROM receitas r
+  JOIN categoria c ON r.fkCategoria = c.idCategoria
+  WHERE r.fkCategoria = ${categoria}
+    AND (
+        ingrediente1 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente2 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente3 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente4 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente5 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente6 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente7 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente8 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente9 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
+        ingrediente10 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}')
+        ) limit 1;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
+('Torta de Limão', 'Média', 'Massa pronta para torta', 'leite condensado', 'limão', 'creme de leite', 'claras de ovo', 1,
+        'Comece preparando a base da torta com a massa pronta. Certifique-se de colocá-la em uma forma adequada, pressionando levemente nas laterais para garantir que fique bem ajustada. Reserve. Em uma tigela, misture o leite condensado com o suco de limão até obter um creme espesso. Adicione o creme de leite e misture delicadamente até que todos os ingredientes estejam incorporados. Despeje essa mistura sobre a base da torta, espalhando uniformemente com uma espátula. Enquanto isso, bata as claras em neve até formarem picos firmes. Adicione açúcar aos poucos, sem parar de bater, até obter um merengue brilhante. Cubra a torta com o merengue, formando picos decorativos com uma colher. Leve ao forno preaquecido a 180°C e asse por aproximadamente 15 minutos, ou até que o merengue esteja levemente dourado. Retire do forno e deixe esfriar antes de servir. A torta pode ser armazenada na geladeira por até 3 dias.'),
+
+('Bolo Red Velvet', 'Difícil', 'Farinha', 'açúcar', 'chocolate em pó', 'ovos', 'manteiga', 'leite', 'cream cheese', 'corante vermelho', 1,
+        'Separe todos os ingredientes e preaqueça o forno a 180°C. Em uma tigela, misture a farinha, o açúcar e o chocolate em pó peneirados, garantindo que não haja grumos. Reserve. Em outra tigela, bata os ovos com a manteiga em temperatura ambiente até formar um creme claro. Adicione o leite e o corante vermelho, misturando bem até que a cor esteja uniforme. Aos poucos, incorpore os ingredientes secos na mistura líquida, mexendo delicadamente com uma espátula até obter uma massa homogênea. Unte e enfarinhe uma forma redonda. Despeje a massa na forma e asse por cerca de 40 minutos ou até que um palito inserido no centro saia limpo. Para o recheio, bata o cream cheese com açúcar e um pouco de creme de leite até formar um creme liso. Após o bolo esfriar, corte-o em camadas e espalhe o recheio entre elas. Finalize cobrindo todo o bolo com o restante do creme e decore como preferir. Sirva gelado.'),
+
+('Pavlova de Frutas Vermelhas', 'Difícil', 'Claras de ovo', 'açúcar', 'creme de leite fresco', 'frutas vermelhas', 'essência de baunilha', 3,
+        'Preaqueça o forno a 120°C. Em uma tigela grande, bata as claras em neve até que formem picos suaves. Adicione o açúcar aos poucos, uma colher por vez, batendo continuamente até que o merengue esteja firme e brilhante. Incorpore delicadamente a essência de baunilha. Forre uma assadeira com papel manteiga e desenhe um círculo de aproximadamente 20 cm. Espalhe o merengue sobre o círculo, criando bordas ligeiramente mais altas para formar uma espécie de ninho. Asse por 1 hora e 30 minutos, até que o merengue esteja seco ao toque, mas ainda macio por dentro. Deixe esfriar completamente dentro do forno com a porta entreaberta. Enquanto isso, bata o creme de leite fresco até obter picos firmes. Para montar, cubra o merengue com o creme batido e finalize com frutas vermelhas frescas. Sirva imediatamente para aproveitar a textura crocante do merengue.'),
+
+('Bruschetta de Tomate e Manjericão', 'Média', 'Pão italiano', 'tomate', 'azeite', 'alho', 'manjericão', 'sal', 4,
+        'Comece cortando o pão italiano em fatias de aproximadamente 1 cm de espessura. Aqueça uma frigideira ou grill e toste levemente os dois lados das fatias. Enquanto isso, lave e pique os tomates em cubos pequenos, descartando as sementes. Em uma tigela, misture os tomates com azeite, alho picado, folhas de manjericão fresco rasgadas à mão e uma pitada de sal. Esfregue levemente um dente de alho nas fatias de pão tostadas para adicionar sabor. Em seguida, distribua a mistura de tomate sobre cada fatia, regue com um fio de azeite e sirva imediatamente. Essa entrada é ideal para servir em eventos ou como aperitivo.'),
+
+('Terrine de Vegetais', 'Difícil', 'Berinjela', 'abobrinha', 'cenoura', 'queijo de cabra', 'gelatina incolor', 'caldo de legumes', 4,
+        'Comece grelhando a berinjela, a abobrinha e a cenoura cortadas em fatias finas, temperando com sal e azeite. Forre uma forma retangular com filme plástico, deixando uma sobra nas bordas para facilitar ao desenformar. Dissolva a gelatina incolor no caldo de legumes quente, misturando bem. Na forma preparada, intercale camadas de vegetais grelhados e queijo de cabra esfarelado. Após cada camada, regue levemente com o caldo misturado à gelatina para fixar os ingredientes. Repita o processo até encher a forma. Cubra com o filme plástico e leve à geladeira por pelo menos 4 horas, ou até que esteja firme. Para servir, desenforme cuidadosamente e corte em fatias. A terrine pode ser acompanhada de pão torrado ou uma salada leve.'),
+('Ratatouille Clássico', 'Difícil', 'Berinjela', 'abobrinha', 'pimentão', 'tomate', 'azeite', 'ervas finas', 5,
+        'Comece cortando a berinjela, abobrinha, pimentão e tomate em rodelas finas. Em uma frigideira grande, aqueça o azeite e refogue os legumes rapidamente, temperando com sal, pimenta e ervas finas. Disponha os legumes de forma alternada em uma travessa, formando um padrão circular. Cubra com um molho de tomate caseiro e leve ao forno preaquecido a 180°C por cerca de 40 minutos. Sirva como acompanhamento ou prato principal.'),
+
+('Risoto de Cogumelos', 'Média,Difícil', 'Arroz arbóreo', 'cogumelos frescos', 'caldo de legumes', 'queijo parmesão', 'manteiga', 'cebola', 6,
+        'Refogue a cebola picada na manteiga até ficar transparente. Adicione os cogumelos fatiados e cozinhe até dourarem. Acrescente o arroz arbóreo e misture bem, deixando-o levemente tostado. Adicione o vinho branco, se desejar, e mexa até evaporar. Vá acrescentando o caldo de legumes quente aos poucos, mexendo continuamente até que o arroz esteja al dente. Finalize com queijo parmesão ralado e mais um pouco de manteiga para dar brilho. Sirva imediatamente.'),
+
+('Cuscuz Marroquino com Legumes', 'Média,Difícil', 'Cuscuz marroquino', 'abobrinha', 'cenoura', 'cebola', 'caldo de legumes', 'azeite', 7,
+        'Hidrate o cuscuz marroquino com caldo de legumes quente e reserve. Em uma frigideira, aqueça o azeite e refogue os legumes cortados em cubos pequenos, começando pela cebola, seguida da cenoura e da abobrinha. Tempere com sal, pimenta e ervas de sua preferência. Misture os legumes refogados ao cuscuz hidratado e solte os grãos com um garfo. Sirva como acompanhamento ou prato principal.'),
+
+('Frango Xadrez', 'Fácil,Difícil', 'Peito de frango', 'pimentão', 'cebola', 'molho de soja', 'amido de milho', 'óleo de gergelim', 9,
+        'Corte o peito de frango em cubos e tempere com sal e pimenta. Dissolva o amido de milho no molho de soja e reserve. Em uma wok ou frigideira grande, aqueça o óleo de gergelim e doure o frango. Adicione a cebola e os pimentões cortados em cubos, refogando até ficarem macios. Acrescente o molho reservado e cozinhe até engrossar. Sirva com arroz branco.'),
+
+('Bolo de Cenoura com Cobertura de Chocolate', 'Fácil', 'Cenoura', 'farinha', 'açúcar', 'ovos', 'chocolate', 'manteiga', 5,
+        'No liquidificador, bata as cenouras, os ovos, o açúcar e o óleo até formar um creme homogêneo. Em uma tigela, misture a farinha e o fermento peneirados, e incorpore o creme de cenoura delicadamente. Despeje a massa em uma forma untada e leve ao forno preaquecido a 180°C por aproximadamente 40 minutos. Para a cobertura, derreta o chocolate com a manteiga e espalhe sobre o bolo já frio. Sirva como sobremesa ou lanche.'),
+
+('Tarte Tatin de Maçã', 'Média,Difícil', 'Maçãs', 'açúcar', 'manteiga', 'massa folhada', 'limão', 'canela', 6,
+        'Descasque e corte as maçãs em fatias grossas. Em uma frigideira que possa ir ao forno, derreta a manteiga e o açúcar até formar um caramelo dourado. Adicione as maçãs, espalhando-as uniformemente e cozinhando por alguns minutos. Polvilhe com canela e suco de limão. Cubra com a massa folhada, dobrando as bordas para dentro. Leve ao forno preaquecido a 200°C por cerca de 25 minutos. Desenforme ainda quente, virando cuidadosamente sobre um prato grande. Sirva quente ou fria.'),
+
+('Moqueca de Camarão', 'Fácil,Difícil', 'Camarão', 'leite de coco', 'azeite de dendê', 'pimentão', 'tomate', 'cebola', 9,
+        'Tempere os camarões com sal, pimenta e limão e deixe marinar por 15 minutos. Em uma panela, refogue a cebola, o tomate e o pimentão no azeite de dendê até ficarem macios. Adicione o leite de coco e cozinhe por alguns minutos. Por último, acrescente os camarões e cozinhe rapidamente, apenas até mudarem de cor. Sirva com arroz branco e farofa de dendê.').
+
+
+
+
+
+esta faltando ainda 5: dificil; 6:Medio,dificil; 7:Medio,dificil; 9:facil,dificil; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// cadastrar curtidas
+
+function curtir() {
+  var idReceita = Number(receitaAtual);
+  var idCategoria = Number(categoriaAtual);
+
+  fetch("/aquarios/curtir", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      receitaServer: idReceita,
+      categoriaServer: idCategoria,
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+      
+      if (resposta.ok) {
+        alert("Cadastro Realizado com sucesso!");
+      } else {
+        throw "Houve um erro ao tentar realizar a curtida!";
+      }
+    })
+    .catch(function (resposta) {
+      alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+  return false;
+}
+
+router.post("/curtir", function (req, res){
+  aquarioController.curtir(req, res);
+});
+
+function curtir(req, res) {
+  var idReceita = req.body.idReceitas;
+  var idCategoria = req.body.idCategoria;
+
+  if (idReceita == undefined) {
+      res.status(400).send("Nenhuma receita esta definida");
+  } else if (idCategoria == undefined) {
+      res.status(400).send("Nenhuma categoria esta definida");
+  } else {
+      aquarioModel.curtir(idReceita, idCategoria)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          )
+          .catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log("Houve um erro ao realizar a curtida: ", erro.sqlMessage);
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+
+function curtir(idReceita, idCategoria) {
+  var instrucaoSql = `
+  insert into curtida (fkReceita, fkCategoria) values
+  (${idReceita}, ${idCategoria});
+  `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
 </script>
