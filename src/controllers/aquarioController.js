@@ -45,7 +45,7 @@ function cadastrar(req, res) {
 
   //removendo variaveis de ingredientes e adicionando variavel de dificuldade (alterado 27/12/24)
  function listar(req, res) {
-    var categoria = req.body.categoriaderver;
+    var categoria = req.body.categoriaServer;
     var dificuldade = req.body.dificuldadeServer;
 
     aquarioModel.listar(categoria, dificuldade).then(function (resultado) {
@@ -61,6 +61,31 @@ function cadastrar(req, res) {
     });
 }
 
+// criando função curtir (alterado 29/12/24)
+function curtir(req, res) {
+  var idReceita = req.body.idReceitas;
+  var idCategoria = req.body.idCategoria;
+
+  if (idReceita == undefined) {
+      res.status(400).send("Nenhuma receita esta definida");
+  } else if (idCategoria == undefined) {
+      res.status(400).send("Nenhuma categoria esta definida");
+  } else {
+      aquarioModel.curtir(idReceita, idCategoria)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          )
+          .catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log("Houve um erro ao realizar a curtida: ", erro.sqlMessage);
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
 
 function plotarkpi1(req, res) {
   aquarioModel.plotarkpi1()
@@ -127,6 +152,7 @@ function plotarDadosDoGrafico(req, res) {
 module.exports = {
   cadastrar,
   listar,
+  curtir,
   plotarkpi1,
   plotarkpi2,
   plotarkpi3,

@@ -140,6 +140,9 @@
     window.location.href = 'cadastro.html';
   }
 
+  // Adicionando variavel para identificar a receita e a categoria pesquisada atual (Alterado 29/12/24)
+var receitaAtual = "";
+var categoriaAtual = 0;
 
   function listar() {
 
@@ -154,7 +157,7 @@
         },
         //removendo variavel de ingredientes e adicionando variavel de dificuldade (Alterado 27/12/24)
         body: JSON.stringify({
-          categoriaderver: categoria, 
+          categoriaServer: categoria, 
           dificuldadeServer: dificuldade, 
         })
       }).then(function (receita) {
@@ -170,10 +173,12 @@
               var receita = receita[i];
               
                     //Adicionando variavel de dificuldade (Alterado 27/12/24)
-                    var nome = receita.nome;
+                    var id = receita.idReceitas;
+                    var nome = receita.nomeReceitas;
                     var dificuldade = receita.dificuldade;
                     var tempoPreparo = receita.tempoPreparo;
-                    var nomeCategoria = receita.nome;
+                    var idCategoria = receita.fkCategoria;
+                    var Categoria = receita.nome;
                     var descricao = receita.descricao;
                     var ingrediente1 = receita.ingrediente1;
                     var ingrediente2 = receita.ingrediente2;
@@ -186,33 +191,36 @@
                     var ingrediente8 = receita.ingrediente8;
                     var ingrediente9 = receita.ingrediente9;
                     var ingrediente10 = receita.ingrediente10;
+                    // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
                     var ingredientes = `
-                    1. ${ingrediente2 || "N/A"}<br>
-                    2. ${ingrediente2 || "N/A"}<br>
-                    3. ${ingrediente3 || "N/A"}<br>
-                    4. ${ingrediente4 || "N/A"}<br>
-                    5. ${ingrediente5 || "N/A"}<br>
-                    6. ${ingrediente6 || "N/A"}<br>
-                    7. ${ingrediente7 || "N/A"}<br>
-                    8. ${ingrediente8 || "N/A"}<br>
-                    9. ${ingrediente9 || "N/A"}<br>
-                    10. ${ingrediente10 || "N/A"}<br>
+                    1. ${ingrediente2 || " "}<br>
+                    2. ${ingrediente2 || " "}<br>
+                    3. ${ingrediente3 || " "}<br>
+                    4. ${ingrediente4 || " "}<br>
+                    5. ${ingrediente5 || " "}<br>
+                    6. ${ingrediente6 || " "}<br>
+                    7. ${ingrediente7 || " "}<br>
+                    8. ${ingrediente8 || " "}<br>
+                    9. ${ingrediente9 || " "}<br>
+                    10. ${ingrediente10 || " "}<br>
                     `;
                     //Adicionando campo para dificuldade (Alterado 27/12/24)
+                    //Adicionando botão de curtida (Alterado 29/12/24)
                     receita_public.innerHTML = `
                                                 <div id="receita">
                                                   <div class="receita-info">
                                                     <b>${nome}</b><br>
-                                                    <span>Dificuldade:</span>
+                                                    <span>Dificuldade de preparo da receita:</span>
                                                     <p>${dificuldade}</p>
                                                     <span>Tempo de preparo:</span>
                                                     <p>${tempoPreparo} minutos</p>
                                                     <span>Categoria:</span>
-                                                    <p>${nomeCategoria}</p>
+                                                    <p>${Categoria}</p>
                                                     <span>Ingredientes Necessários:</span>
                                                     <p>${ingredientes}</p>
                                                     <span>Modo de preparo:</span>
                                                     <p>${descricao}</p>
+                                                    <button id="curtir" onclick="curtir()">Curtir</button>
                                                   </div>
                                                 </div>
                                                     `;
@@ -246,21 +254,62 @@
                     // if( ingrediente10 != null){
                     //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
                     // }
-                   
-                }
-
+                   // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
+                    receitaAtual = id;
+                    categoriaAtual = idCategoria;
+                    alert(`id da receita: ${receitaAtual}, e id da receita: ${categoria};`);
+            }
             });
         } else {
           receita_public.innerHTML = `
                                       <span style='color:#881100; font-weight:bold;'>
-                                        Ingredientes erro ao consultar os dados, verifique se a informação esta correta
+                                        Erro ao consultar os dados, verifique se as informações estão corretas!
                                       </span>
                                       <br>`;
             throw ('Houve um erro na API!');
         }
     }).catch(function (receita) {
-      alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
+      // definindo mensagem de erro para caso não tenha nenhuma receita com aqueles requisitos cadastrada (alterado 29/12/24)
+      receita_public.innerHTML = `
+                                      <span style='color:#880000; font-weight:bold;'>
+                                        Não temos nada para estes requisitos ainda, mas você pode se cadastrar e nos enviar novas receitas!
+                                      </span>
+                                      <br>`;
+      console.log("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
       console.log(`#ERRO: ${receita}`);
       });
+  }
+
+  //criando função de curtida (Alterado 29/12/24)
+  function curtir() {
+    var idReceita = Number(receitaAtual);
+    var idCategoria = Number(categoriaAtual);
+
+    fetch("/aquarios/curtir", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idReceitas: idReceita,
+        idCategoria: idCategoria,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+          alert("Cadastro Realizado com sucesso!");
+        } else {
+          throw "Houve um erro ao tentar realizar a curtida!";
+        }
+      })
+      .catch(function (resposta) {
+        alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+
+    return document.getElementById("curtir").style.display = "none";
   }
 </script>

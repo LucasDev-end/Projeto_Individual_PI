@@ -10,6 +10,11 @@ router.post("/listar", function (req, res) {
   aquarioController.listar(req, res);
 });
 
+//criando rota para função curtir do controller alterado (29/12/24)
+router.post("/curtir", function (req, res){
+  aquarioController.curtir(req, res);
+});
+
 router.get("/plotarkpi1", function (req, res) {
   aquarioController.plotarkpi1(req, res);
 });

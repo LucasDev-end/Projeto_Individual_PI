@@ -21,6 +21,16 @@ function listar(categoria,dificuldade) {
   return database.executar(instrucaoSql);
 }
 
+// Adicionando função curtir (alterado 29/12/24)
+function curtir(idReceita, idCategoria) {
+  var instrucaoSql = `
+  insert into curtida (fkReceita, fkCategoria) values
+  (${idReceita}, ${idCategoria});
+  `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
 function plotarkpi1() {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
@@ -74,6 +84,7 @@ function plotarDadosDoGrafico() {
 module.exports = {
   cadastrar,
   listar,
+  curtir,
   plotarkpi1,
   plotarkpi2,
   plotarkpi3,
