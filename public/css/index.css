@@ -284,8 +284,9 @@ body {
     border-radius: 4px;
     text-align: justify;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    overflow: auto;
 }
 
 #receita {
@@ -295,6 +296,8 @@ body {
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
+    height: auto;
+    width: auto;
 }
 
 .receita-info b {

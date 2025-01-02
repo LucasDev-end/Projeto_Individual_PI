@@ -48,16 +48,20 @@ function cadastrar(req, res) {
     var categoria = req.body.categoriaServer;
     var dificuldade = req.body.dificuldadeServer;
 
-    aquarioModel.listar(categoria, dificuldade).then(function (resultado) {
+    aquarioModel.listar(categoria, dificuldade)
+    .then(function (resultado) {
+        // console.log("Resultado da consulta ao banco:", resultado); // Verificando os dados (alterado em 01/01/25)
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).send("Nenhum resultado encontrado!")
+            res.status(204).send("Nenhum resultado encontrado!");
         }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar por receitas: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
+    })
+    .catch(function (erro) {
+        console.log("Erro ao buscar receitas:", erro.sqlMessage || erro);
+        if (!res.headersSent) {
+            res.status(500).json({ erro: "Erro interno ao buscar receitas." });
+        }
     });
 }
 

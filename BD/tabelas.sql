@@ -22,7 +22,7 @@ constraint fkCategoriaCadastro foreign key (fkcategoria)
 
 create table receitas(
 idReceitas int primary key auto_increment,
-nomeReceitas varchar(45),
+nomeReceitas varchar(60),
 dificuldade varchar(7), -- Adicionando campo dificuldade (alteração feita em 21/12/2024)
 tempoPreparo varchar(20),
 ingrediente1 varchar(100),
@@ -36,7 +36,7 @@ ingrediente8 varchar(100),
 ingrediente9 varchar(100),
 ingrediente10 varchar(100),
 fkCategoria int,
-descricao varchar (500),
+descricao varchar(1100), -- allterando tamanho do varchar (alteração feita em 01/01/25)
 constraint fkCategoriaReceitas foreign key (fkCategoria)
 							references categoria(idCategoria)
 );
@@ -133,36 +133,44 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
 'Em uma tigela, bata 3 ovos com sal e pimenta. Aqueça 1 colher de sopa de azeite em uma frigideira, adicione 1 xícara de espinafre picado e refogue por 2 minutos. Despeje os ovos batidos e cozinhe até firmar. Sirva quente.'),
 
 ('Canapés de Queijo', 'Fácil', '15 minutos', '1 baguete', '200 g de queijo cremoso', 'Tomate cereja', 'Manjericão', 'Azeite', 4, 
-'Corte a baguete em fatias e espalhe 200 g de queijo cremoso sobre cada uma. Decore com tomate cereja cortado ao meio e folhas de manjericão. Regue com azeite e sirva.'),
+'Corte a baguete em fatias e espalhe 200 g de queijo cremoso sobre cada uma. Decore com tomate cereja cortado ao meio e folhas de manjericão. Regue com azeite e sirva.');
 
-('Frango Cremoso com Cogumelos', 'Média', '45 minutos', 'peito de frango', 'creme de leite', 'cogumelos', 'alho', 'cebola', 2, 
+insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
+('Frango Cremoso com Cogumelos', 'Média', '45 minutos', 
+ 'peito de frango 500g', 'creme de leite 200ml', 'cogumelos 150g', 'alho 2 dentes', 'cebola 1 unidade', 2, 
  'Tempere os peitos de frango com sal e pimenta a gosto. Em uma frigideira grande, aqueça um fio de azeite e sele os peitos de frango até dourarem, retirando-os em seguida. Na mesma frigideira, refogue a cebola picada e o alho até ficarem macios. Adicione os cogumelos fatiados e cozinhe até que estejam dourados. Retorne os peitos de frango à frigideira, adicione o creme de leite e misture bem. Cozinhe em fogo baixo por cerca de 20 minutos, ou até que o frango esteja completamente cozido e o molho tenha engrossado. Sirva acompanhado de arroz branco ou purê de batatas.'),
  
- ('Mousse de Maracujá', 'Média', '30 minutos', 'maracujá', 'leite condensado', 'creme de leite', 'gelatina incolor', 'água', 3, 
+('Mousse de Maracujá', 'Média', '30 minutos', 
+ 'maracujá 200ml', 'leite condensado 395g', 'creme de leite 200ml', 'gelatina incolor 1 pacote', 'água 100ml', 3, 
  'Comece hidratando a gelatina incolor em água conforme as instruções da embalagem. Enquanto isso, no liquidificador, bata o suco de maracujá concentrado com o leite condensado e o creme de leite até obter um creme homogêneo. Derreta a gelatina hidratada em banho-maria ou no micro-ondas e adicione à mistura do liquidificador, batendo rapidamente para incorporar. Despeje o mousse em taças ou uma travessa e leve à geladeira por pelo menos 4 horas, ou até que esteja firme. Decore com sementes de maracujá antes de servir.'),
  
- ('Mil-folhas de Creme e Morango', 'Difícil', '2 horas', 'massa folhada', 'creme de confeiteiro', 'morango', 'açúcar de confeiteiro', 'leite', 3, 
+('Mil-folhas de Creme e Morango', 'Difícil', '2 horas', 
+ 'massa folhada 500g', 'creme de confeiteiro 300g', 'morango 250g', 'açúcar de confeiteiro 50g', 'leite 500ml', 3, 
  'Preaqueça o forno a 180°C. Abra a massa folhada sobre uma superfície enfarinhada e corte-a em retângulos iguais. Coloque-os em uma assadeira forrada com papel manteiga, cubra com outra folha de papel manteiga e pressione com uma assadeira pesada para evitar que cresçam. Asse por 15-20 minutos ou até dourarem. Para o creme, aqueça o leite em uma panela e misture gemas, açúcar e amido de milho em uma tigela até formar uma pasta. Adicione o leite quente aos poucos, mexendo sempre, e leve de volta ao fogo até engrossar. Deixe esfriar. Monte o mil-folhas intercalando camadas de massa folhada, creme de confeiteiro e morangos fatiados. Finalize com uma camada de massa folhada, polvilhe açúcar de confeiteiro e leve à geladeira por 1 hora antes de servir.'),
  
- ('Soufflé de Chocolate', 'Difícil', '1 hora', 'chocolate meio amargo', 'manteiga', 'açúcar', 'ovos', 'creme de leite', 3, 
+('Soufflé de Chocolate', 'Difícil', '1 hora', 
+ 'chocolate meio amargo 200g', 'manteiga 100g', 'açúcar 100g', 'ovos 4 unidades', 'creme de leite 100ml', 3, 
  'Preaqueça o forno a 190°C e unte ramequins com manteiga, polvilhando açúcar nas laterais. Derreta o chocolate meio amargo com a manteiga em banho-maria, mexendo até ficar homogêneo. Separe as gemas das claras e bata as claras em neve com uma pitada de sal até formarem picos firmes. Na mistura de chocolate derretido, adicione as gemas uma a uma, mexendo bem, e depois incorpore delicadamente o creme de leite. Por último, incorpore as claras em neve aos poucos, utilizando uma espátula para não perder a aeração. Distribua a massa nos ramequins, enchendo até 3/4 da altura. Asse por 15-20 minutos, sem abrir o forno durante o processo, até que os soufflés cresçam e fiquem dourados. Sirva imediatamente para aproveitar sua textura leve e cremosa.'),
  
- ('Tartare de Salmão com Avocado', 'Difícil', '50 minutos', 'salmão fresco', 'avocado', 'limão siciliano', 'cebola roxa', 'molho de soja', 2, 
+('Tartare de Salmão com Avocado', 'Difícil', '50 minutos', 
+ 'salmão fresco 300g', 'avocado 1 unidade', 'limão siciliano 1 unidade', 'cebola roxa 1 unidade', 'molho de soja 50ml', 2, 
  'Corte o salmão fresco em cubos pequenos, garantindo que esteja completamente limpo e livre de espinhas. Em uma tigela, misture o suco de limão siciliano, o molho de soja e um fio de azeite, criando uma marinada. Adicione o salmão à marinada e deixe descansar na geladeira por 20 minutos. Enquanto isso, pique o avocado em cubos pequenos e regue com limão para evitar a oxidação. Pique finamente a cebola roxa e misture com o avocado. Para montar, utilize um aro de metal: comece com uma camada de avocado e finalize com o tartare de salmão por cima. Decore com raspas de limão siciliano e sirva acompanhado de torradas ou chips de batata doce.'),
- 
- ('Caprese no Palito', 'Média', '20 minutos', 'tomate cereja', 'muçarela de búfala', 'manjericão fresco', 'azeite', 'vinagre balsâmico', 2, 
+
+('Caprese no Palito', 'Média', '20 minutos', 
+ 'tomate cereja 250g', 'muçarela de búfala 200g', 'manjericão fresco 1 maço', 'azeite 50ml', 'vinagre balsâmico 20ml', 2, 
  'Lave e seque os tomates cereja e as folhas de manjericão fresco. Corte as bolinhas de muçarela de búfala ao meio, se forem muito grandes. Em palitos de petisco, espete um tomate cereja, uma folha de manjericão e um pedaço de muçarela, repetindo a sequência até preencher o palito. Disponha os palitos em um prato e regue com azeite e algumas gotas de vinagre balsâmico. Finalize com uma pitada de sal e sirva como entrada leve e sofisticada.'),
- 
- ('Croissant Recheado com Queijo Brie e Presunto de Parma', 'Difícil', '3 horas', 'farinha de trigo', 'manteiga', 'fermento biológico', 'queijo brie', 'presunto de parma', 5, 
+
+('Croissant Recheado com Queijo Brie e Presunto de Parma', 'Difícil', '3 horas', 
+ 'farinha de trigo 500g', 'manteiga 300g', 'fermento biológico 10g', 'queijo brie 150g', 'presunto de parma 150g', 5, 
  'Prepare a massa do croissant começando por misturar a farinha de trigo, o fermento biológico, uma pitada de sal e água fria em uma tigela grande. Sove até obter uma massa homogênea e elástica. Cubra a massa com um pano úmido e deixe descansar por 1 hora ou até dobrar de tamanho. Enquanto isso, prepare a manteiga laminada, moldando-a em um retângulo fino entre folhas de papel manteiga. Abra a massa em formato retangular, coloque a manteiga no centro e dobre a massa em três partes, cobrindo completamente a manteiga. Leve à geladeira por 30 minutos. Repita o processo de abrir e dobrar a massa por mais 3 vezes, sempre refrigerando entre as dobras. Abra a massa pela última vez em um retângulo grande e corte em triângulos. Recheie cada triângulo com uma fatia de queijo brie e uma de presunto de parma, enrolando a partir da base até a ponta para formar o croissant. Disponha os croissants em uma assadeira, pincele com gema de ovo e deixe descansar por mais 30 minutos. Asse em forno preaquecido a 200°C por 20-25 minutos ou até dourar. Sirva quente e desfrute de uma experiência gourmet.'),
- 
- ('Sopa de Abóbora com Gengibre', 'Média', '45 minutos', 'abóbora', 'cebola', 'gengibre', 'caldo de legumes', 'creme de leite', 6, 
+
+('Sopa de Abóbora com Gengibre', 'Média', '45 minutos', 
+ 'abóbora 1kg', 'cebola 1 unidade', 'gengibre 20g', 'caldo de legumes 1L', 'creme de leite 200ml', 6, 
  'Comece descascando e cortando a abóbora em cubos médios. Em uma panela grande, aqueça um fio de azeite e refogue a cebola picada até que fique transparente. Adicione o gengibre ralado e refogue por mais 1 minuto para liberar o aroma. Acrescente os cubos de abóbora e o caldo de legumes quente, cobrindo os ingredientes. Deixe cozinhar em fogo médio por cerca de 20 minutos, ou até que a abóbora esteja macia. Use um liquidificador ou mixer para bater a sopa até obter uma textura cremosa. Retorne à panela, adicione o creme de leite e misture bem. Tempere com sal e pimenta a gosto. Sirva quente, decorada com um fio de azeite e folhas de coentro ou salsinha fresca.'),
- 
- ('Bisque de Lagosta', 'Difícil', '2 horas', 'lagosta', 'cenoura', 'cebola', 'conhaque', 'creme de leite', 6, 
- 'Comece cozinhando a lagosta em água fervente com sal por 5-7 minutos, até que esteja parcialmente cozida. Retire a carne da casca, reservando as cascas para o caldo. Em uma panela grande, refogue as cascas da lagosta com um pouco de azeite, cenoura e cebola picadas. Flambe com conhaque para realçar o sabor, tomando cuidado ao acender a chama. Adicione água suficiente para cobrir as cascas e deixe cozinhar por cerca de 40 minutos para obter um caldo concentrado. Coe o caldo, descartando os sólidos, e retorne o líquido à panela. Acrescente creme de leite e reduza o fogo, mexendo até que o bisque esteja levemente espesso. Adicione pedaços da carne da lagosta, temperando com sal, pimenta e uma pitada de páprica. Sirva em pratos fundos, decorado com ervas frescas e um fio de azeite de oliva.'),
- 
- 
+
+('Bisque de Lagosta', 'Difícil', '2 horas', 
+ 'lagosta 1kg', 'cenoura 2 unidades', 'cebola 1 unidade', 'conhaque 50ml', 'creme de leite 200ml', 6, 
+ 'Comece cozinhando a lagosta em água fervente com sal por 5-7 minutos, até que esteja parcialmente cozida. Retire a carne da casca, reservando as cascas para o caldo. Em uma panela grande, refogue as cascas da lagosta com um pouco de azeite, cenoura e cebola picadas. Flambe com conhaque para realçar o sabor, tomando cuidado ao acender a chama. Adicione água suficiente para cobrir as cascas e deixe cozinhar por cerca de 40 minutos para obter um caldo concentrado. Coe o caldo, descartando os sólidos, e retorne o líquido à panela. Acrescente creme de leite e reduza o fogo, mexendo até que o bisque esteja levemente espesso. Adicione pedaços da carne da lagosta, temperando com sal, pimenta e uma pitada de páprica. Sirva em pratos fundos, decorado com ervas frescas e um fio de azeite de oliva.');
 
 
 
@@ -234,7 +242,7 @@ select * from receitas as r
 join categoria as c on r.fkCategoria = c.idCategoria
 where r.fkCategoria = 3 and r.dificuldade = 'Fácil'
 order by rand() -- ordena a consulta de forma aleatoria, para aparecer diferentes receitas (Alterado 29/12/24)
-limit 1;
+;
 
 -- novos inserts (Alterado 29/12/24)
   insert into curtida (fkReceita, fkCategoria) values

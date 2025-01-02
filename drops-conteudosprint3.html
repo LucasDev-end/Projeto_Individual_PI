@@ -293,121 +293,139 @@ function cadastrar(nome, email, cidade, estado, senha, categoria) {
 
 function listar() {
 
-  // removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
-  var categoria = slc_categoria.value;
-  var dificuldade = slc_dificuldade.value;
+// removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
+var categoria = Number(slc_categoria.value);
+var dificuldade = slc_dificuldade.value;
 
-  fetch("/aquarios/listar", {
-      method: "POST", 
-      headers: {
-          "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-      categoriaderver: categoria, 
+fetch("/aquarios/listar", {
+    method: "POST", 
+    headers: {
+        "Content-Type": "application/json"
+    },
+    //removendo variavel de ingredientes e adicionando variavel de dificuldade (Alterado 27/12/24)
+    body: JSON.stringify({
+      categoriaServer: categoria, 
       dificuldadeServer: dificuldade, 
     })
   }).then(function (receita) {
-      if (receita.ok) {
-          if (receita.status == 204) {
-              throw "Nenhum resultado encontrado!!";
-          }
-
-          receita.json().then(function (receita) {
-              console.log("Receitas recebidss: ", JSON.stringify(receita));
-
-              for (let i = 0; i < 1; i++) {
-                  var receita = receita[i];
-
-                  var nome = receita.nome;
-                  var tempoPreparo = receita.tempoPreparo;
-                  var nomeCategoria = receita.nome;
-                  var descricao = receita.descricao;
-                  var ingrediente1 = receita.ingrediente1;
-                  var ingrediente2 = receita.ingrediente2;
-                  var ingrediente2 = receita.ingrediente2;
-                  var ingrediente3 = receita.ingrediente3;
-                  var ingrediente4 = receita.ingrediente4;
-                  var ingrediente5 = receita.ingrediente5;
-                  var ingrediente6 = receita.ingrediente6;
-                  var ingrediente7 = receita.ingrediente7;
-                  var ingrediente8 = receita.ingrediente8;
-                  var ingrediente9 = receita.ingrediente9;
-                  var ingrediente10 = receita.ingrediente10;
-                  var ingredientes = `
-                                      1. ${ingrediente2 || "N/A"}<br>
-                                      2. ${ingrediente2 || "N/A"}<br>
-                                      3. ${ingrediente3 || "N/A"}<br>
-                                      4. ${ingrediente4 || "N/A"}<br>
-                                      5. ${ingrediente5 || "N/A"}<br>
-                                      6. ${ingrediente6 || "N/A"}<br>
-                                      7. ${ingrediente7 || "N/A"}<br>
-                                      8. ${ingrediente8 || "N/A"}<br>
-                                      9. ${ingrediente9 || "N/A"}<br>
-                                      10. ${ingrediente10 || "N/A"}<br>
-                                    `;
-                  receita_public.innerHTML = `
-                                              <div id="receita">
-                                                <div class="receita-info">
-                                                    <b>${nome}</b><br>
-                                                    <span>Tempo de preparo:</span>
-                                                    <p>${tempoPreparo} minutos</p>
-                                                    <span>Categoria:</span>
-                                                    <p>${nomeCategoria}</p>
-                                                    <span>Ingredientes Necessários:</span>
-                                                    <p>${ingredientes}</p>
-                                                    <span>Modo de preparo:</span>
-                                                    <p>${descricao}</p>
-                                                </div>
-                                              </div>
-                                            `;
-                  // if( ingrediente1 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
-                  // }
-                  // if( ingrediente2 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente2} </span>`                      
-                  // }
-                  // if( ingrediente3 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente3} </span>`                      
-                  // }
-                  // if( ingrediente4 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente4} </span>`                      
-                  // }
-                  // if( ingrediente5 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente5} </span>`                      
-                  // }
-                  // if( ingrediente6 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente6} </span>`                      
-                  // }
-                  // if( ingrediente7 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente7} </span>`                      
-                  // }
-                  // if( ingrediente8 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente8} </span>`                      
-                  // }
-                  // if( ingrediente9 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente9} </span>`                      
-                  // }
-                  // if( ingrediente10 != null){
-                  //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
-                  // }
-                 
-              }
-
-          });
-      } else {
-        receita_public.innerHTML = `
-                                    <span style='color:#881100; font-weight:bold;'>
-                                      Ingredientes invalidos, selecione  os ingredientes da categoria correspondente.<br><br>
-                                      Exemplo: categoria doce: Açúcar, Ovos, Leite.<br><br>
-                                      Exemplo: categoria salgado: Massa de pizza, calabresa , molho de tomate.<br>
-                                    </span>
-                                    <br>`;
-          throw ('Houve um erro na API!');
+    if (receita.ok) {
+      if (receita.status == 204) {
+        throw "Nenhum resultado encontrado!!";
       }
-  }).catch(function (receita) {
-    alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
-    console.log(`#ERRO: ${receita}`);
-    });
+      
+      receita.json().then(function (receita) {
+        console.log("Receitas recebidss: ", JSON.stringify(receita));
+        
+        receita_public.innerHTML = "";
+        for (let i = 0; i < receita.length; i++) {
+          var receita = receita[i];
+          //Adicionando variavel de dificuldade (Alterado 27/12/24)
+          var id = receita.idReceitas;
+          var nome = receita.nomeReceitas;
+          var dificuldade = receita.dificuldade;
+          var tempoPreparo = receita.tempoPreparo;
+          var idCategoria = receita.fkCategoria;
+          var Categoria = receita.nome;
+          var descricao = receita.descricao;
+          var ingrediente1 = "";
+          var ingrediente2 = "";
+          var ingrediente3 = "";
+          var ingrediente4 = "";
+          var ingrediente5 = "";
+          var ingrediente6 = "";
+          var ingrediente7 = "";
+          var ingrediente8 = "";
+          var ingrediente9 = "";
+          var ingrediente10 = "";
+          //removendo ingredieentes que apareciam nullos para o usuario, e adicionando condição para preencher somente qaundo não for nulo (alteração feita 01/01/25)
+          if (receita.ingrediente1 != null){
+            ingrediente1 = receita.ingrediente1;
+          }
+          if (receita.ingrediente2 != null){
+            ingrediente2 = receita.ingrediente2;
+          }
+          if (receita.ingrediente3 != null){
+            ingrediente3 = receita.ingrediente3;
+          }
+          if (receita.ingrediente4 != null){
+            ingrediente4 = receita.ingrediente4;
+          }
+          if (receita.ingrediente5 != null){
+            ingrediente5 = receita.ingrediente5;
+          }
+          if (receita.ingrediente6 != null){
+            ingrediente6 = receita.ingrediente6;
+          }
+          if (receita.ingrediente7 != null){
+            ingrediente7 = receita.ingrediente7;
+          }
+          if (receita.ingrediente8 != null){
+            ingrediente8 = receita.ingrediente8;
+          }
+          if (receita.ingrediente9 != null){
+            ingrediente9 = receita.ingrediente9;
+          }
+          if (receita.ingrediente10 != null){
+            ingrediente10 = receita.ingrediente10;
+          }
+          // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
+          // removendo numeração dos ingredienetes (alterado 01/01/2025)
+          var ingredientes =`
+            ${ingrediente1}<br>
+            ${ingrediente2}<br>
+            ${ingrediente3}<br>
+            ${ingrediente4}<br>
+            ${ingrediente5}<br>
+            ${ingrediente6}<br>
+            ${ingrediente7}<br>
+            ${ingrediente8}<br>
+            ${ingrediente9}<br>
+            ${ingrediente10}<br>
+          `;
+          //Adicionando campo para dificuldade (Alterado 27/12/24)
+          //Adicionando botão de curtida (Alterado 29/12/24)
+          receita_public.innerHTML += `
+                                      <div id="receita">
+                                        <div class="receita-info">
+                                          <b>${nome}</b><br>
+                                          <span>Dificuldade de preparo da receita:</span>
+                                          <p>${dificuldade}</p>
+                                          <span>Tempo de preparo:</span>
+                                          <p>${tempoPreparo} minutos</p>
+                                          <span>Categoria:</span>
+                                          <p>${Categoria}</p>
+                                          <span>Ingredientes Necessários:</span>
+                                          <p>${ingredientes}</p>
+                                          <span>Modo de preparo:</span>
+                                          <p>${descricao}</p>
+                                          <button id="curtir" onclick="curtir()">Curtir</button>
+                                        </div>
+                                      </div>
+                                          `;
+          // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
+          receitaAtual = id;
+          categoriaAtual = idCategoria;
+          alert(`id da receita: ${receitaAtual}, e id da receita: ${categoria};`);
+    }
+        });
+    } else {
+      receita_public.innerHTML = `
+                                  <span style='color:#881100; font-weight:bold;'>
+                                    Erro ao consultar os dados, verifique se as informações estão corretas!
+                                  </span>
+                                  <br>`;
+        throw ('Houve um erro na API!');
+    }
+}).catch(function (receita) {
+  // definindo mensagem de erro para caso não tenha nenhuma receita com aqueles requisitos cadastrada (alterado 29/12/24)
+  receita_public.innerHTML = `
+                                  <span style='color:#880000; font-weight:bold;'>
+                                    Não temos nada para estes requisitos ainda, mas você pode se cadastrar e nos enviar novas receitas!
+                                  </span>
+                                  <br>`;
+  console.log("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
+  console.log(`#ERRO: ${receita}`);
+  });
 }
 
 router.post("/listar", function (req, res) {
@@ -415,43 +433,29 @@ router.post("/listar", function (req, res) {
 });
 
 function listar(req, res) {
-  var categoria = req.body.categoriaderver;
-  var ingrediente1 = req.body.ingrediende1Server;
-  var ingrediente2 = req.body.ingrediende2Server;
-  var ingrediente3 = req.body.ingrediende3Server;
+    var categoria = req.body.categoriaServer;
+    var dificuldade = req.body.dificuldadeServer;
 
-  aquarioModel.listar(categoria, ingrediente1, ingrediente2, ingrediente3).then(function (resultado) {
-      if (resultado.length > 0) {
-          res.status(200).json(resultado);
-      } else {
-          res.status(204).send("Nenhum resultado encontrado!")
-      }
-  }).catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao buscar por receitas: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
-  });
+    aquarioModel.listar(categoria, dificuldade).then(function (resultado) {
+      console.log(`resultado do listar Receitas:${res}`);
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar por receitas: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
 }
 
-function listar(categoria,ingrediente1,ingrediente2,ingrediente3) {
+function listar(categoria,dificuldade) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucaoSql = `
-  SELECT *
-  FROM receitas r
-  JOIN categoria c ON r.fkCategoria = c.idCategoria
-  WHERE r.fkCategoria = ${categoria}
-    AND (
-        ingrediente1 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente2 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente3 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente4 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente5 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente6 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente7 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente8 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente9 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}') OR
-        ingrediente10 IN ('${ingrediente1}', '${ingrediente2}', '${ingrediente3}')
-        ) limit 1;`;
+  select * from receitas as r
+  join categoria as c on r.fkCategoria = c.idCategoria
+  where r.fkCategoria = ${categoria} and r.dificuldade = '${dificuldade}';`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

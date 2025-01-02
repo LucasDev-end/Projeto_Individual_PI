@@ -15,8 +15,7 @@ function listar(categoria,dificuldade) {
   var instrucaoSql = `
   select * from receitas as r
   join categoria as c on r.fkCategoria = c.idCategoria
-  where r.fkCategoria = ${categoria} and r.dificuldade = '${dificuldade}'
-  limit 1;`;
+  where r.fkCategoria = ${categoria} and r.dificuldade = '${dificuldade}';`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

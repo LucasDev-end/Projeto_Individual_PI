@@ -165,100 +165,100 @@ var categoriaAtual = 0;
           if (receita.status == 204) {
             throw "Nenhum resultado encontrado!!";
           }
-          
           receita.json().then(function (receita) {
-            console.log("Receitas recebidss: ", JSON.stringify(receita));
+            console.log("Receitas recebids: ", JSON.stringify(receita));
             
-            for (let i = 0; i < 1; i++) {
-              var receita = receita[i];
-              
-                    //Adicionando variavel de dificuldade (Alterado 27/12/24)
-                    var id = receita.idReceitas;
-                    var nome = receita.nomeReceitas;
-                    var dificuldade = receita.dificuldade;
-                    var tempoPreparo = receita.tempoPreparo;
-                    var idCategoria = receita.fkCategoria;
-                    var Categoria = receita.nome;
-                    var descricao = receita.descricao;
-                    var ingrediente1 = receita.ingrediente1;
-                    var ingrediente2 = receita.ingrediente2;
-                    var ingrediente2 = receita.ingrediente2;
-                    var ingrediente3 = receita.ingrediente3;
-                    var ingrediente4 = receita.ingrediente4;
-                    var ingrediente5 = receita.ingrediente5;
-                    var ingrediente6 = receita.ingrediente6;
-                    var ingrediente7 = receita.ingrediente7;
-                    var ingrediente8 = receita.ingrediente8;
-                    var ingrediente9 = receita.ingrediente9;
-                    var ingrediente10 = receita.ingrediente10;
-                    // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
-                    var ingredientes = `
-                    1. ${ingrediente2 || " "}<br>
-                    2. ${ingrediente2 || " "}<br>
-                    3. ${ingrediente3 || " "}<br>
-                    4. ${ingrediente4 || " "}<br>
-                    5. ${ingrediente5 || " "}<br>
-                    6. ${ingrediente6 || " "}<br>
-                    7. ${ingrediente7 || " "}<br>
-                    8. ${ingrediente8 || " "}<br>
-                    9. ${ingrediente9 || " "}<br>
-                    10. ${ingrediente10 || " "}<br>
-                    `;
-                    //Adicionando campo para dificuldade (Alterado 27/12/24)
-                    //Adicionando botão de curtida (Alterado 29/12/24)
-                    receita_public.innerHTML = `
-                                                <div id="receita">
-                                                  <div class="receita-info">
-                                                    <b>${nome}</b><br>
-                                                    <span>Dificuldade de preparo da receita:</span>
-                                                    <p>${dificuldade}</p>
-                                                    <span>Tempo de preparo:</span>
-                                                    <p>${tempoPreparo} minutos</p>
-                                                    <span>Categoria:</span>
-                                                    <p>${Categoria}</p>
-                                                    <span>Ingredientes Necessários:</span>
-                                                    <p>${ingredientes}</p>
-                                                    <span>Modo de preparo:</span>
-                                                    <p>${descricao}</p>
-                                                    <button id="curtir" onclick="curtir()">Curtir</button>
-                                                  </div>
-                                                </div>
-                                                    `;
-                    // if( ingrediente1 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente1}</span>`
-                    // }
-                    // if( ingrediente2 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente2} </span>`                      
-                    // }
-                    // if( ingrediente3 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente3} </span>`                      
-                    // }
-                    // if( ingrediente4 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente4} </span>`                      
-                    // }
-                    // if( ingrediente5 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente5} </span>`                      
-                    // }
-                    // if( ingrediente6 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente6} </span>`                      
-                    // }
-                    // if( ingrediente7 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente7} </span>`                      
-                    // }
-                    // if( ingrediente8 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente8} </span>`                      
-                    // }
-                    // if( ingrediente9 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente9} </span>`                      
-                    // }
-                    // if( ingrediente10 != null){
-                    //     receita_public.innerHTML += `<span class="text_ingredientes">${ingrediente10} </span>`                      
-                    // }
-                   // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
-                    receitaAtual = id;
-                    categoriaAtual = idCategoria;
-                    alert(`id da receita: ${receitaAtual}, e id da receita: ${categoria};`);
-            }
+            receita_public.innerHTML = "";
+            for (let i = 0; i < receita.length; i++) {
+              var receitas = receita[i];
+              //Adicionando variavel de dificuldade (Alterado 27/12/24)
+              var id = receitas .idReceitas;
+              var nome = receitas .nomeReceitas;
+              var dificuldade = receitas  .dificuldade;
+              var tempoPreparo = receitas .tempoPreparo;
+              var idCategoria = receitas  .fkCategoria;
+              var Categoria = receitas  .nome;
+              var descricao = receitas  .descricao;
+              var ingrediente1 = "";
+              var ingrediente2 = "";
+              var ingrediente3 = "";
+              var ingrediente4 = "";
+              var ingrediente5 = "";
+              var ingrediente6 = "";
+              var ingrediente7 = "";
+              var ingrediente8 = "";
+              var ingrediente9 = "";
+              var ingrediente10 = "";
+              //removendo ingredieentes que apareciam nullos para o usuario, e adicionando condição para preencher somente qaundo não for nulo (alteração feita 01/01/25)
+              if (receita.ingrediente1 != null){
+                ingrediente1 = receita.ingrediente1;
+              }
+              if (receita.ingrediente2 != null){
+                ingrediente2 = receita.ingrediente2;
+              }
+              if (receita.ingrediente3 != null){
+                ingrediente3 = receita.ingrediente3;
+              }
+              if (receita.ingrediente4 != null){
+                ingrediente4 = receita.ingrediente4;
+              }
+              if (receita.ingrediente5 != null){
+                ingrediente5 = receita.ingrediente5;
+              }
+              if (receita.ingrediente6 != null){
+                ingrediente6 = receita.ingrediente6;
+              }
+              if (receita.ingrediente7 != null){
+                ingrediente7 = receita.ingrediente7;
+              }
+              if (receita.ingrediente8 != null){
+                ingrediente8 = receita.ingrediente8;
+              }
+              if (receita.ingrediente9 != null){
+                ingrediente9 = receita.ingrediente9;
+              }
+              if (receita.ingrediente10 != null){
+                ingrediente10 = receita.ingrediente10;
+              }
+              // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
+              // removendo numeração dos ingredienetes (alterado 01/01/2025)
+              var ingredientes =`
+                ${ingrediente1}<br>
+                ${ingrediente2}<br>
+                ${ingrediente3}<br>
+                ${ingrediente4}<br>
+                ${ingrediente5}<br>
+                ${ingrediente6}<br>
+                ${ingrediente7}<br>
+                ${ingrediente8}<br>
+                ${ingrediente9}<br>
+                ${ingrediente10}<br>
+              `;
+              //Adicionando campo para dificuldade (Alterado 27/12/24)
+              //Adicionando botão de curtida (Alterado 29/12/24)
+              receita_public.innerHTML += `
+                                          <div id="receita">
+                                            <div class="receita-info">
+                                              <b>${nome}</b><br>
+                                              <span>Dificuldade de preparo da receita:</span>
+                                              <p>${dificuldade}</p>
+                                              <span>Tempo de preparo:</span>
+                                              <p>${tempoPreparo} minutos</p>
+                                              <span>Categoria:</span>
+                                              <p>${Categoria}</p>
+                                              <span>Ingredientes Necessários:</span>
+                                              <p>${ingredientes}</p>
+                                              <span>Modo de preparo:</span>
+                                              <p>${descricao}</p>
+                                              <button id="curtir" onclick="curtir()">Curtir</button>
+                                            </div>
+                                          </div>
+                                              `;
+              // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
+              receitaAtual = id;
+              categoriaAtual = idCategoria;
+              alert(`id da receita: ${receitaAtual}, e id da categoria: ${categoria};`);
+        }
             });
         } else {
           receita_public.innerHTML = `
