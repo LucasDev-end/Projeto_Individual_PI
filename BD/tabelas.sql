@@ -243,6 +243,7 @@ join categoria as c on r.fkCategoria = c.idCategoria
 where r.fkCategoria = 3 and r.dificuldade = 'Fácil'
 order by rand() -- ordena a consulta de forma aleatoria, para aparecer diferentes receitas (Alterado 29/12/24)
 ;
+select * from curtida;
 
 -- novos inserts (Alterado 29/12/24)
   insert into curtida (fkReceita, fkCategoria) values

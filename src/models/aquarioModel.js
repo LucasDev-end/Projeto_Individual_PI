@@ -21,6 +21,7 @@ function listar(categoria,dificuldade) {
 }
 
 // Adicionando função curtir (alterado 29/12/24)
+// removendo limit (alterado 01/12/24)
 function curtir(idReceita, idCategoria) {
   var instrucaoSql = `
   insert into curtida (fkReceita, fkCategoria) values

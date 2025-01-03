@@ -1,148 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Home</title>
-  </head>
-  <body>
-    <div class="header">
-      <div class="menu">
-        <div class="home"><a href="index.html">HOME</a></div>
-        <div class="sobre"><a href="index.html#sobre">Sobre</a></div>
-        <div class="contato"><a href="index.html#contato">Contato</a></div>
-        <div class="receitas"><a href="index.html#receitas">Receitas</a></div>
-      </div>
-      <div class="acesso">
-        <div class="login" onclick="login()">
-          <span>Login</span>
-        </div>
-        <div class="cadastro" onclick="cadastro()">
-          <span>Cadastre-se</span>
-        </div>
-      </div>
-    </div>
-    <div class="section">
-      <div class="imagem"></div>
-      <div class="sobre-mim">
-        <div class="pai-imagem">
-          <div class="doma">
-            <img src="./assets/imgs/doma.jpg" />
-            <div id="sobre"></div>
-          </div>
-        </div>
-        <div class="sobre-texto">
-          <span>Sobre mim</span>
-          <p>
-            Desde pequeno, sempre fui muito curioso quando o assunto era cozinha. 
-            Sempre companhava minha mãe em nos momentos em que ela preparava as 
-            refeições, sempre observando como os ingredientes eram antes e como 
-            eles se transformavam em pratos muito gostosos. Com o tempo, comecei 
-            a me aprofundar nesse mundo da culinária, mais ainda no preparo de 
-            doces e massas, pois abos eram o que eu mais exercitava. Cada receita 
-            era uma oportunidade de uma nova aventura, um novo desafio, e eu 
-            encarava cada prato como uma oportunidade de explorar novos sabores, 
-            técnicas e combinações de ingredientes, cada receita era uma nova 
-            aventura. Mas com o passar do tempo descobri novos gostos e a Culinaria 
-            virou apenas um hobby.
-          </p>
-        </div>
-      </div>
-      <div class="sobre-mim2">
-        <div class="pai-imagem2">
-          <div class="eu">
-            <img src="./assets/imgs/cozinhando.webp" />
-          </div>
-        </div>
-        <div class="sobre-texto2">
-          <span>Site</span>
-          <p>
-            Com a minha paixão por culinaria, resolvi compartilhar com você por meio 
-            deste projeto projeto, como a consulta por receitas esta se tornando algo 
-            cada vez mais facil, decidi criar mais um meio de busca. Aqui você pode 
-            acessar varias receitas, e se inspirar cada vez mais para fazer novas 
-            aventuras na sua cozinha, e além disso, você consegue consultar através 
-            de graficos, varias curiosidades sobre esse mundo.
-            Espero que você se divirta e se inspire ainda mais a explorar sabores 
-            e criar pratos incríveis!
-          </p>
-        </div>
-      </div>
-      <div class="consulta-receitas" id="receitas">
-        <div class="selecionar">
-          <div class="campos-receita">
-            <p>
-              Aqui você escolhe o tipo de receita que quer encontrar, e
-              vamos mostrar ao lado o que encontramos pra você.
-            </p>
-            <p>
-              Preencha os capos a baixo e consulte uma receita
-            </p>
-            <span>
-              <h4>Qual a categoria de receita você desejada? </h4>
-              <select id="slc_categoria">
-                  <option value=""disabled selected>Selecione uma categoria</option>
-                  <option value=1>Doce</option>
-                  <option value=2>Salgado</option>
-                  <option value="3">Sobremesa</option>
-                  <option value="4">Entradas</option>
-                  <option value="5">Lanches</option>
-                  <option value="6">Sopas</option>
-                  <option value="7">Salada</option>
-                  <option value="8">Carne</option>
-                  <option value="9">Frango</option>
-                  <option value="10">Fitness</option>
-                </select>
-            </span>
-            <!-- Alterando os campos para escolha dos ingredientes, e mudando para selecionar apenas a dificuldade para o preparo da receita (Alterado 27/12/24) -->
-            <span>
-              <h4>Qual o nivel de dificuldade para o preparo da receita? </h4>
-              <select id="slc_dificuldade">
-                <option value=""disabled selected>Escolha a dificuldade da receita</option>
-                <option value="Fácil">Fácil</option>
-                <option value="Média">Média</option>
-                <option value="Difícil">Difícil</option>
-              </select>
-              </select>
-            </span>
-            <button onclick="listar()">Buscar</button>
-          </div>
-        </div>
-        <div class="mostrar">
-          <div class="mensagem" id="receita_public" style="display: flex; flex-direction: column;">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="footer" id="contato">
-      <div class="contato-info">
-        <h2>Contato</h2>
-          <span><img src="./assets/imgs/gps.png" alt="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP,
-            01414-001</span>
-          <span><img src="./assets/imgs/o-email.png" alt="">lucas.marcolino@sptech.school</span>
-        </div>
-        <span>Developed by. Lucas marcolino</span>
-        <span>Ra: 04242013</span>
-        <span>1CCO-B</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>Home</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="menu">
+      <div class="home"><a href="index.html">HOME</a></div>
+      <div class="sobre"><a href="index.html#sobre">Sobre</a></div>
+      <div class="contato"><a href="index.html#contato">Contato</a></div>
+      <div class="receitas"><a href="index.html#receitas">Receitas</a></div>
+    </div>
+    <div class="acesso">
+      <div class="login" onclick="login()">
+        <span>Login</span>
+      </div>
+      <div class="cadastro" onclick="cadastro()">
+        <span>Cadastre-se</span>
       </div>
     </div>
+  </div>
+  <div class="section">
+    <div class="imagem"></div>
+    <div class="sobre-mim">
+      <div class="pai-imagem">
+        <div class="doma">
+          <img src="./assets/imgs/doma.jpg" />
+          <div id="sobre"></div>
+        </div>
+      </div>
+      <div class="sobre-texto">
+        <span>Sobre mim</span>
+        <p>
+          Desde pequeno, sempre fui muito curioso quando o assunto era cozinha.
+          Sempre companhava minha mãe em nos momentos em que ela preparava as
+          refeições, sempre observando como os ingredientes eram antes e como
+          eles se transformavam em pratos muito gostosos. Com o tempo, comecei
+          a me aprofundar nesse mundo da culinária, mais ainda no preparo de
+          doces e massas, pois abos eram o que eu mais exercitava. Cada receita
+          era uma oportunidade de uma nova aventura, um novo desafio, e eu
+          encarava cada prato como uma oportunidade de explorar novos sabores,
+          técnicas e combinações de ingredientes, cada receita era uma nova
+          aventura. Mas com o passar do tempo descobri novos gostos e a Culinaria
+          virou apenas um hobby.
+        </p>
+      </div>
+    </div>
+    <div class="sobre-mim2">
+      <div class="pai-imagem2">
+        <div class="eu">
+          <img src="./assets/imgs/cozinhando.webp" />
+        </div>
+      </div>
+      <div class="sobre-texto2">
+        <span>Site</span>
+        <p>
+          Com a minha paixão por culinaria, resolvi compartilhar com você por meio
+          deste projeto projeto, como a consulta por receitas esta se tornando algo
+          cada vez mais facil, decidi criar mais um meio de busca. Aqui você pode
+          acessar varias receitas, e se inspirar cada vez mais para fazer novas
+          aventuras na sua cozinha, e além disso, você consegue consultar através
+          de graficos, varias curiosidades sobre esse mundo.
+          Espero que você se divirta e se inspire ainda mais a explorar sabores
+          e criar pratos incríveis!
+        </p>
+      </div>
+    </div>
+    <div class="consulta-receitas" id="receitas">
+      <div class="selecionar">
+        <div class="campos-receita">
+          <p>
+            Aqui você escolhe o tipo de receita que quer encontrar, e
+            vamos mostrar ao lado o que encontramos pra você.
+          </p>
+          <p>
+            Preencha os capos a baixo e consulte uma receita
+          </p>
+          <span>
+            <h4>Qual a categoria de receita você desejada? </h4>
+            <select id="slc_categoria">
+              <option value="" disabled selected>Selecione uma categoria</option>
+              <option value=1>Doce</option>
+              <option value=2>Salgado</option>
+              <option value="3">Sobremesa</option>
+              <option value="4">Entradas</option>
+              <option value="5">Lanches</option>
+              <option value="6">Sopas</option>
+              <option value="7">Salada</option>
+              <option value="8">Carne</option>
+              <option value="9">Frango</option>
+              <option value="10">Fitness</option>
+            </select>
+          </span>
+          <!-- Alterando os campos para escolha dos ingredientes, e mudando para selecionar apenas a dificuldade para o preparo da receita (Alterado 27/12/24) -->
+          <span>
+            <h4>Qual o nivel de dificuldade para o preparo da receita? </h4>
+            <select id="slc_dificuldade">
+              <option value="" disabled selected>Escolha a dificuldade da receita</option>
+              <option value="Fácil">Fácil</option>
+              <option value="Média">Média</option>
+              <option value="Difícil">Difícil</option>
+            </select>
+            </select>
+          </span>
+          <button onclick="listar()">Buscar</button>
+        </div>
+      </div>
+      <div class="mostrar">
+        <div class="mensagem" id="receita_public" style="display: flex; flex-direction: column;">
+        </div>
+      </div>
+    </div>
+  </div>
 
-  </body>
+  <div class="footer" id="contato">
+    <div class="contato-info">
+      <h2>Contato</h2>
+      <span><img src="./assets/imgs/gps.png" alt="">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP,
+        01414-001</span>
+      <span><img src="./assets/imgs/o-email.png" alt="">lucas.marcolino@sptech.school</span>
+    </div>
+    <span>Developed by. Lucas marcolino</span>
+    <span>Ra: 04242013</span>
+    <span>1CCO-B</span>
+  </div>
+  </div>
+
+</body>
+
 </html>
 <script>
-  function login(){
+  function login() {
     window.location.href = 'login.html';
   }
-  function cadastro(){
+  function cadastro() {
     window.location.href = 'cadastro.html';
   }
 
   // Adicionando variavel para identificar a receita e a categoria pesquisada atual (Alterado 29/12/24)
-var receitaAtual = "";
-var categoriaAtual = 0;
+  //alterando as variaveis para o tipo array (alterado 02/01/25)
+  var receitaAtual = [];
+  var categoriaAtual = [];
 
   function listar() {
 
@@ -151,78 +155,79 @@ var categoriaAtual = 0;
     var dificuldade = slc_dificuldade.value;
 
     fetch("/aquarios/listar", {
-        method: "POST", 
-        headers: {
-            "Content-Type": "application/json"
-        },
-        //removendo variavel de ingredientes e adicionando variavel de dificuldade (Alterado 27/12/24)
-        body: JSON.stringify({
-          categoriaServer: categoria, 
-          dificuldadeServer: dificuldade, 
-        })
-      }).then(function (receita) {
-        if (receita.ok) {
-          if (receita.status == 204) {
-            throw "Nenhum resultado encontrado!!";
-          }
-          receita.json().then(function (receita) {
-            console.log("Receitas recebids: ", JSON.stringify(receita));
-            
-            receita_public.innerHTML = "";
-            for (let i = 0; i < receita.length; i++) {
-              var receitas = receita[i];
-              //Adicionando variavel de dificuldade (Alterado 27/12/24)
-              var id = receitas .idReceitas;
-              var nome = receitas .nomeReceitas;
-              var dificuldade = receitas  .dificuldade;
-              var tempoPreparo = receitas .tempoPreparo;
-              var idCategoria = receitas  .fkCategoria;
-              var Categoria = receitas  .nome;
-              var descricao = receitas  .descricao;
-              var ingrediente1 = "";
-              var ingrediente2 = "";
-              var ingrediente3 = "";
-              var ingrediente4 = "";
-              var ingrediente5 = "";
-              var ingrediente6 = "";
-              var ingrediente7 = "";
-              var ingrediente8 = "";
-              var ingrediente9 = "";
-              var ingrediente10 = "";
-              //removendo ingredieentes que apareciam nullos para o usuario, e adicionando condição para preencher somente qaundo não for nulo (alteração feita 01/01/25)
-              if (receita.ingrediente1 != null){
-                ingrediente1 = receita.ingrediente1;
-              }
-              if (receita.ingrediente2 != null){
-                ingrediente2 = receita.ingrediente2;
-              }
-              if (receita.ingrediente3 != null){
-                ingrediente3 = receita.ingrediente3;
-              }
-              if (receita.ingrediente4 != null){
-                ingrediente4 = receita.ingrediente4;
-              }
-              if (receita.ingrediente5 != null){
-                ingrediente5 = receita.ingrediente5;
-              }
-              if (receita.ingrediente6 != null){
-                ingrediente6 = receita.ingrediente6;
-              }
-              if (receita.ingrediente7 != null){
-                ingrediente7 = receita.ingrediente7;
-              }
-              if (receita.ingrediente8 != null){
-                ingrediente8 = receita.ingrediente8;
-              }
-              if (receita.ingrediente9 != null){
-                ingrediente9 = receita.ingrediente9;
-              }
-              if (receita.ingrediente10 != null){
-                ingrediente10 = receita.ingrediente10;
-              }
-              // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
-              // removendo numeração dos ingredienetes (alterado 01/01/2025)
-              var ingredientes =`
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      //removendo variavel de ingredientes e adicionando variavel de dificuldade (Alterado 27/12/24)
+      body: JSON.stringify({
+        categoriaServer: categoria,
+        dificuldadeServer: dificuldade,
+      })
+    }).then(function (receita) {
+      if (receita.ok) {
+        if (receita.status == 204) {
+          throw "Nenhum resultado encontrado!!";
+        }
+        receita.json().then(function (receita) {
+          console.log("Receitas recebids: ", JSON.stringify(receita));
+
+          receita_public.innerHTML = "";
+          for (let i = 0; i < receita.length; i++) {
+            var receitas = receita[i];
+            //Adicionando variavel de dificuldade (Alterado 27/12/24)
+            var id = receitas.idReceitas;
+            var nome = receitas.nomeReceitas;
+            var dificuldade = receitas.dificuldade;
+            var tempoPreparo = receitas.tempoPreparo;
+            var idCategoria = receitas.fkCategoria;
+            var Categoria = receitas.nome;
+            var descricao = receitas.descricao;
+            var ingrediente1 = "";
+            var ingrediente2 = "";
+            var ingrediente3 = "";
+            var ingrediente4 = "";
+            var ingrediente5 = "";
+            var ingrediente6 = "";
+            var ingrediente7 = "";
+            var ingrediente8 = "";
+            var ingrediente9 = "";
+            var ingrediente10 = "";
+            //removendo ingredieentes que apareciam nullos para o usuario, e adicionando condição para preencher somente qaundo não for nulo
+            // (alteração feita 01/01/25)
+            if (receita.ingrediente1 != null) {
+              ingrediente1 = receita.ingrediente1;
+            }
+            if (receita.ingrediente2 != null) {
+              ingrediente2 = receita.ingrediente2;
+            }
+            if (receita.ingrediente3 != null) {
+              ingrediente3 = receita.ingrediente3;
+            }
+            if (receita.ingrediente4 != null) {
+              ingrediente4 = receita.ingrediente4;
+            }
+            if (receita.ingrediente5 != null) {
+              ingrediente5 = receita.ingrediente5;
+            }
+            if (receita.ingrediente6 != null) {
+              ingrediente6 = receita.ingrediente6;
+            }
+            if (receita.ingrediente7 != null) {
+              ingrediente7 = receita.ingrediente7;
+            }
+            if (receita.ingrediente8 != null) {
+              ingrediente8 = receita.ingrediente8;
+            }
+            if (receita.ingrediente9 != null) {
+              ingrediente9 = receita.ingrediente9;
+            }
+            if (receita.ingrediente10 != null) {
+              ingrediente10 = receita.ingrediente10;
+            }
+            // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
+            // removendo numeração dos ingredienetes (alterado 01/01/2025)
+            var ingredientes = `
                 ${ingrediente1}<br>
                 ${ingrediente2}<br>
                 ${ingrediente3}<br>
@@ -234,9 +239,12 @@ var categoriaAtual = 0;
                 ${ingrediente9}<br>
                 ${ingrediente10}<br>
               `;
-              //Adicionando campo para dificuldade (Alterado 27/12/24)
-              //Adicionando botão de curtida (Alterado 29/12/24)
-              receita_public.innerHTML += `
+            //Adicionando campo para dificuldade (Alterado 27/12/24)
+            //Adicionando botão de curtida (Alterado 29/12/24)
+            //Adicionando '+=' no innerHTML para mostrar mais de uma receita (alterado 01/01/25)
+            //adicionando um parametro ao chaar a função curtir (alterado 01/01/2025)
+            //adicionando posição do array, para o nome do id do botão curtir (Alterado 01/01/25)
+            receita_public.innerHTML += `
                                           <div id="receita">
                                             <div class="receita-info">
                                               <b>${nome}</b><br>
@@ -250,24 +258,25 @@ var categoriaAtual = 0;
                                               <p>${ingredientes}</p>
                                               <span>Modo de preparo:</span>
                                               <p>${descricao}</p>
-                                              <button id="curtir" onclick="curtir()">Curtir</button>
+                                              <button id="curtir${i}" onclick="curtir(${i})">Curtir</button>
                                             </div>
                                           </div>
                                               `;
-              // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
-              receitaAtual = id;
-              categoriaAtual = idCategoria;
-              alert(`id da receita: ${receitaAtual}, e id da categoria: ${categoria};`);
-        }
-            });
-        } else {
-          receita_public.innerHTML = `
+            // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
+            // alterando a atribuição dos valores id, para adicionar com o "push()" (alterado 02/01/25)
+            receitaAtual.push(id);
+            categoriaAtual.push(idCategoria);
+            alert(`id da receita: ${receitaAtual[i]}, e id da categoria: ${categoriaAtual[i]};`);
+          }
+        });
+      } else {
+        receita_public.innerHTML = `
                                       <span style='color:#881100; font-weight:bold;'>
                                         Erro ao consultar os dados, verifique se as informações estão corretas!
                                       </span>
                                       <br>`;
-            throw ('Houve um erro na API!');
-        }
+        throw ('Houve um erro na API!');
+      }
     }).catch(function (receita) {
       // definindo mensagem de erro para caso não tenha nenhuma receita com aqueles requisitos cadastrada (alterado 29/12/24)
       receita_public.innerHTML = `
@@ -277,13 +286,14 @@ var categoriaAtual = 0;
                                       <br>`;
       console.log("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
       console.log(`#ERRO: ${receita}`);
-      });
+    });
   }
 
   //criando função de curtida (Alterado 29/12/24)
-  function curtir() {
-    var idReceita = Number(receitaAtual);
-    var idCategoria = Number(categoriaAtual);
+  //Adicionando parametro na função curtir (02/01/25)
+  function curtir(numero_receita) {
+    var idReceita = Number(receitaAtual[numero_receita]);
+    var idCategoria = Number(categoriaAtual[numero_receita]);
 
     fetch("/aquarios/curtir", {
       method: "POST",
@@ -295,21 +305,20 @@ var categoriaAtual = 0;
         idCategoria: idCategoria,
       }),
     })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-        
-        if (resposta.ok) {
-          alert("Cadastro Realizado com sucesso!");
-        } else {
-          throw "Houve um erro ao tentar realizar a curtida!";
-        }
-      })
-      .catch(function (resposta) {
-        alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
-        console.log(`#ERRO: ${resposta}`);
-      });
-
-
-    return document.getElementById("curtir").style.display = "none";
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+      
+      if (resposta.ok) {
+        alert("Cadastro Realizado com sucesso!");
+      } else {
+        throw "Houve um erro ao tentar realizar a curtida!";
+      }
+    })
+    .catch(function (resposta) {
+      alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
+      console.log(`#ERRO: ${resposta}`);
+    });
+    
+    return document.getElementById(`curtir${numero_receita}`).style.display = "none";
   }
 </script>
