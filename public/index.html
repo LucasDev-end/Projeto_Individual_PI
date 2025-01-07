@@ -75,17 +75,15 @@
     <div class="consulta-receitas" id="receitas">
       <div class="selecionar">
         <div class="campos-receita">
+          <!-- deixando o texto mais claro para o usuario (alterado 06/01/25) -->
           <p>
-            Aqui você escolhe o tipo de receita que quer encontrar, e
-            vamos mostrar ao lado o que encontramos pra você.
-          </p>
-          <p>
-            Preencha os capos a baixo e consulte uma receita
+            Escolha abaixo a categoria de receita que você deseja explorar e o nível de dificuldade para o preparo que melhor combina com você. 
+            Assim que preencher os campos abaixo, clique em 'Buscar', e apresentaremos as melhores opções para você no campo laranja à direita.
           </p>
           <span>
             <h4>Qual a categoria de receita você desejada? </h4>
-            <select id="slc_categoria">
-              <option value="" disabled selected>Selecione uma categoria</option>
+            <select id="slc_categoria" required>
+              <option value="#" disabled selected>Selecione uma categoria</option>
               <option value=1>Doce</option>
               <option value=2>Salgado</option>
               <option value="3">Sobremesa</option>
@@ -147,8 +145,11 @@
   //alterando as variaveis para o tipo array (alterado 02/01/25)
   var receitaAtual = [];
   var categoriaAtual = [];
-
+  
   function listar() {
+    // definido valor vazio para as variaveis receitaAtual e categoriaAtual (Alterado 06/01/25)
+    categoriaAtual = [];
+    receitaAtual = [];
 
 // removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
 var categoria = Number(slc_categoria.value);
@@ -195,6 +196,8 @@ fetch("/aquarios/listar", {
         var ingrediente10 = "";
         //removendo ingredieentes que apareciam nullos para o usuario, e adicionando condição para preencher somente qaundo não for nulo
         // (alteração feita 01/01/25)
+        // alterando o nome da variavel receita para receitas, pois não estava sendo referenciado corretamente, e não estava aparecendo
+        // os ingredientes (Alterado 03/01/25)
         if (receitas.ingrediente1 != null) {
           ingrediente1 = receitas.ingrediente1;
         }

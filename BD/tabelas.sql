@@ -177,8 +177,8 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
  'cenoura 2 unidades', 'cebola 1 unidade', 'conhaque 50ml', 'creme de leite 200ml', 'Alegria', 3,'teste');
  
  insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
-('teste de receita', 'Fácil', '8 Horas',
- 'caqui 1 unidade', 'perulito', 'conhaque 50ml', 'creme de jaca 200ml', 'Alegria 5ml', 3,'teste');
+('teste de receita', 'Média', '8 Horas',
+ 'caqui 1 unidade', 'perulito', 'conhaque 50ml', 'creme de jaca 200ml', 'Alegria 5ml', 1,'teste');
 
 select * from receitas;
 SELECT 
