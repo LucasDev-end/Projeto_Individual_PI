@@ -280,11 +280,11 @@ body {
     background-color: #e08e37;
     height: 85%;
     width: 70%;
-    color: #ffffff;
+    /* color: #ffffff; */
     border-radius: 4px;
     text-align: justify;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     overflow: auto;
 }
@@ -314,6 +314,38 @@ body {
     margin: 5px 0 15px;
     color: #666;
 }
+
+/* estilo dos titulos separados das receitas (alterado 08/01/25) */
+.receita-titulo{
+    background-color: #70A9A1;
+    color: #000000;
+    border: 2px solid #08415c;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    padding: 15px;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.receita-titulo span{
+    color:blue
+}
+
+.receita-titulo:hover{
+    background-color: #1a90c7;
+    border: 2px solid #70A9A1;
+    text-decoration: underline;
+    color: blue;
+}
+
 
 /* Botão */
 button {

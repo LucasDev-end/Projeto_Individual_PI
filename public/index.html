@@ -77,8 +77,13 @@
         <div class="campos-receita">
           <!-- deixando o texto mais claro para o usuario (alterado 06/01/25) -->
           <p>
-            Escolha abaixo a categoria de receita que você deseja explorar e o nível de dificuldade para o preparo que melhor combina com você. 
+            Escolha abaixo a categoria de receita que você deseja explorar e o nível de dificuldade para o preparo que melhor combina com você!
+            <br>
+            <br>
             Assim que preencher os campos abaixo, clique em 'Buscar', e apresentaremos as melhores opções para você no campo laranja à direita.
+            <br>
+            <br>
+            Depois é so clicar no titulo da receita que deseja saber mais e poderá ver a receita completa.
           </p>
           <span>
             <h4>Qual a categoria de receita você desejada? </h4>
@@ -113,7 +118,7 @@
       <div class="mostrar">
         <div class="mensagem" id="receita_public" style="display: flex; flex-direction: column;">
         </div>
-      </div>
+        </div>
     </div>
   </div>
 
@@ -145,15 +150,24 @@
   //alterando as variaveis para o tipo array (alterado 02/01/25)
   var receitaAtual = [];
   var categoriaAtual = [];
+  // criando variavel para armazenar as informaçoes das receitas (alterado 08/01/25)
+  var lista_receitas = [];
   
   function listar() {
     // definido valor vazio para as variaveis receitaAtual e categoriaAtual (Alterado 06/01/25)
     categoriaAtual = [];
     receitaAtual = [];
 
-// removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
-var categoria = Number(slc_categoria.value);
-var dificuldade = slc_dificuldade.value;
+    // definindo valor vazio para as informações das receitas (Alterado 08/01/25)
+    lista_receitas = [];
+
+    // removendo as variaveis dos ingredientes e todas as chamadas das variaveis e adicionando a variavel de dificuldade (Alterado 27/12/24)
+    var categoria = Number(slc_categoria.value);
+    var dificuldade = slc_dificuldade.value;
+
+    // definindo variaveis para guardar as inforamações das receitas em variaveis diferentes (alterado 08/01/25)
+    var titulos_receitas = "";
+    var conteudo_receitas = "";
 
 fetch("/aquarios/listar", {
   method: "POST",
@@ -171,7 +185,7 @@ fetch("/aquarios/listar", {
       throw "Nenhum resultado encontrado!!";
     }
     receita.json().then(function (receita) {
-      console.log("Receitas recebids: ", JSON.stringify(receita));
+      console.log("Receitas recebidas: ", JSON.stringify(receita));
 
       receita_public.innerHTML = "";
       for (let i = 0; i < receita.length; i++) {
@@ -228,49 +242,61 @@ fetch("/aquarios/listar", {
         if (receitas.ingrediente10 != null) {
           ingrediente10 = receitas.ingrediente10;
         }
+
         // removendo n/a quando os campos estiverem vazios, e deixando os campos vazios (Alterado 29/12/24)
         // removendo numeração dos ingredienetes (alterado 01/01/2025)
         var ingredientes = `
-            ${ingrediente1}<br>
-            ${ingrediente2}<br>
-            ${ingrediente3}<br>
-            ${ingrediente4}<br>
-            ${ingrediente5}<br>
-            ${ingrediente6}<br>
-            ${ingrediente7}<br>
-            ${ingrediente8}<br>
-            ${ingrediente9}<br>
-            ${ingrediente10}<br>
+        ${ingrediente1}<br>
+        ${ingrediente2}<br>
+        ${ingrediente3}<br>
+        ${ingrediente4}<br>
+        ${ingrediente5}<br>
+        ${ingrediente6}<br>
+        ${ingrediente7}<br>
+        ${ingrediente8}<br>
+        ${ingrediente9}<br>
+        ${ingrediente10}<br>
           `;
         //Adicionando campo para dificuldade (Alterado 27/12/24)
         //Adicionando botão de curtida (Alterado 29/12/24)
         //Adicionando '+=' no innerHTML para mostrar mais de uma receita (alterado 01/01/25)
-        //adicionando um parametro ao chaar a função curtir (alterado 01/01/2025)
+        //adicionando um parametro ao chamar a função curtir (alterado 01/01/2025)
         //adicionando posição do array, para o nome do id do botão curtir (Alterado 01/01/25)
-        receita_public.innerHTML += `
-                                      <div id="receita">
-                                        <div class="receita-info">
-                                          <b>${nome}</b><br>
-                                          <span>Dificuldade de preparo da receita:</span>
-                                          <p>${dificuldade}</p>
-                                          <span>Tempo de preparo:</span>
-                                          <p>${tempoPreparo} minutos</p>
-                                          <span>Categoria:</span>
-                                          <p>${Categoria}</p>
-                                          <span>Ingredientes Necessários:</span>
-                                          <p>${ingredientes}</p>
-                                          <span>Modo de preparo:</span>
-                                          <p>${descricao}</p>
-                                          <button id="curtir${i}" onclick="curtir(${i})">Curtir</button>
-                                        </div>
-                                      </div>
-                                          `;
+        // retirando o innerHTML e atribuindo as informaçoes de cada receita para uma variavel (alterado 08/01/25)
+        titulos_receitas += `
+                            <div id="receita${i}">
+                             <div class="receita-titulo" onclick="mostrar_receita(${i})">
+                               <b><span>${i+1}.</span>
+                                ${nome}</b>
+                             </div>
+                            </div>
+                            `;
+        conteudo_receitas = `
+                              <div class="receita-info">
+                                <b>${nome}</b><br>
+                                <span>Dificuldade de preparo da receita:</span>
+                                <p>${dificuldade}</p>
+                                <span>Tempo de preparo:</span>
+                                <p>${tempoPreparo} minutos</p>
+                                <span>Categoria:</span>
+                                <p>${Categoria}</p>
+                                <span>Ingredientes Necessários:</span>
+                                <p>${ingredientes}</p>
+                                <span>Modo de preparo:</span>
+                                <p>${descricao}</p>
+                                <button id="curtir${i}" onclick="curtir(${i})">Curtir</button>
+                              </div>
+                           `;
+        // atribuindo as informaçoes das receitas para a lista de receitas (Alterado 08/01/25)
+        lista_receitas.push(conteudo_receitas);
         // atribuindo valores da receita atual e da categoria para as avriaveis globais (Alterado 29/12/24)
         // alterando a atribuição dos valores id, para adicionar com o "push()" (alterado 02/01/25)
         receitaAtual.push(id);
         categoriaAtual.push(idCategoria);
         alert(`id da receita: ${receitaAtual[i]}, e id da categoria: ${categoriaAtual[i]};`);
       }
+      // Mostrando o titulo das receitas (alterado 08/01/25)
+      receita_public.innerHTML = titulos_receitas;
     });
   } else {
     receita_public.innerHTML = `
@@ -312,7 +338,7 @@ fetch("/aquarios/curtir", {
   console.log("resposta: ", resposta);
   
   if (resposta.ok) {
-    alert("Cadastro Realizado com sucesso!");
+    alert("Sua curtida foi realizada com sucesso!");
   } else {
     throw "Houve um erro ao tentar realizar a curtida!";
   }
@@ -321,7 +347,13 @@ fetch("/aquarios/curtir", {
   alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
   console.log(`#ERRO: ${resposta}`);
 });
+document.getElementById(`curtir${numero_receita}`).style.display = "none"
+}
 
-return document.getElementById(`curtir${numero_receita}`).style.display = "none";
+//criando função para mostrar a receita ao clicar no titulo dela (alterado 09/01/25)
+function mostrar_receita(receita){
+  var dados_receita = lista_receitas[receita];
+  document.getElementById(`receita${receita}`).innerHTML = dados_receita
+  document.getElementById(`receita${receita}`).id = 'receita';
 }
 </script>
