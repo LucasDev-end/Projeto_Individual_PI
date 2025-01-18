@@ -27,10 +27,13 @@
                   <input id="ipt_tempo" type="text" required placeholder="Tempo de preparo (digite o tempo em minutos):" />
                 </form>
               </div>
-              <div class="campos min" style="display: flex; flex-direction:row; align-items: center; justify-content: center;">
-                <h3 style="width: 55%; text-align: end;">Digite a categoria:</h3>
-                <form>
-                  <select id="ipt_categoria">
+              <div class="campos_slc" style="background-color: #E08E37;">
+                <!-- adicionei o select de dificuldade e tambem criei duas div's para eles (alterado 17/01/2025) -->
+                <div class="slc">
+                  <h3 style="text-align: center;">Escolha a categoria desta receita:</h3>
+                  <form>
+                    <select id="ipt_categoria">
+                    <option value="" disabled selected>Categoria</option>
                     <option value="Doce">Doce</option>
                     <option value="Salgado">Salgado</option>
                     <option value="Sobremesa">Sobremesa</option>
@@ -42,7 +45,18 @@
                     <option value="Frango">Frango</option>
                     <option value="Fitness">Fitness</option>
                   </select>
-                </form>
+                  </form>
+                </div>
+                <div class="slc" style="background-color: chartreuse; width: 50%;">
+                  <h3 style="text-align: center;">Escolha a dificuldade para o preparo desta receita:</h3>
+                  <select>
+                    <option value="" disabled selected>Dificuldade de preparo</option>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Média">Média</option>
+                    <option value="Difícil">Difícil</option>
+                  </select>
+                  </select>
+                </div>
               </div>
               <div class="campos min">
                 <form>
@@ -50,166 +64,6 @@
                 </form>
               </div>
               <div class="ingredientes">
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente1" type="text" required placeholder="Ingrediente1:" />
-                    <input id="iptqtd_Ingrediente1" type="number" required placeholder="Quantidade do Ingrediente1:" />
-                    <select id="slc_Ingrediente1">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente2" type="text" required placeholder="Ingrediente2:" />
-                    <input id="iptqtd_Ingrediente2" type="number" required placeholder="Quantidade do Ingrediente2:" />
-                    <select id="slc_Ingrediente2">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente3" type="text" required placeholder="Ingrediente3:" />
-                    <input id="iptqtd_Ingrediente3" type="number" required placeholder="Quantidade do Ingrediente3:" />
-                    <select id="slc_Ingrediente3">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente4" type="text" required placeholder="Ingrediente4:" />
-                    <input id="iptqtd_Ingrediente4" type="number" required placeholder="Quantidade do Ingrediente4:" />
-                    <select id="slc_Ingrediente4">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente5" type="text" required placeholder="Ingrediente5:" />
-                    <input id="iptqtd_Ingrediente5" type="number" required placeholder="Quantidade do Ingrediente5:" />
-                    <select id="slc_Ingrediente5">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente6" type="text" required placeholder="Ingrediente6:" />
-                    <input id="iptqtd_Ingrediente6" type="number" required placeholder="Quantidade do Ingrediente6:" />
-                    <select id="slc_Ingrediente6">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente7" type="text" required placeholder="Ingrediente7:" />
-                    <input id="iptqtd_Ingrediente7" type="number" required placeholder="Quantidade do Ingrediente7:" />
-                    <select id="slc_Ingrediente7">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente8" type="text" required placeholder="Ingrediente8:" />
-                    <input id="iptqtd_Ingrediente8" type="number" required placeholder="Quantidade do Ingrediente8:" />
-                    <select id="slc_Ingrediente8">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="iptnome_Ingrediente9" type="text" required placeholder="Ingrediente9:" />
-                    <input id="iptqtd_Ingrediente9" type="number" required placeholder="Quantidade do Ingrediente9:" />
-                    <select id="slc_Ingrediente9">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
-                <div class="ingred-camp">
-                  <form>
-                    <input id="ipt_nome_Ingrediente10" type="text" required placeholder="Ingrediente10:" />
-                    <input id="ipt_qtd_Ingrediente10" type="number" required placeholder="Quantidade do Ingrediente10:" />
-                    <select id="slc_Ingrediente10">
-                      <option value="unidade">Unidades</option>
-                      <option value="KG">KG</option>
-                      <option value="gramas">Gramas</option>
-                      <option value="xicaras">Xicaras</option>
-                      <option value="Copos">Copos</option>
-                      <option value="colheres (chá)">colheres (chá)</option>
-                      <option value="colheres (sopa)">colheres (sopa)</option>
-                      <option value="ml">ml</option>
-                      <option value="litros">litros</option>
-                    </select>
-                </div>
               </div>
                 <button onclick="cadastrar_receita()">Cadastrar</button>
           </div>
