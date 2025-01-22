@@ -88,13 +88,13 @@
             }
         }
     }else{
-        mensagem += `<span style='color:#ffffff; font-weight:bold;'>email invalido.</span><br>`;
+        mensagem += `<span style='color:#ff0000; font-weight:bold;'>email invalido.</span><br>`;
     }
 
     // Validação de senha
     if (senha.length < 8) {
         senhaValida = false;
-        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter no minimo 8 caracteres.</span><br>`;
+        mensagem += `<span style='color:#ff0000; font-weight:bold;'>A senha tem que ter no minimo 8 caracteres.</span><br>`;
     }
 
     for (var i = 0; i < senha.length; i++) {
@@ -105,7 +105,7 @@
     }
     if (!temNumero) {
         senhaValida = false;
-        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter pelo menos um número.</span><br>`;
+        mensagem += `<span style='color:#ff0000; font-weight:bold;'>A senha tem que ter pelo menos um número.</span><br>`;
     }
 
     for (var i = 0; i < senha.length; i++) {
@@ -118,7 +118,7 @@
         }
     if (!temMaiuscula || !temMinuscula) {
         senhaValida = false;
-        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter pelo menos uma letra maiúscula e uma minúscula.</span><br>`;
+        mensagem += `<span style='color:#ff0000; font-weight:bold;'>A senha tem que ter pelo menos uma letra maiúscula e uma minúscula.</span><br>`;
     }
 
     for (var i = 0; i < senha.length; i++) {
@@ -129,11 +129,11 @@
     }
     if (!temEspecial) {
         senhaValida = false;
-        mensagem += `<span style='color:#ffffff; font-weight:bold;'>A senha tem que ter pelo menos um caractere especial.</span><br>`;
+        mensagem += `<span style='color:#ff0000; font-weight:bold;'>A senha tem que ter pelo menos um caractere especial.</span><br>`;
     }
 
     if (!senhaValida) {
-        mensagem += `<span style='color:#ffffff; font-weight:bold;'>Senha inválida</span><br>`;
+        mensagem += `<span style='color:#ff0000; font-weight:bold;'>Senha inválida</span><br>`;
     }
 
     if (mensagem == "") {
@@ -174,10 +174,13 @@
 
                 });
 
+                alert("Login Realizado com sucesso!");
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
+                //Adicionando uma mensagem, para aparecer quando o usuario digitar algo que não foi cadastrado (alterado 22/01/2025)
+                div_mensagem.innerHTML = `<span style='color:#ff0000; font-weight:bold;'>Nome de usuário ou senha não existem</span><br>`;
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
@@ -188,7 +191,6 @@
         console.log(`#ERRO: ${resposta}`);
       });
 
-        alert("Login Realizado com sucesso!");
         return false;
     }
 
