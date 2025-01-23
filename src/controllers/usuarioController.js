@@ -17,15 +17,23 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        // Adicionando um retorno para saber os valores que o usuario digitou se estão chegando corretamente (alterado 22/01/2025)
+                        // Adicionando um retorno no console para saber os valores que o usuario digitou e os que estão retornando no Banco (alterado 22/01/2025)
                         console.log(`email: ${email} senha:${senha}`);
-                        console.log(resultadoAutenticar);
-                         res.json({
-                             id: resultadoAutenticar[0].idcadastro,
-                             email: resultadoAutenticar[0].email,
-                             nome: resultadoAutenticar[0].nome,
-                             senha: resultadoAutenticar[0].senha
-                         });
+                        console.log(`email BD:${resultadoAutenticar[0].email} Senha BD:${resultadoAutenticar[0].senha}`);
+                        if (resultadoAutenticar[0].email){
+                            // Adicionando validacao para saber se o usuario e a senha esta exatamente igual ao que esta no banco de dados e retornando mensagem de erro para o usuario (alterado 22/01/25)
+                            if (resultadoAutenticar[0].email == email && resultadoAutenticar[0].senha == senha) {
+                                console.log(resultadoAutenticar);
+                                res.json({
+                                    id: resultadoAutenticar[0].idcadastro,
+                                    email: resultadoAutenticar[0].email,
+                                    nome: resultadoAutenticar[0].nome,
+                                    senha: resultadoAutenticar[0].senha
+                                });
+                            }else{
+                                div_mensagem.innerHTML = `<span style='color:#ff0000; font-weight:bold;'>Nome de usuário ou senha invalidos</span><br>`;
+                            };
+                        }
 
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");

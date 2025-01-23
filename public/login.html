@@ -43,7 +43,7 @@
                     </div>
                     <div class="campos min">
                         <form>
-                            <input id="ipt_senha" type="text" required placeholder="Senha" />
+                            <input id="ipt_senha" type="password" required placeholder="Senha" />
                         </form>
                     </div>
                     <button onclick="validar()">Login</button>
@@ -180,14 +180,14 @@
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 //Adicionando uma mensagem, para aparecer quando o usuario digitar algo que não foi cadastrado (alterado 22/01/2025)
-                div_mensagem.innerHTML = `<span style='color:#ff0000; font-weight:bold;'>Nome de usuário ou senha não existem</span><br>`;
+                div_mensagem.innerHTML = `<span style='color:#ff0000; font-weight:bold;'>Nome de usuário ou senha invalidos</span><br>`;
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
             }
 
         }).catch(function (resposta) {
-        alert("O login foi mal sucedido devido a um erro com o Banco de dados!")
+        alert("O login foi mal sucedido devido a um erro ao conectar com o Banco de dados!")
         console.log(`#ERRO: ${resposta}`);
       });
 

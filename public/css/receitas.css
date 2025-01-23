@@ -69,7 +69,7 @@ body .side{
     flex-direction: column;
     border-bottom: 2px solid #08415c;
 }
-.side .box{
+.side .box-menu{
     height: 67vh;
     width: 100%;
     display: flex;
@@ -136,29 +136,10 @@ a span{
     justify-content: center;
 }
 
+/* organizando tamanho da section, pois estava sobrepondo o menu (alterado 22/01/25) */
 .section {
-    width: var(--largura-all); 
-    height: 90%; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: flex-start; 
-}
-
-/* Estilo da caixa dentro da seção */
-.box {
-    width: 80vw; 
-    height: 92vh; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-}
-
-/* Estilo da caixa de login dentro da box principal */
-.login-box {
-    background-color: #515B3a;
-    width: 75%; 
+    background-color: aqua;
+    width: 78%; 
     height: 100%; 
     display: flex; 
     flex-direction: column; 
@@ -166,23 +147,38 @@ a span{
     justify-content: center; 
 }
 
-/* Estilo do nome dentro da login-box */
-.login-box .nome {
-    font-size: 270%; 
-    width: 45%; 
-    height: 12%; 
-    display: flex; 
-    align-items: flex-start; 
-    justify-content: center; 
-}
-
-/* Estilo dos campos de entrada dentro da login-box */
-.campos {
-    background-color: #000000;
+/* Estilo da caixa dentro da section */
+.box {
+    background-color: #515B3a;
+    width: 90%; 
+    height: 97%;
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: flex-end; 
+    justify-content: center;
+    border-radius: 10px; 
+}
+
+/* Estilo do nome dentro da box */
+.box .titulo{
+    width: 82%; 
+    height: 8%;
+    font-size: 300%;
+    display: flex; 
+    flex-direction: column; 
+    text-align: center;
+    justify-content: center;
+}
+
+/* Estilo dos campos de entrada dentro da box */
+.campos {
+    width: 100%; 
+    height: 7%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-end;
+    text-align: center;
 }
 
 /* Configurando tamanho e posição dos elementos select para ficar com uma melhor visibilidade para o usuario (alterado 17/01/2025) */
@@ -196,16 +192,19 @@ a span{
 /* reconfigurando classe slc para se ajustar com o novo select (alterado 17/01/2025) */
 /* Estilo de uma classe específica para alinhamento e espaçamento */
 .slc{
-    background-color: #08415c;
+    color: #e08e37; /* Cor interna do texto */
+    text-shadow: 
+        -1px -1px 0 #fffff, /* Contorno superior esquerdo */
+        1px -1px 0 #fffff,  /* Contorno superior direito */
+        -1px 1px 0 #fffff,  /* Contorno inferior esquerdo */
+        1px 1px 0 #fffff;   /* Contorno inferior direito */
+    font-size: 105%;
     height: 100%; 
-    width: 35%; 
+    width: 48%; 
     display: flex; 
     flex-direction: row; 
     align-items: center; 
     justify-content: center; 
-}
-.slc h3 {
-    width: 50%;
 }
 
 /* Configuração do formulário nos campos */
@@ -260,11 +259,6 @@ a span{
     font-size: 5px; 
     bottom: 10px; 
     color: #000000; 
-}
-
-.min {
-    width: 100%; 
-    height: 40px; 
 }
 
 .ingredientes {
