@@ -69,6 +69,7 @@ body .side{
     flex-direction: column;
     border-bottom: 2px solid #08415c;
 }
+/* nome da classe para box-menu, pois estava conflitando com outra clase que estava sendo declarada com o mesmo nome */
 .side .box-menu{
     height: 67vh;
     width: 100%;
@@ -159,6 +160,7 @@ a span{
     border-radius: 10px; 
 }
 
+/* troquei a chamada da classe login-box e deixei somente a box, pois as duas estavam fazendo a mesma coisa (alterado 22/01/25) */
 /* Estilo do nome dentro da box */
 .box .titulo{
     width: 82%; 
@@ -170,6 +172,7 @@ a span{
     justify-content: center;
 }
 
+/* Editei o tamanho dos campos (alterado 22/01/25) */
 /* Estilo dos campos de entrada dentro da box */
 .campos {
     width: 100%; 
@@ -190,14 +193,15 @@ a span{
 }
 
 /* reconfigurando classe slc para se ajustar com o novo select (alterado 17/01/2025) */
+/* alterando estilo na fonte para mehor visualização (alterado 22/01/2025) */
 /* Estilo de uma classe específica para alinhamento e espaçamento */
 .slc{
-    color: #e08e37; /* Cor interna do texto */
+    color: #000000; /* Cor interna do texto */
     text-shadow: 
-        -1px -1px 0 #fffff, /* Contorno superior esquerdo */
-        1px -1px 0 #fffff,  /* Contorno superior direito */
-        -1px 1px 0 #fffff,  /* Contorno inferior esquerdo */
-        1px 1px 0 #fffff;   /* Contorno inferior direito */
+        -1px -1px 0 #ffffff, /* Contorno superior esquerdo */
+        1px -1px 0 #ffffff,  /* Contorno superior direito */
+        -1px 1px 0 #ffffff,  /* Contorno inferior esquerdo */
+        1px 1px 0 #ffffff;   /* Contorno inferior direito */
     font-size: 105%;
     height: 100%; 
     width: 48%; 
