@@ -139,7 +139,6 @@ a span{
 
 /* organizando tamanho da section, pois estava sobrepondo o menu (alterado 22/01/25) */
 .section {
-    background-color: aqua;
     width: 78%; 
     height: 100%; 
     display: flex; 
@@ -172,11 +171,32 @@ a span{
     justify-content: center;
 }
 
+/* Criando estilo da div inicial do cadastro (alterado 23/02/2025) */
+#cadastro1 {
+    width: 95%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* Criando estilo da segunda div do cadastro (alterado 23/02/2025) */
+#cadastro2 {
+    width: 95%;
+    height: 80%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* editando height dos campos (alterado 22/01/25) */
 /* Editei o tamanho dos campos (alterado 22/01/25) */
 /* Estilo dos campos de entrada dentro da box */
 .campos {
     width: 100%; 
-    height: 7%; 
+    height: 15%; 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -184,10 +204,13 @@ a span{
     text-align: center;
 }
 
+/* Editando altura e largura, e mudando o flex-direction para column (alterado 23/02/2025) */
 /* Configurando tamanho e posição dos elementos select para ficar com uma melhor visibilidade para o usuario (alterado 17/01/2025) */
 .campos_slc{
-    height: 8%;
+    width: 100%;
+    height: 25%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -204,7 +227,7 @@ a span{
         1px 1px 0 #ffffff;   /* Contorno inferior direito */
     font-size: 105%;
     height: 100%; 
-    width: 48%; 
+    width: 90%; 
     display: flex; 
     flex-direction: row; 
     align-items: center; 

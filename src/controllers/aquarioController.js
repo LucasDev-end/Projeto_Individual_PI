@@ -1,9 +1,10 @@
 var aquarioModel = require("../models/aquarioModel");
 var usuarioModel = require("../models/usuarioModel");
 
-
+// adicionando variavel dificuldade (alterado 23/01/2025)
 function cadastrar(req, res) {
   var nomeReceita = req.body.nomeReceitaServer;
+  var dificuldade = req.body.dificuldadeServer;
   var tempoReceita = req.body.tempoReceitaServer;
   var categoria = req.body.categoriaServer;
   var ingrediente1 = req.body.Ingrediente1Server;
@@ -23,7 +24,7 @@ function cadastrar(req, res) {
       if (resultadoAutenticar.length > 0) {
           var id =  resultadoAutenticar[0].idCategoria;
           console.log(id)
-          aquarioModel.cadastrar(nomeReceita, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id, descricao)
+          aquarioModel.cadastrar(nomeReceita, dificuldade, tempoReceita, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10, id, descricao)
             .then((resultado) => {
               console.log("Passei aqui dento")
               return res.json(resultado);

@@ -11,83 +11,100 @@
 <body>
   <div class="section">
     <div class="box">
+      <!-- adicionando a primeira div para separar os campos de cadastro (alterado 23/01/2025) -->
       <span class="titulo">
         <h4>
           Cadastro de receita
         </h4>
       </span>
-      <div class="campos">
-        <form>
-          <input id="ipt_nome" required placeholder="Nome da receita:"/>
-        </form>
-      </div>
-      <div class="campos">
-        <form>
-          <input id="ipt_tempo" type="text" required placeholder="Tempo de preparo (digite o tempo em minutos):" />
-        </form>
-      </div>
-      <div class="campos_slc">
-        <!-- adicionei o select de dificuldade e tambem criei duas div's para eles (alterado 17/01/2025) -->
-        <div class="slc">
-          <h3 style="text-align: center;">Escolha a categoria desta receita:</h3>
+      <div id="cadastro1">
+        <div class="campos">
           <form>
-            <select id="ipt_categoria">
-              <option value="" disabled selected>Categoria</option>
-              <option value="Doce">Doce</option>
-              <option value="Salgado">Salgado</option>
-              <option value="Sobremesa">Sobremesa</option>
-              <option value="Entradas">Entradas</option>
-              <option value="Lanches">Lanches</option>
-              <option value="Sopas">Sopas</option>
-              <option value="Salada">Salada</option>
-              <option value="Carne">Carne</option>
-              <option value="Frango">Frango</option>
-              <option value="Fitness">Fitness</option>
-            </select>
+            <input id="ipt_nome" required placeholder="Titulo da receita:" />
           </form>
         </div>
-        <div class="slc">
-          <h3 style="text-align: center;">Escolha a dificuldade para o preparo desta receita:</h3>
-          <select>
-            <option value="" disabled selected>Dificuldade de preparo</option>
-            <option value="Fácil">Fácil</option>
-            <option value="Média">Média</option>
-            <option value="Difícil">Difícil</option>
-          </select>
-          </select>
+        <!-- <div class="campos">
+          <form>
+            <label for="ipt_imagem">Adicione uma imagem para sua receita:</label>
+            <input id="ipt_imagem" type="file" accept="image/*" required />
+          </form>
+        </div> -->
+        <div class="campos">
+          <form>
+            <input id="ipt_tempo" type="text" required placeholder="Tempo de preparo (digite o tempo em minutos):" />
+          </form>
         </div>
+        <div class="campos_slc">
+          <!-- adicionei o select de dificuldade e também criei duas div's para eles (alterado 17/01/2025) -->
+          <div class="slc">
+            <h3 style="text-align: center;">Escolha a categoria desta receita:</h3>
+            <form>
+              <select id="slc_categoria">
+                <option value="" disabled selected>Categoria</option>
+                <option value="Doce">Doce</option>
+                <option value="Salgado">Salgado</option>
+                <option value="Sobremesa">Sobremesa</option>
+                <option value="Entradas">Entradas</option>
+                <option value="Lanches">Lanches</option>
+                <option value="Sopas">Sopas</option>
+                <option value="Salada">Salada</option>
+                <option value="Carne">Carne</option>
+                <option value="Frango">Frango</option>
+                <option value="Fitness">Fitness</option>
+              </select>
+            </form>
+          </div>
+          <div class="slc">
+            <h3 style="text-align: center;">Escolha a dificuldade para o preparo desta receita:</h3>
+            <form>
+              <select id="slc_dificuldade">
+                <option value="" disabled selected>Dificuldade de preparo</option>
+                <option value="Fácil">Fácil</option>
+                <option value="Média">Média</option>
+                <option value="Difícil">Difícil</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        <div class="campos">
+          <form>
+            <input id="ipt_descricao" type="text" required placeholder="Descrição:" />
+          </form>
+        </div>
+        <button onclick="continuar()">Continuar</button>
       </div>
-      <div class="campos">
-        <form>
-          <input id="ipt_descricao" type="text" required placeholder="Descrição:" />
-        </form>
+      <!-- adicionando a segunda div para separar os campos de cadastro (alterado 23/01/2025) -->
+      <div id="cadastro2" style="display: none;">
+        <div class="ingredientes" id="div_ingredientes">
+        </div>
+        <button onclick="cadastrar_receita()">Cadastrar</button>
       </div>
-      <div class="ingredientes" id="div_ingredientes">
-      </div>
-      <button onclick="cadastrar_receita()">Cadastrar</button>
     </div>
   </div>
   
   <div class="side">
     <div class="user">
-        <div class="line">
-            <div class="foto"><img src="../assets/imgs/chef.webp"></div>
-            <h3>Olá, Bem vindo</h3>
+      <div class="line">
+        <div class="foto">
+          <img src="../assets/imgs/chef.webp" />
         </div>
+        <h3>Olá, Bem vindo</h3>
+      </div>
     </div>
     <div class="box-menu">
-        <div class="menu">
-          <div onclick="dasboard()" style="cursor: pointer;">Dashboard</div>
-          <div style="background-color: #E08E37;cursor: pointer;">Cadastrar receitas</div>
+      <div class="menu">
+        <div onclick="dasboard()" style="cursor: pointer;">Dashboard</div>
+        <div style="background-color: #E08E37; cursor: pointer;">Cadastrar receitas</div>
+      </div>
+      <div class="sair">
+        <div>
+          <h2>
+            <a><span onclick="sair()" style="cursor: pointer;">SAIR</span></a>
+          </h2>
         </div>
-        <div class="sair">
-            <div>
-                <h2><a><span onclick="sair()"  style="cursor: pointer;">SAIR</span></a></h2>
-            </div>
-        </div>
+      </div>
     </div>
   </div>
-
 </body>
 </html>
 
@@ -117,6 +134,31 @@
   };
 
   div_ingredientes.innerHTML = ingredientes;
+
+  // Criando função continuar (Alterado 23/01/2025)
+  function continuar(){
+    var nomeReceita = ipt_nome.value;
+    var tempoReceita = ipt_tempo.value;
+    var categoria = slc_categoria.value;
+    var descricao = ipt_descricao.value;
+
+    if (
+      nomeReceita == "" ||
+      tempoReceita == "" ||
+      categoria == "" ||
+      ipt_descricao.value == ""
+    ) {
+      alert("Preencha todos os campos!")
+      return false;
+    }else{
+      console.log("Nome: ", nomeReceita );
+      console.log("Tempo:  " , tempoReceita);
+      console.log("Categoria: " , categoria);
+  
+      document.getElementById('cadastro1').style.display = "none";
+      document.getElementById('cadastro2').style.display = "flex";
+    }
+  }
   
 
 function dasboard(){
@@ -134,7 +176,9 @@ function sair(){
   function cadastrar_receita() {
     var nomeReceita = ipt_nome.value;
     var tempoReceita = ipt_tempo.value;
-    var categoria = ipt_categoria.value;
+    var categoria = slc_categoria.value;
+    // adicionando variavel de dificuldade (Alterado 23/01/2025)
+    var dificuldade = slc_dificuldade.value;
     var Ingrediente1 = `${iptnome_Ingrediente1.value} ${iptqtd_Ingrediente1.value} ${slc_Ingrediente1.value}`;
     var Ingrediente2 = `${iptnome_Ingrediente2.value} ${iptqtd_Ingrediente2.value} ${slc_Ingrediente2.value}`;
     var Ingrediente3 = `${iptnome_Ingrediente3.value} ${iptqtd_Ingrediente3.value} ${slc_Ingrediente3.value}`;
@@ -146,11 +190,13 @@ function sair(){
     var Ingrediente9 = `${iptnome_Ingrediente9.value} ${iptqtd_Ingrediente9.value} ${slc_Ingrediente9.value}`;
     var Ingrediente10 = `${ipt_nome_Ingrediente10.value} ${ipt_qtd_Ingrediente10.value} ${slc_Ingrediente10.value}`;
     var descricao = ipt_descricao.value;
-
+    
+    // adicionando validação da variavel dificuldade (Alterado 23/01/2025)
     if (
       nomeReceita == "" ||
       tempoReceita == "" ||
       categoria == "" ||
+      dificuldade == "" ||
       iptnome_Ingrediente1.value == "" || iptqtd_Ingrediente1.value == "" || slc_Ingrediente1.value == "" ||
       iptnome_Ingrediente2.value == "" || iptqtd_Ingrediente2.value == "" || slc_Ingrediente2.value == "" ||
       iptnome_Ingrediente3.value == "" || iptqtd_Ingrediente3.value == "" || slc_Ingrediente3.value == "" ||
@@ -164,7 +210,8 @@ function sair(){
     
     console.log("Nome: ", nomeReceita )
     console.log("Tempo:  " , tempoReceita)
-    console.log("Categor i a: " , categoria)
+    console.log("Categoria: " , categoria)
+    console.log("dificuldade: " , dificuldade)
     console.log("1: " , Ingrediente1) 
     console.log("2: " , Ingrediente2) 
     console.log("3: " , Ingrediente3) 
@@ -185,9 +232,11 @@ function sair(){
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        // adicionando atribuição da variavel de dificuldade (alterado 23/01/2025)
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeReceitaServer : nomeReceita,
+        dificuldadeServer : dificuldade,
         tempoReceitaServer : tempoReceita,
         categoriaServer : categoria,
         Ingrediente1Server : Ingrediente1,
