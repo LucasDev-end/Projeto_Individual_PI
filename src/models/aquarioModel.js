@@ -7,7 +7,7 @@ function cadastrar(nomeReceita, dificuldade, tempoReceita, ingrediente1, ingredi
   INSERT INTO receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3,
      ingrediente4, ingrediente5, ingrediente6, ingrediente7, ingrediente8, ingrediente9, ingrediente10,
       fkCategoria, descricao)  
-      VALUES ('${nomeReceita}',  ${dificuldade}, '${tempoReceita}', '${ingrediente1}', '${ingrediente2}',
+      VALUES ('${nomeReceita}', '${dificuldade}', '${tempoReceita}', '${ingrediente1}', '${ingrediente2}',
        '${ingrediente3}', '${ingrediente4}', '${ingrediente5}', '${ingrediente6}', '${ingrediente7}',
         '${ingrediente8}', '${ingrediente9}', '${ingrediente10}', ${fkCategoria}, '${descricao}');`;
 
