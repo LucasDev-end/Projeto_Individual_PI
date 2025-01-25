@@ -66,6 +66,42 @@ function cadastrar(req, res) {
     });
 }
 
+// Adicionando função para listar_categorias (alterado 24/01/2025)
+function listar_categorias(req, res) {
+  aquarioModel.listar_categorias()
+  .then(function (resultado) {
+    if (resultado.length > 0) {
+      console.log(`Passei pelo retorno do controller`);
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!");
+    }
+  })
+  .catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+// Adicionando função para listar_dificuldades (alterado 24/01/2025)
+function listar_dificuldades(req, res) {
+  aquarioModel.listar_dificuldades()
+  .then(function (resultado) {
+    if (resultado.length > 0) {
+      console.log(`Passei pelo retorno do controller`);
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!");
+    }
+  })
+  .catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 // criando função curtir (alterado 29/12/24)
 function curtir(req, res) {
   var idReceita = req.body.idReceitas;
@@ -157,6 +193,8 @@ function plotarDadosDoGrafico(req, res) {
 module.exports = {
   cadastrar,
   listar,
+  listar_categorias,
+  listar_dificuldades,
   curtir,
   plotarkpi1,
   plotarkpi2,

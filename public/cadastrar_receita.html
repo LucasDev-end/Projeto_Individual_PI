@@ -41,7 +41,7 @@
             <form>
               <select id="slc_categoria">
                 <option value="" disabled selected>Categoria</option>
-                <option value="Doce">Doce</option>
+                <!-- <option value="Doce">Doce</option>
                 <option value="Salgado">Salgado</option>
                 <option value="Sobremesa">Sobremesa</option>
                 <option value="Entradas">Entradas</option>
@@ -50,7 +50,7 @@
                 <option value="Salada">Salada</option>
                 <option value="Carne">Carne</option>
                 <option value="Frango">Frango</option>
-                <option value="Fitness">Fitness</option>
+                <option value="Fitness">Fitness</option> -->
               </select>
             </form>
           </div>
@@ -59,9 +59,9 @@
             <form>
               <select id="slc_dificuldade">
                 <option value="" disabled selected>Dificuldade de preparo</option>
-                <option value="Fácil">Fácil</option>
+                <!-- <option value="Fácil">Fácil</option>
                 <option value="Média">Média</option>
-                <option value="Difícil">Difícil</option>
+                <option value="Difícil">Difícil</option> -->
               </select>
             </form>
           </div>
@@ -134,6 +134,98 @@
   };
 
   div_ingredientes.innerHTML = ingredientes;
+
+  
+// Adicionando variável onde ira ficar armazenado as opções do select de categorias (Alterado 24/01/2025).
+var categorias = "";
+
+// Criando fatch onde sera obtido as categorias do banco de dados(Alterado 24/01/2025).
+// Faz uma solicitação HTTP para a rota /aquarios/listar_categorias no servidor.
+fetch("/aquarios/listar_categorias", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+})
+// Após a solicitação ser concluída, o then é executado. A função recebe o objeto da resposta.
+  .then(function (resposta) {
+    // Verifica se a resposta foi bem-sucedida
+    if (resposta.ok) {
+      if (resposta.status === 204) {
+        throw "Nenhum resultado encontrado!";
+      }
+        return resposta.json();
+      } else {
+        throw "Houve um erro na API!";
+      }
+  })
+    .then(function (resposta){
+      // Converte o corpo da resposta para um objeto JSON. E depois processa o JSON retornado
+        categorias = "";
+        console.log("Categorias recebidas:", JSON.stringify(resposta));
+
+        for(var i = 0; i< resposta.length; i++){
+
+          var categoria = resposta[i];
+          var id = categoria.idCategoria;
+          var nomeCategoria = categoria.nome;
+          categorias += `<option value="${id}">${nomeCategoria}</option>`;
+          console.log(`id: ${i}; Categoria: ${JSON.stringify(categoria)}`);
+        }
+
+        slc_categoria.innerHTML += categorias;
+    })
+    .catch(function (erro) {
+    // Captura qualquer erro ocorrido durante o processamento da solicitação ou das etapas do then.
+    console.log("A consulta foi mal sucedida devido a um erro com o Banco de dados!");
+    console.log(`#ERRO: ${erro}`);
+  });
+
+  // Adicionando variável onde ira ficar armazenado as opções do select de dificuldades (Alterado 24/01/2025).
+var dificuldades = "";
+
+// Criando fatch onde sera obtido as dificuldades do banco de dados(Alterado 24/01/2025).
+// Faz uma solicitação HTTP para a rota /aquarios/listar_dificuldades no servidor.
+fetch("/aquarios/listar_dificuldades", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+})
+// Após a solicitação ser concluída, o then é executado. A função recebe o objeto da resposta.
+  .then(function (resposta) {
+    // Verifica se a resposta foi bem-sucedida
+    if (resposta.ok) {
+      if (resposta.status === 204) {
+        throw "Nenhum resultado encontrado!";
+      }
+        return resposta.json();
+      } else {
+        throw "Houve um erro na API!";
+      }
+  })
+    .then(function (resposta){
+      // Converte o corpo da resposta para um objeto JSON. E depois processa o JSON retornado
+      
+        dificuldades = "";
+        console.log("dificuldades recebidas:", JSON.stringify(resposta));
+
+        for(var i = 0; i< resposta.length; i++){
+
+          var dificuldade = resposta[i];
+          // var id = dificuldade.iddificuldade;
+          var nomedificuldade = dificuldade.nome;
+          dificuldades += `<option value="${nomedificuldade}">${nomedificuldade}</option>`;
+          console.log(`id: ${i}; dificuldade: ${JSON.stringify(dificuldade)}`);
+        }
+
+        slc_dificuldade.innerHTML += dificuldades;
+    })
+    .catch(function (erro) {
+    // Captura qualquer erro ocorrido durante o processamento da solicitação ou das etapas do then.
+    console.log("A consulta foi mal sucedida devido a um erro com o Banco de dados!");
+    console.log(`#ERRO: ${erro}`);
+  });
 
   // Criando função continuar (Alterado 23/01/2025)
   function continuar(){

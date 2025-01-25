@@ -26,6 +26,24 @@ function listar(categoria,dificuldade) {
   return database.executar(instrucaoSql);
 }
 
+// Criando função para consultar as categorias do banco de dados (alterado 27/12/24)
+function listar_categorias(){
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_categorias()");
+  console.log("Passei aqui")
+  var instrucaoSql = `select * from categoria;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+// Criando função para consultar as dificuldades do banco de dados (alterado 27/12/24)
+function listar_dificuldades(){
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_categorias()");
+  console.log("Passei aqui")
+  var instrucaoSql = `select * from dificuldade;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 // Adicionando função curtir (alterado 29/12/24)
 // removendo limit (alterado 01/12/24)
 function curtir(idReceita, idCategoria) {
@@ -39,7 +57,7 @@ function curtir(idReceita, idCategoria) {
 }
 
 function plotarkpi1() {
-  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarkpi1()");
   console.log("Passei aqui")
   var instrucaoSql = `
                       select c.nome as categoria, count(ca.idcadastro) as quantidade
@@ -53,7 +71,7 @@ function plotarkpi1() {
   return database.executar(instrucaoSql);
 }
 function plotarkpi2() {
-  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarkpi2()");
   var instrucaoSql = `
                       select concat(cidade, ', ', estado) as regiao
                       from cadastro
@@ -65,7 +83,7 @@ function plotarkpi2() {
   return database.executar(instrucaoSql);
 }
 function plotarkpi3() {
-  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarkpi3()");
   var instrucaoSql = `
                       select count(idreceitas) as quantidadereceitas
                       from receitas;
@@ -74,7 +92,7 @@ function plotarkpi3() {
   return database.executar(instrucaoSql);
 }
 function plotarDadosDoGrafico() {
-  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarDadosDoGrafico()");
   var instrucaoSql = `
                       select c.nome as categoria, count(r.idreceitas) as quantidade
                       from receitas as r
@@ -90,6 +108,8 @@ function plotarDadosDoGrafico() {
 module.exports = {
   cadastrar,
   listar,
+  listar_categorias,
+  listar_dificuldades,
   curtir,
   plotarkpi1,
   plotarkpi2,
