@@ -346,6 +346,19 @@ body {
     color: blue;
 }
 
+/* criando classes e estilos para as estrelas de avaliação de receitas (alterado 25/01/25) */
+.classificacao{
+    height: auto;
+    width: auto;
+    display: flex;
+}
+
+.classificacao img{
+    height: 10%;
+    width: 10%;
+    cursor: pointer;
+}
+
 
 /* Botão */
 button {

@@ -89,16 +89,6 @@
             <h4>Qual a categoria de receita você desejada? </h4>
             <select id="slc_categoria" required>
               <option value="#" disabled selected>Selecione uma categoria</option>
-              <!-- <option value=1>Doce</option>
-              <option value=2>Salgado</option>
-              <option value="3">Sobremesa</option>
-              <option value="4">Entradas</option>
-              <option value="5">Lanches</option>
-              <option value="6">Sopas</option>
-              <option value="7">Salada</option>
-              <option value="8">Carne</option>
-              <option value="9">Frango</option>
-              <option value="10">Fitness</option> -->
             </select>
           </span>
           <!-- Alterando os campos para escolha dos ingredientes, e mudando para selecionar apenas a dificuldade para o preparo da receita (Alterado 27/12/24) -->
@@ -106,9 +96,6 @@
             <h4>Qual o nivel de dificuldade para o preparo da receita? </h4>
             <select id="slc_dificuldade">
               <option value="" disabled selected>Escolha a dificuldade da receita</option>
-              <!-- <option value="1">Fácil</option>
-              <option value="2">Média</option>
-              <option value="3">Difícil</option> -->
             </select>
             </select>
           </span>
@@ -117,7 +104,6 @@
       </div>
       <div class="mostrar">
         <div class="mensagem" id="receita_public" style="display: flex; flex-direction: column;">
-        </div>
         </div>
     </div>
   </div>
@@ -376,7 +362,15 @@ fetch("/aquarios/listar", {
                                 <p>${ingredientes}</p>
                                 <span>Modo de preparo:</span>
                                 <p>${descricao}</p>
-                                <button id="curtir${i}" onclick="curtir(${i})">Curtir</button>
+                                <div class="classificacao" id="div_classificacao${i}">
+                                <img id="estrela1" onclick="preencherEstrela(1,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela2" onclick="preencherEstrela(2,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela3" onclick="preencherEstrela(3,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela4" onclick="preencherEstrela(4,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela5" onclick="preencherEstrela(5,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <p id="qtd_classificacao">
+                                </p>
+                                </div>
                               </div>
                            `;
         // atribuindo as informaçoes das receitas para a lista de receitas (Alterado 08/01/25)
@@ -412,18 +406,22 @@ fetch("/aquarios/listar", {
 
 //criando função de curtida (Alterado 29/12/24)
 //Adicionando parametro na função curtir (02/01/25)
-function curtir(numero_receita) {
+//alterando o nome da função curtir para classificar(25/01/25)
+function classificar(numero_receita,estrela) {
 var idReceita = Number(receitaAtual[numero_receita]);
 var idCategoria = Number(categoriaAtual[numero_receita]);
+var avaliacao = Number(estrela);
 
-fetch("/aquarios/curtir", {
+fetch("/aquarios/classificar", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
   },
+  // adicionando avaliacao no json (alterado 25/01/25)
   body: JSON.stringify({
     idReceitas: idReceita,
     idCategoria: idCategoria,
+    avaliacao: avaliacao,
   }),
 })
 .then(function (resposta) {
@@ -439,7 +437,6 @@ fetch("/aquarios/curtir", {
   alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
   console.log(`#ERRO: ${resposta}`);
 });
-document.getElementById(`curtir${numero_receita}`).style.display = "none"
 }
 
 //criando função para mostrar a receita ao clicar no titulo dela (alterado 09/01/25)
@@ -447,5 +444,28 @@ function mostrar_receita(receita){
   var dados_receita = lista_receitas[receita];
   document.getElementById(`receita${receita}`).innerHTML = dados_receita
   document.getElementById(`receita${receita}`).id = 'receita';
+}
+
+// criando função para preencher as estrelas conforme o usuario clicar (alterado 25/01/25)
+function preencherEstrela(estrela,receita){
+
+  for(var i = 1; i <= 5; i++){
+        // Se a estrela atual está dentro do limite clicado, preenche
+      if (i <= estrela) {
+        document.getElementById(`estrela${i}`).src = './assets/imgs/estrela_cheia.png';
+      } else {
+        // Estrelas além da clicada permanecem com estrela vazia
+        document.getElementById(`estrela${i}`).src = './assets/imgs/estrela_vazia.png';
+      }
+      // impedindo que o usuario possa clicar novamente para fazer outra avaliacao (alterado 26/01/25)
+      document.getElementById(`estrela${i}`).onclick = "";
+      document.getElementById(`estrela${i}`).style.cursor = "default";
+  }
+
+  qtd_classificacao.innerHTML = `
+                                <br>
+                                <b>Você avaliou com ${estrela} estrelas!</b>
+                                `;
+  classificar(receita,estrela);
 }
 </script>

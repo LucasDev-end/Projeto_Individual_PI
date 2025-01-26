@@ -21,9 +21,10 @@ router.post("/listar_dificuldades", function (req, res) {
   aquarioController.listar_dificuldades(req, res);
 });
 
-//criando rota para função curtir do controller alterado (29/12/24)
-router.post("/curtir", function (req, res){
-  aquarioController.curtir(req, res);
+//criando rota para função curtir do controller (alterado 29/12/24)
+// alterando nome da rota e da função do controler para classificar (alterado 25/01/25)
+router.post("/classificar", function (req, res){
+  aquarioController.classificar(req, res);
 });
 
 router.get("/plotarkpi1", function (req, res) {

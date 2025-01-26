@@ -46,10 +46,11 @@ function listar_dificuldades(){
 
 // Adicionando função curtir (alterado 29/12/24)
 // removendo limit (alterado 01/12/24)
-function curtir(idReceita, idCategoria) {
+// alterando nome da função curtir para classificar, e complementando o parametro da avaliacao (alterado 25/01/25)
+function classificar(avaliacao, idReceita, idCategoria) {
   var instrucaoSql = `
-  insert into curtida (fkReceita, fkCategoria) values
-  (${idReceita}, ${idCategoria});
+  insert into classificacao (classificacao, fkReceita, fkCategoria) values
+  (${avaliacao},${idReceita}, ${idCategoria});
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -110,7 +111,7 @@ module.exports = {
   listar,
   listar_categorias,
   listar_dificuldades,
-  curtir,
+  classificar,
   plotarkpi1,
   plotarkpi2,
   plotarkpi3,

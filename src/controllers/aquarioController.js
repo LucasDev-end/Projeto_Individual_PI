@@ -103,16 +103,22 @@ function listar_dificuldades(req, res) {
 }
 
 // criando função curtir (alterado 29/12/24)
-function curtir(req, res) {
+// alterando nome da função curtir para classificar, adicionando variavel avaliacao (alterado 25/01/25)
+function classificar(req, res) {
   var idReceita = req.body.idReceitas;
   var idCategoria = req.body.idCategoria;
+  var avaliacao = req.body.avaliacao;
 
+  // adicionando validação para avaliacao (alterado 25/01/25)
   if (idReceita == undefined) {
       res.status(400).send("Nenhuma receita esta definida");
   } else if (idCategoria == undefined) {
       res.status(400).send("Nenhuma categoria esta definida");
+  } else if (avaliacao == undefined) {
+      res.status(400).send("Nenhuma avaliação foi definida");
   } else {
-      aquarioModel.curtir(idReceita, idCategoria)
+    // adicionando variavel avaliacao para a model (alterado 25/01/25)
+      aquarioModel.classificar(avaliacao, idReceita, idCategoria,)
           .then(
               function (resultado) {
                   res.json(resultado);
@@ -195,7 +201,7 @@ module.exports = {
   listar,
   listar_categorias,
   listar_dificuldades,
-  curtir,
+  classificar,
   plotarkpi1,
   plotarkpi2,
   plotarkpi3,

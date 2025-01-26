@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastrar Receita</title>
+    <link rel="stylesheet" href="../css/receitas.css">
+</head>
+
+<body>
+  <div class="section">
+    <div class="box">
+      <span class="titulo">
+        <h4>
+          Cadastro de Dificuldade e Categoria
+        </h4>
+      </span>
+      <div id="cadastro1">
+        <div class="campos">
+          <form>
+            <input id="ipt_nome" required placeholder="Titulo da receita:" />
+          </form>
+        </div>
+        <div class="campos">
+          <form>
+            <input id="ipt_tempo" type="text" required placeholder="Tempo de preparo (digite o tempo em minutos):" />
+          </form>
+        </div>
+        <div class="campos_slc">
+          <div class="slc">
+            <h3 style="text-align: center;">Escolha a categoria desta receita:</h3>
+            <form>
+              <select id="slc_categoria">
+                <option value="" disabled selected>Categoria</option>
+              </select>
+            </form>
+          </div>
+          <div class="slc">
+            <h3 style="text-align: center;">Escolha a dificuldade para o preparo desta receita:</h3>
+            <form>
+              <select id="slc_dificuldade">
+                <option value="" disabled selected>Dificuldade de preparo</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        <div class="campos">
+          <form>
+            <input id="ipt_descricao" type="text" required placeholder="Descrição:" />
+          </form>
+        </div>
+        <button onclick="continuar()">Continuar</button>
+      </div>
+      <div id="cadastro2" style="display: none;">
+        <div class="ingredientes" id="div_ingredientes">
+        </div>
+        <button onclick="cadastrar_receita()">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="side">
+    <div class="user">
+      <div class="line">
+        <div class="foto">
+          <img src="../assets/imgs/chef.webp" />
+        </div>
+        <h3>Olá, Bem vindo</h3>
+      </div>
+    </div>
+    <div class="box-menu">
+      <div class="menu">
+        <div onclick="dasboard()" style="cursor: pointer;">Dashboard</div>
+        <div style="background-color: #E08E37; cursor: pointer;">Cadastrar receitas</div>
+      </div>
+      <div class="sair">
+        <div>
+          <h2>
+            <a><span onclick="sair()" style="cursor: pointer;">SAIR</span></a>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+  
+var categorias = "";
+
+// Faz uma solicitação HTTP para a rota /aquarios/listar_categorias no servidor.
+fetch("/aquarios/listar_categorias", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+})
+// Após a solicitação ser concluída, o then é executado. A função recebe o objeto da resposta.
+  .then(function (resposta) {
+    // Verifica se a resposta foi bem-sucedida
+    if (resposta.ok) {
+      if (resposta.status === 204) {
+        throw "Nenhum resultado encontrado!";
+      }
+        return resposta.json();
+      } else {
+        throw "Houve um erro na API!";
+      }
+  })
+    .then(function (resposta){
+      // Converte o corpo da resposta para um objeto JSON. E depois processa o JSON retornado
+        categorias = "";
+        console.log("Categorias recebidas:", JSON.stringify(resposta));
+
+        for(var i = 0; i< resposta.length; i++){
+
+          var categoria = resposta[i];
+          var id = categoria.idCategoria;
+          var nomeCategoria = categoria.nome;
+          categorias += `<option value="${id}">${nomeCategoria}</option>`;
+          console.log(`id: ${i}; Categoria: ${JSON.stringify(categoria)}`);
+        }
+
+        slc_categoria.innerHTML += categorias;
+    })
+    .catch(function (erro) {
+    // Captura qualquer erro ocorrido durante o processamento da solicitação ou das etapas do then.
+    console.log("A consulta foi mal sucedida devido a um erro com o Banco de dados!");
+    console.log(`#ERRO: ${erro}`);
+  });
+
+var dificuldades = "";
+
+// Faz uma solicitação HTTP para a rota /aquarios/listar_dificuldades no servidor.
+fetch("/aquarios/listar_dificuldades", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+})
+// Após a solicitação ser concluída, o then é executado. A função recebe o objeto da resposta.
+  .then(function (resposta) {
+    // Verifica se a resposta foi bem-sucedida
+    if (resposta.ok) {
+      if (resposta.status === 204) {
+        throw "Nenhum resultado encontrado!";
+      }
+        return resposta.json();
+      } else {
+        throw "Houve um erro na API!";
+      }
+  })
+    .then(function (resposta){
+      // Converte o corpo da resposta para um objeto JSON. E depois processa o JSON retornado
+      
+        dificuldades = "";
+        console.log("dificuldades recebidas:", JSON.stringify(resposta));
+
+        for(var i = 0; i< resposta.length; i++){
+
+          var dificuldade = resposta[i];
+          // var id = dificuldade.iddificuldade;
+          var nomedificuldade = dificuldade.nome;
+          dificuldades += `<option value="${nomedificuldade}">${nomedificuldade}</option>`;
+          console.log(`id: ${i}; dificuldade: ${JSON.stringify(dificuldade)}`);
+        }
+
+        slc_dificuldade.innerHTML += dificuldades;
+    })
+    .catch(function (erro) {
+    // Captura qualquer erro ocorrido durante o processamento da solicitação ou das etapas do then.
+    console.log("A consulta foi mal sucedida devido a um erro com o Banco de dados!");
+    console.log(`#ERRO: ${erro}`);
+  });
+  
+
+function dasboard(){
+    window.location.href = './dashboard.html';
+}
+function receitas(){
+    window.location.href = './cadastrar_receitas.html';
+}
+
+function sair(){
+  sessionStorage.clear();
+  window.location.href = './index.html';
+}
+
+  function cadastrar_receita() {
+    var nomeReceita = ipt_nome.value;
+    var tempoReceita = ipt_tempo.value;
+    var categoria = slc_categoria.value;
+
+    if (
+      nomeReceita == "" ||
+      tempoReceita == "" ||
+      categoria == "" ||
+      dificuldade == "" ||
+      ipt_descricao.value == ""
+    ) {
+      alert("Preencha todos os campos! (numero minimo de 5 ingredientes para cadastrar uma receita)")
+      return false;
+    }
+    
+    console.log("Nome: ", nomeReceita )
+    console.log("Tempo:  " , tempoReceita)
+    console.log("Categoria: " , categoria)
+    console.log("dificuldade: " , dificuldade)
+
+    fetch("/aquarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeReceitaServer : nomeReceita,
+        dificuldadeServer : dificuldade,
+        tempoReceitaServer : tempoReceita,
+        categoriaServer : categoria,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log("Cadastro realizado !!")
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      }).catch(function (resposta) {
+        alert("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+      alert("Cadastro Realizado com sucesso!")
+    return false;
+  }
+</script>

@@ -50,14 +50,16 @@ constraint fkDificuldadeReceitas foreign key (fkCategoria)
 							references categoria(idCategoria)
 );
 
+-- alterando nome da tabela e os atributos para classificacao (alterado 25/01/25)
 -- crianto tabela de curtidas (alterado 29/12/24)
-create table curtida (
-idCurtida int primary key auto_increment,
+create table classificacao (
+idClassificacao int primary key auto_increment,
+classificacao int,
 fkReceita int,
 fkCategoria int,
-constraint fkReceitaCurtida foreign key (fkReceita)
+constraint fkReceitaClassificacao foreign key (fkReceita)
 							references receitas(idReceitas),
-constraint fkCategoriaCurtida foreign key (fkCategoria)
+constraint fkCategoriaClassificacao foreign key (fkCategoria)
 							references categoria(idCategoria)
 );
 
@@ -197,6 +199,7 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
 select * from receitas;
 select * from cadastro;
 select * from categoria;
+select * from Classificacao;
 
 
 
