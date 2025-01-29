@@ -223,6 +223,9 @@ fetch("/aquarios/listar_dificuldades", {
   function cadastro() {
     window.location.href = 'cadastro.html';
   }
+  function cadastrar_receita() {
+    window.location.href = 'cadastrar_receita.html';
+  }
 
   // Adicionando variavel para identificar a receita e a categoria pesquisada atual (Alterado 29/12/24)
   //alterando as variaveis para o tipo array (alterado 02/01/25)
@@ -341,6 +344,7 @@ fetch("/aquarios/listar", {
         //adicionando um parametro ao chamar a função curtir (alterado 01/01/2025)
         //adicionando posição do array, para o nome do id do botão curtir (Alterado 01/01/25)
         // retirando o innerHTML e atribuindo as informaçoes de cada receita para uma variavel (alterado 08/01/25)
+        // alterando id das estrelas (alterado 29/01/25)
         titulos_receitas += `
                             <div id="receita${i}">
                              <div class="receita-titulo" onclick="mostrar_receita(${i})">
@@ -363,11 +367,11 @@ fetch("/aquarios/listar", {
                                 <span>Modo de preparo:</span>
                                 <p>${descricao}</p>
                                 <div class="classificacao" id="div_classificacao${i}">
-                                <img id="estrela1" onclick="preencherEstrela(1,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela2" onclick="preencherEstrela(2,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela3" onclick="preencherEstrela(3,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela4" onclick="preencherEstrela(4,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela5" onclick="preencherEstrela(5,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela1_receita${i}" onclick="preencherEstrela(1,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela2_receita${i}" onclick="preencherEstrela(2,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela3_receita${i}" onclick="preencherEstrela(3,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela4_receita${i}" onclick="preencherEstrela(4,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                <img id="estrela5_receita${i}" onclick="preencherEstrela(5,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
                                 <p id="qtd_classificacao">
                                 </p>
                                 </div>
@@ -393,50 +397,73 @@ fetch("/aquarios/listar", {
     throw ('Houve um erro na API!');
   }
 }).catch(function (receita) {
-  // definindo mensagem de erro para caso não tenha nenhuma receita com aqueles requisitos cadastrada (alterado 29/12/24)
-  receita_public.innerHTML = `
-                                  <span style='color:#880000; font-weight:bold;'>
-                                    Não temos nada para estes requisitos ainda, mas você pode se cadastrar e nos enviar novas receitas!
-                                  </span>
-                                  <br>`;
+  // adicionando uma validação para o usuario que estiver cadastrado receber uma mensagem diferente (alterado 29/01/25)
+  if (verificar_login()) {
+    receita_public.innerHTML = `
+                                <span style='color:#880000; font-weight:bold;'>
+                                  Não temos nada para estes requisitos ainda, mas você pode nos enviar novas receitas na pagina de cadastrar receitas!
+                                </span>
+                                <br>
+                                <button onclick="cadastrar_receita()">Cadastre sua receita</button>
+                                `;
+  }else{
+    // definindo mensagem de erro para caso não tenha nenhuma receita com aqueles requisitos cadastrada (alterado 29/12/24)
+    receita_public.innerHTML = `
+                                    <span style='color:#880000; font-weight:bold;'>
+                                      Não temos nenhum resultado para estes requisitos ainda, mas você pode se cadastrar e nos enviar novas receitas!
+                                    </span>
+                                    <br>
+                                    <button onclick="cadastro()">Cadastre-se</button>
+                                    `;
+  }
   console.log("O cadastro foi mal sucedido devido a um erro com o Banco de dados!")
   console.log(`#ERRO: ${receita}`);
 });
 }
 
+// criando função para verificar se existe um usuario logado. (alterado 28/01/25)
+function verificar_login(){
+  if(sessionStorage.EMAIL_USUARIO == undefined){
+    return false
+  }else{
+    return true
+  }
+}
+
 //criando função de curtida (Alterado 29/12/24)
 //Adicionando parametro na função curtir (02/01/25)
 //alterando o nome da função curtir para classificar(25/01/25)
+// alterando id categoria para id cadastro (alterdo 29/01/25)
 function classificar(numero_receita,estrela) {
-var idReceita = Number(receitaAtual[numero_receita]);
-var idCategoria = Number(categoriaAtual[numero_receita]);
-var avaliacao = Number(estrela);
+  var idReceita = Number(receitaAtual[numero_receita]);
+  var idCadastro = Number(sessionStorage.ID_USUARIO);
+  var avaliacao = Number(estrela);
 
-fetch("/aquarios/classificar", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  // adicionando avaliacao no json (alterado 25/01/25)
-  body: JSON.stringify({
-    idReceitas: idReceita,
-    idCategoria: idCategoria,
-    avaliacao: avaliacao,
-  }),
-})
-.then(function (resposta) {
-  console.log("resposta: ", resposta);
-  
-  if (resposta.ok) {
-    alert("Sua curtida foi realizada com sucesso!");
-  } else {
-    throw "Houve um erro ao tentar realizar a curtida!";
-  }
-})
-.catch(function (resposta) {
-  alert("A curtida foi mal sucedido devido a um erro com o Banco de dados!")
-  console.log(`#ERRO: ${resposta}`);
-});
+  fetch("/aquarios/classificar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // adicionando avaliacao no json (alterado 25/01/25)
+    body: JSON.stringify({
+      idReceitas: idReceita,
+      idCadastro: idCadastro,
+      avaliacao: avaliacao,
+    }),
+  })
+  .then(function (resposta) {
+    console.log("resposta: ", resposta);
+    
+    if (resposta.ok) {
+      alert("Sua classificação foi realizada com sucesso!");
+    } else {
+      throw "Houve um erro ao tentar realizar a classificação!";
+    }
+  })
+  .catch(function (resposta) {
+    alert("A classificação foi mal sucedida devido a um erro com o Banco de dados!")
+    console.log(`#ERRO: ${resposta}`);
+  });
 }
 
 //criando função para mostrar a receita ao clicar no titulo dela (alterado 09/01/25)
@@ -447,25 +474,31 @@ function mostrar_receita(receita){
 }
 
 // criando função para preencher as estrelas conforme o usuario clicar (alterado 25/01/25)
+// alterando id das estrelas (alterado 29/01/25)
 function preencherEstrela(estrela,receita){
+  // adicionando validacao para que o usuario so possa classificar se ele estiver logado (alterado 28/01/25)
+  if(verificar_login()){
+    for(var i = 1; i <= 5; i++){
+          // Se a estrela atual está dentro do limite clicado, preenche
+        if (i <= estrela) {
+          document.getElementById(`estrela${i}_receita${receita}`).src = './assets/imgs/estrela_cheia.png';
+        } else {
+          // Estrelas além da clicada permanecem com estrela vazia
+          document.getElementById(`estrela${i}_receita${receita}`).src = './assets/imgs/estrela_vazia.png';
+        }
+        // impedindo que o usuario possa clicar novamente para fazer outra avaliacao (alterado 26/01/25)
+        document.getElementById(`estrela${i}_receita${receita}`).onclick = "";
+        document.getElementById(`estrela${i}_receita${receita}`).style.cursor = "default";
+    }
 
-  for(var i = 1; i <= 5; i++){
-        // Se a estrela atual está dentro do limite clicado, preenche
-      if (i <= estrela) {
-        document.getElementById(`estrela${i}`).src = './assets/imgs/estrela_cheia.png';
-      } else {
-        // Estrelas além da clicada permanecem com estrela vazia
-        document.getElementById(`estrela${i}`).src = './assets/imgs/estrela_vazia.png';
-      }
-      // impedindo que o usuario possa clicar novamente para fazer outra avaliacao (alterado 26/01/25)
-      document.getElementById(`estrela${i}`).onclick = "";
-      document.getElementById(`estrela${i}`).style.cursor = "default";
+    qtd_classificacao.innerHTML = `
+                                  <br>
+                                  <b>Você avaliou com ${estrela} estrelas!</b>
+                                  `;
+    classificar(receita,estrela);
+  }else{
+    alert("Você só pode classificar uma receita se estiver logado em uma conta!")
+    return window.location.href = 'login.html';
   }
-
-  qtd_classificacao.innerHTML = `
-                                <br>
-                                <b>Você avaliou com ${estrela} estrelas!</b>
-                                `;
-  classificar(receita,estrela);
 }
 </script>

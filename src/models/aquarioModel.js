@@ -47,10 +47,11 @@ function listar_dificuldades(){
 // Adicionando função curtir (alterado 29/12/24)
 // removendo limit (alterado 01/12/24)
 // alterando nome da função curtir para classificar, e complementando o parametro da avaliacao (alterado 25/01/25)
-function classificar(avaliacao, idReceita, idCategoria) {
+// alterando idCategoria para idCadastro (alterdo 29/01/25)
+function classificar(avaliacao, idReceita, idCadastro) {
   var instrucaoSql = `
   insert into classificacao (classificacao, fkReceita, fkCategoria) values
-  (${avaliacao},${idReceita}, ${idCategoria});
+  (${avaliacao},${idReceita}, ${idCadastro});
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

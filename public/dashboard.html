@@ -84,6 +84,12 @@ function receitas(){
     window.location.href = 'cadastrar_receita.html';
 }
 
+function logout(){
+    sessionStorage.EMAIL_USUARIO = undefined;
+    sessionStorage.NOME_USUARIO = undefined;
+    sessionStorage.ID_USUARIO = undefined;
+}
+
     // document.getElementById("grafico-geral").innerHTML = plotarDadosDoGrafico();
 
 function plotarkpi1 (){

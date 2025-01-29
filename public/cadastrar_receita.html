@@ -41,16 +41,6 @@
             <form>
               <select id="slc_categoria">
                 <option value="" disabled selected>Categoria</option>
-                <!-- <option value="Doce">Doce</option>
-                <option value="Salgado">Salgado</option>
-                <option value="Sobremesa">Sobremesa</option>
-                <option value="Entradas">Entradas</option>
-                <option value="Lanches">Lanches</option>
-                <option value="Sopas">Sopas</option>
-                <option value="Salada">Salada</option>
-                <option value="Carne">Carne</option>
-                <option value="Frango">Frango</option>
-                <option value="Fitness">Fitness</option> -->
               </select>
             </form>
           </div>
@@ -59,9 +49,6 @@
             <form>
               <select id="slc_dificuldade">
                 <option value="" disabled selected>Dificuldade de preparo</option>
-                <!-- <option value="Fácil">Fácil</option>
-                <option value="Média">Média</option>
-                <option value="Difícil">Difícil</option> -->
               </select>
             </form>
           </div>
@@ -78,6 +65,7 @@
         <div class="ingredientes" id="div_ingredientes">
         </div>
         <button onclick="cadastrar_receita()">Cadastrar</button>
+        <button onclick="voltar()">Voltar</button>
       </div>
     </div>
   </div>
@@ -111,7 +99,10 @@
 <script>
 
 // criando for para adicionar os 10 campos de ingredientes (alterado 22/01/25)
-  var ingredientes = "";
+// adicionando texto para identificar o que o usuario precisa fazer na tela de ingredienetes (alterado 27/01/25)
+  var ingredientes = `
+                      <b>Agora precisamos de até 10 ingredietes necessarios para o preparo desta receita (minimo de ingredienets é 5)</b><br>
+                      `;
   for(var i = 0; i < 10; i++){
     ingredientes += `
     <div class="ingred-camp">
@@ -135,7 +126,12 @@
 
   div_ingredientes.innerHTML = ingredientes;
 
-  
+  // adicionando função para voltar para parte 1 do cadastro de receitas (alterado 29/01/25)
+function voltar(){
+  document.getElementById('cadastro1').style.display = "flex";
+  document.getElementById('cadastro2').style.display = "none";
+}
+
 // Adicionando variável onde ira ficar armazenado as opções do select de categorias (Alterado 24/01/2025).
 var categorias = "";
 

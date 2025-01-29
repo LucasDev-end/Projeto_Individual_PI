@@ -56,11 +56,25 @@ create table classificacao (
 idClassificacao int primary key auto_increment,
 classificacao int,
 fkReceita int,
-fkCategoria int,
+fkCadastro int,
 constraint fkReceitaClassificacao foreign key (fkReceita)
 							references receitas(idReceitas),
-constraint fkCategoriaClassificacao foreign key (fkCategoria)
-							references categoria(idCategoria)
+-- alterando fkCategoria para fkCadastro
+constraint fkCadastroClassificacao foreign key (fkCadastro)
+							references cadastro(idcadastro)
+);
+
+-- criando tabela comentario (alterado 29/01/25)
+create table comentario(
+idComentario int primary key auto_increment,
+fkCadastro int,
+fkReceita int,
+comentario varchar(250),
+constraint fkReceitaComentario foreign key (fkReceita)
+							references receitas(idReceitas),
+-- alterando fkCategoria para fkCadastro
+constraint fkCadastroComentario foreign key (fkCadastro)
+							references cadastro(idcadastro)
 );
 
 insert into categoria values
