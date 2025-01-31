@@ -9,7 +9,7 @@
   <title>Home</title>
 </head>
 
-<body>
+<body onload="trocar_botoes()">
   <div class="header">
     <div class="menu">
       <div class="home"><a href="index.html">HOME</a></div>
@@ -17,12 +17,13 @@
       <div class="contato"><a href="index.html#contato">Contato</a></div>
       <div class="receitas"><a href="index.html#receitas">Receitas</a></div>
     </div>
+        <!-- adicionando id para os botões (alterado 30/01/25) -->
     <div class="acesso">
-      <div class="login" onclick="login()">
-        <span>Login</span>
+      <div id="div_login" class="login" onclick="login()">
+        <span id="span_login">Login</span>
       </div>
-      <div class="cadastro" onclick="cadastro()">
-        <span>Cadastre-se</span>
+      <div id="div_cadastro" class="cadastro" onclick="cadastro()">
+        <span id="span_cadastro">Cadastre-se</span>
       </div>
     </div>
   </div>
@@ -226,6 +227,29 @@ fetch("/aquarios/listar_dificuldades", {
   function cadastrar_receita() {
     window.location.href = 'cadastrar_receita.html';
   }
+  // criando funções para redirecionamento para tela do usuario e para o usuario deslogar da conta (alterado 30/01/25)
+  function pagina_usuario(){
+    window.location.href = 'dashboard.html';
+  }
+  function sair(){
+    sessionStorage.clear();
+    trocar_botoes();
+  }
+
+  // Criando função para trocar os botoes de login e cadastre-se caso o usuario esteja logado na sua conta (alterado 30/01/25)
+  function trocar_botoes() {
+    if (sessionStorage.EMAIL_USUARIO != undefined) {
+        span_login.innerHTML = "Sair";
+        document.getElementById('div_login').onclick = sair;
+        span_cadastro.innerHTML = "Página do Usuário";
+        document.getElementById('div_cadastro').onclick = pagina_usuario;
+    }else{
+      span_login.innerHTML = "Login";
+      document.getElementById('div_login').onclick = login;
+      span_cadastro.innerHTML = "Cadastre-se";
+      document.getElementById('div_cadastro').onclick = cadastro;
+    }
+  }
 
   // Adicionando variavel para identificar a receita e a categoria pesquisada atual (Alterado 29/12/24)
   //alterando as variaveis para o tipo array (alterado 02/01/25)
@@ -366,14 +390,19 @@ fetch("/aquarios/listar", {
                                 <p>${ingredientes}</p>
                                 <span>Modo de preparo:</span>
                                 <p>${descricao}</p>
+                                <br>
+                                <br>
                                 <div class="classificacao" id="div_classificacao${i}">
-                                <img id="estrela1_receita${i}" onclick="preencherEstrela(1,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela2_receita${i}" onclick="preencherEstrela(2,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela3_receita${i}" onclick="preencherEstrela(3,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela4_receita${i}" onclick="preencherEstrela(4,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <img id="estrela5_receita${i}" onclick="preencherEstrela(5,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                <p id="qtd_classificacao">
-                                </p>
+                                  <img id="estrela1_receita${i}" onclick="preencherEstrela(1,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                  <img id="estrela2_receita${i}" onclick="preencherEstrela(2,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                  <img id="estrela3_receita${i}" onclick="preencherEstrela(3,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                  <img id="estrela4_receita${i}" onclick="preencherEstrela(4,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                  <img id="estrela5_receita${i}" onclick="preencherEstrela(5,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
+                                  <p id="qtd_classificacao">
+                                  </p>
+                                </div>
+                                <div class="comentarios" id="div_comentarios${i}">
+                                  <p id="p_comentar"onclick="mostrar_comentarios(${id},${i})">Visualizar comentarios</p>
                                 </div>
                               </div>
                            `;
@@ -500,5 +529,94 @@ function preencherEstrela(estrela,receita){
     alert("Você só pode classificar uma receita se estiver logado em uma conta!")
     return window.location.href = 'login.html';
   }
+}
+
+function mostrar_comentarios(receita,id){
+  var idReceita = receita;
+  var mostrar = "";
+  document.getElementById(`div_comentarios${id}`).innerHTML = "<p>Visualizar comentarios</p><br>"
+
+  fetch("/aquarios/listar_comentarios", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+      idReceita: idReceita,
+    }),
+  })// Após a solicitação ser concluída, o then é executado. A função recebe o objeto da resposta.
+    .then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          console.log("Nenhum resultado encontrado!");
+        }
+        return resposta.json();
+      } else {
+        throw "Houve um erro na API!";
+      }})// Converte o corpo da resposta para um objeto JSON. E depois processa o JSON retornado
+    .then(function (comentarios){
+    console.log("comentarios:", JSON.stringify(comentarios));
+      for(var i = 0; i< comentarios.length; i++){
+        var comentario = comentarios[i];
+        var usuario = comentario.nome;
+        var texto = comentario.comentario;
+        mostrar += `
+                    <div class="comentario${id}">
+                      <br>
+                      <h2>${usuario}</h2><br>
+                      <span>
+                        <h2>Comentario:<h2/>
+                        ${texto}
+                      </span>
+                    </div>
+                    `;
+        console.log(`usuario: ${usuario}; comentario:${texto};`);
+      }
+      // adicionando input para cadastrar novos comentarios (alterado 30/01/25)
+      mostrar += `
+                  <div class="comentar">
+                    <input type="text" id="ipt_comentar${id}">
+                    <button onclick="cadastrar_comentario(${receita},${id})">enviar</button>
+                  </div>
+                  `;
+      document.getElementById(`div_comentarios${id}`).innerHTML += mostrar;
+    })// Captura qualquer erro ocorrido durante o processamento da solicitação ou das etapas do then.
+  .catch(function (erro) {
+    console.log("A consulta foi mal sucedida devido a um erro com o Banco de dados!");
+    console.log(`#ERRO: ${erro}`);
+  });
+}
+
+function cadastrar_comentario(idreceita,id){
+  var usuario = sessionStorage.ID_USUARIO;
+  var receita = idreceita;
+  var comentario = document.getElementById(`ipt_comentar${id}`).value;
+
+  fetch("/aquarios/cadastrar_comentario", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+      usuarioServer: usuario,
+      receitaServer: receita,
+      comentarioServer: comentario,
+    }),
+  })// Após a solicitação ser concluída, o then é executado. A função recebe o objeto da resposta.
+    .then(function (resposta) {
+      if (resposta.ok) {
+      mostrar_comentarios(idreceita,id);
+      document.getElementById(`ipt_comentar${id}`) = "";
+        if (resposta.status == 204) {
+          console.log("Nenhum resultado encontrado!");
+        }
+        return resposta.json();
+      } else {
+        throw "Houve um erro na API!";
+      }})// Captura qualquer erro ocorrido durante o processamento da solicitação ou das etapas do then.
+  .catch(function (erro) {
+    console.log("A consulta foi mal sucedida devido a um erro com o Banco de dados!");
+    console.log(`#ERRO: ${erro}`);
+  });
 }
 </script>

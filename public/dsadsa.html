@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/dashboard.js" defer></script>
+    <script src="./js/dashboard.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
     <title>DashBoard</title>
 </head>
-<body onload="plotarkpi1(), plotarkpi2(), plotarkpi3(), gerarGrafico(), gerarGrafico2()">
+<body onload="plotarkpi1(), plotarkpi2(), plotarkpi3(), gerarGrafico()">
     <div class="container">
         <div class="dashboard">
             <div class="kpi">
@@ -73,11 +73,7 @@
             <div class="grafico">
                 <div id="grafico-geral">
                     <h2>Quantidade de receitas por categoria</h2>
-                    <canvas id="myChart-grafico" style="width:300px; height: 225px;"></canvas>
-                </div>
-                <div id="grafico-geral2">
-                    <h2>teste</h2>
-                    <canvas id="myChart-grafico2" style="width:300px; height: 110px;"></canvas>
+                    <canvas id="myChart-grafico" style="width:300px; height: 110px;"></canvas>
                 </div>
             </div>
         </div>
@@ -106,127 +102,53 @@
     </div>
 </body>
 </html>
-
- <!-- script JS de connfiguração do chartJS -->
 <script>
+const ctx2 = document.getElementById('myChart-grafico');
 
-// criando função de redirecionamento para a pagina inicial (alterado 30/01/25)
-function home(){
-    window.location.href = 'index.html';
-}
-function receitas(){
-    window.location.href = 'cadastrar_receita.html';
-}
-
-function logout(){
-    sessionStorage.removeItem("EMAIL_USUARIO");
-    sessionStorage.removeItem("NOME_USUARIO");
-    sessionStorage.removeItem("ID_USUARIO");
-}
-
-    // document.getElementById("grafico-geral").innerHTML = plotarDadosDoGrafico();
-
-function plotarkpi1 (){
-    fetch('/aquarios/plotarkpi1')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados);
-            document.getElementById('kpi-categoriaMaisEscolhida').innerHTML = dados[0].categoria.toUpperCase();
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados:", erro);
-        });
-}
-
-    function plotarkpi2 (){
-            fetch('/aquarios/plotarkpi2')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log("Dados recebidos:", dados);
-            document.getElementById('kpi-regiaoMaisCadastrada').innerHTML = dados[0].regiao.toUpperCase();
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados:", erro);
-    });
-    }
-
-    function plotarkpi3 (){
-            fetch('/aquarios/plotarkpi3')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados);
-            document.getElementById('kpi-QtdReceitas').innerHTML = dados[0].quantidadereceitas;
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados:", erro);
-    });
-    }
-    function plotarkpi4 (){
-            fetch('/aquarios/plotarkpi3')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados);
-            document.getElementById('kpi-QtdReceitas').innerHTML = dados[0].quantidadereceitas;
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados:", erro);
-    });
-    }
-    function plotarkpi5 (){
-            fetch('/aquarios/plotarkpi3')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados);
-            document.getElementById('kpi-QtdReceitas').innerHTML = dados[0].quantidadereceitas;
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados:", erro);
-    });
-    }
-
-    function plotarDadosDoGrafico() {
-    fetch('/aquarios/plotarDadosDoGrafico')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados)
-            var tamanho = dados.length
-            console.log("tamanho: ",tamanho)
-            let categorias = [];
-            let quantidades = [];
-
-            for (let container = 0; container < tamanho; container++) {
-                const categoria_selecionada = dados[container];
-
-                var categoria = categoria_selecionada.categoria
-                var quantidade = categoria_selecionada.quantidade
-
-                categoria = categoria.toUpperCase()
-
-                categorias.push(categoria)
-                quantidades.push(quantidade)
-                
+var data2 = new Chart(ctx2, {
+    type: 'pie', // Alterado de 'bar' para 'pie' para economizar espaço
+    data: {
+        labels: [
+            'Carnes',
+            'Bebidas',
+            'Congelados',
+            'Hortifruti',
+            'Limpeza',
+        ],
+        datasets: [{
+            label: 'Fluxo',
+            backgroundColor: [
+                'rgb(000, 202, 220)',
+                'rgb(73, 195, 251)',
+                'rgb(101, 166, 250)',
+                'rgb(126, 128, 231)',
+                'rgb(155, 87, 204)',
+            ],
+            data: [13451, 11839, 10463, 10338, 8692],
+            borderWidth: 2, // Reduzido para deixar o gráfico mais suave
+            borderColor: '#fff', // Adicionado borda branca para destacar as fatias
+        }]
+    },
+    options: {
+        responsive: true, // Para que o gráfico se ajuste bem em diferentes tamanhos de tela
+        plugins: {
+            legend: {
+                position: 'top', // Posição da legenda
+                labels: {
+                    font: {
+                        size: 14, // Aumentar o tamanho da fonte da legenda
+                    },
+                    color: '#333', // Cor das legendas
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return tooltipItem.label + ': ' + tooltipItem.raw.toLocaleString(); // Exibe números formatados
+                    }
+                },
             }
-            
-            // Exibindo os arrays no console (para verificar se estão corretos)
-            console.log("Categorias:", categorias);
-            console.log("Quantidades:", quantidades);
-
-            // chart.data.datasets[0].titles = categorias;
-            // chart.data.datasets[0].data = quantidades;  // Atualize os dados com lista_qtd
-            // chart.update();
-
-            chart.data.labels = categorias; 
-            chart.data.datasets[0].data = quantidades;
-            chart.update(); 
-
-            
-        })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados:", erro);
-        });
-}
-
-function calcular_media(){
-    
-}
+        },
+    }
+});
 </script>

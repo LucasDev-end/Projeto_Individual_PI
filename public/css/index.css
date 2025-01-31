@@ -359,6 +359,68 @@ body {
     cursor: pointer;
 }
 
+/* criando classe e estlos para os comentarios (alterado 30/01/25) */
+.comentarios {
+    background-color: #e08e37; /* Fundo mais escuro para contraste */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px; /* Define uma largura máxima */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os comentários */
+}
+.comentarios div {
+    background-color: #08415c;
+    color: #fff;
+    width: 100%;
+    max-width: 700px; /* Define um limite para evitar esticar muito */
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 5px solid #70A9A1; /* Adiciona um detalhe à esquerda */
+    box-shadow: 2px 2px 8px #00000033;
+}
+.comentarios div h2 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+}
+.comentarios div span {
+    font-size: 16px;
+    color: #e0e0e0;
+    display: block;
+}
+.comentar {
+    background-color: #70A9A1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+}
+.comentar input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.comentar button {
+    background-color: #e08e37;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.comentar button:hover {
+    background-color: #333;
+}
+#p_comentar{
+    color: #000000;
+    cursor: pointer;
+}
 
 /* Botão */
 button {

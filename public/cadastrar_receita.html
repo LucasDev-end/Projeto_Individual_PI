@@ -83,11 +83,13 @@
       <div class="menu">
         <div onclick="dasboard()" style="cursor: pointer;">Dashboard</div>
         <div style="background-color: #E08E37; cursor: pointer;">Cadastrar receitas</div>
+        <!-- adicionando botao home (Alterado 30/01/25) -->
+        <div onclick="home()" style="cursor: pointer;">Pagina Inicial</div>
       </div>
       <div class="sair">
         <div>
           <h2>
-            <a><span onclick="sair()" style="cursor: pointer;">SAIR</span></a>
+            <a><span onclick="logout()" style="cursor: pointer;">SAIR</span></a>
           </h2>
         </div>
       </div>
@@ -97,6 +99,11 @@
 </html>
 
 <script>
+
+// criando função de redirecionamento para a pagina inicial (alterado 30/01/25)
+function home(){
+    window.location.href = 'index.html';
+}
 
 // criando for para adicionar os 10 campos de ingredientes (alterado 22/01/25)
 // adicionando texto para identificar o que o usuario precisa fazer na tela de ingredienetes (alterado 27/01/25)
@@ -125,6 +132,12 @@
   };
 
   div_ingredientes.innerHTML = ingredientes;
+
+  function logout(){
+    sessionStorage.removeItem("EMAIL_USUARIO");
+    sessionStorage.removeItem("NOME_USUARIO");
+    sessionStorage.removeItem("ID_USUARIO");
+}
 
   // adicionando função para voltar para parte 1 do cadastro de receitas (alterado 29/01/25)
 function voltar(){

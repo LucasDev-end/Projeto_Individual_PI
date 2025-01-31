@@ -135,6 +135,58 @@ function classificar(req, res) {
   }
 }
 
+// adicionando função para mostrar os comentarios (alterado 30/01/25)
+function listar_comentarios(req, res) {
+  var idReceita = req.body.idReceita;
+
+  if (idReceita == undefined) {
+      res.status(400).send("Nenhuma receita esta definida");
+  } else {
+      aquarioModel.listar_comentarios(idReceita)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          )
+          .catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log("Houve um erro ao listar os comentarios: ", erro.sqlMessage);
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+
+// adicionando função para cadastrar comentario (alterado 30/01/25)
+function cadastrar_comentario(req, res) {
+  var usuario = req.body.usuarioServer;
+  var receita = req.body.receitaServer;
+  var comentario = req.body.comentarioServer;
+
+  if (usuario == undefined) {
+    res.status(400).send("Nenhum usuario esta definido");
+  } else if (receita == undefined) {
+    res.status(400).send("Nenhuma receita esta definida");
+  } else if (comentario == undefined) {
+    res.status(400).send("Nenhum comentario esta definido");
+  } else {
+      aquarioModel.cadastrar_comentario(usuario, receita, comentario)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          )
+          .catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log("Houve um erro ao cadastrar os comentarios: ", erro.sqlMessage);
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+}
+
 function plotarkpi1(req, res) {
   aquarioModel.plotarkpi1()
     .then(function (resultado) {
@@ -180,6 +232,36 @@ function plotarkpi3(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
+function plotarkpi4(req, res) {
+  aquarioModel.plotarkpi4()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function plotarkpi5(req, res) {
+  aquarioModel.plotarkpi5()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
 function plotarDadosDoGrafico(req, res) {
   aquarioModel.plotarDadosDoGrafico()
     .then(function (resultado) {
@@ -203,8 +285,12 @@ module.exports = {
   listar_categorias,
   listar_dificuldades,
   classificar,
+  listar_comentarios,
+  cadastrar_comentario,
   plotarkpi1,
   plotarkpi2,
   plotarkpi3,
+  plotarkpi4,
+  plotarkpi5,
   plotarDadosDoGrafico
 }

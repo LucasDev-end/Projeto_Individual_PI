@@ -26,6 +26,7 @@ function gerarGrafico(){
     // Configurações do gráfico
     const barOptions = {
       responsive: true,
+      indexAxis: 'y',
       plugins: {
         legend: {
           display: false, // Oculta a legenda do dataset
@@ -35,7 +36,7 @@ function gerarGrafico(){
         x: {
           title: {
             display: true,
-            text: 'Categoria', // Título do eixo X
+            text: 'Quantidade', // Título do eixo X
             font: {
               size: 20, // Tamanho da fonte
               family: 'Roboto', // Fonte
@@ -54,7 +55,7 @@ function gerarGrafico(){
           title: { 
             display: true,
 
-            text: 'Quantidade',// Título do eixo Y
+            text: 'Categoria',// Título do eixo Y
             font: {
               size: 20,
               family: 'Roboto',
@@ -64,7 +65,7 @@ function gerarGrafico(){
           },
           ticks: {
             font: {
-              size: 20, // Tamanho da fonte dos rótulos
+              size: 12, // Tamanho da fonte dos rótulos
               family: 'Roboto',
               weight: 'bold'
             },
@@ -81,4 +82,33 @@ function gerarGrafico(){
       options: barOptions // Configurações do gráfico
     });
     plotarDadosDoGrafico()
+  }
+
+
+function gerarGrafico2(){
+    const ctx3 = document.getElementById('myChart-grafico2').getContext('2d');
+  
+    const data3 = {
+      labels: [
+        'Red',
+        'Blue',
+        'Yellow'
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [300, 50, 100],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    };
+
+    // Criação do gráfico
+    const chart1 = new Chart(ctx3, {
+      type: 'doughnut', // Tipo de gráfico
+      data: data3,
+    });
   }

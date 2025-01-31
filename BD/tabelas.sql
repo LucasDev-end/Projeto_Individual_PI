@@ -210,75 +210,35 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
 ('teste de receita', 2, '8 Horas',
  'caqui 1 unidade', 'perulito', 'conhaque 50ml', 'creme de jaca 200ml', 'Alegria 5ml', 1,'teste');
 
+-- inserindo algumas informacoes para teste (alterado 30/01/25)
+ insert into comentario (fkCadastro, fkReceita, comentario) values
+ (1, 14,"excelente receita"),
+ (1, 14,"faria mais vezes"),
+ (1, 14,"melhor bolo que ja comi"),
+ (1, 14,"todos adoraram"),
+ (1, 3,"exelente receita"),
+ (1, 3,"faria mais vezes"),
+ (1, 3,"melhor bolo que ja comi"),
+ (1, 3,"todos adoraram");
+ -- inserindo algumas informacoes para teste (alterado 30/01/25)
+insert into comentario (fkCadastro, fkReceita, comentario) values
+(1, 33,"Que delicia"),
+(1, 33,"Adorei, ficou bom"),
+(1, 33,"Muito Bom"),
+(1, 33,"Incrivel"),
+(1, 33,"Maravilhoso");
+
 select * from receitas;
 select * from cadastro;
 select * from categoria;
 select * from Classificacao;
+select * from comentario;
+select * from comentario
+where fkReceita = 14
+limit 4;
 
-
-
-
-
-SELECT 
-    fkCategoria, 
-    GROUP_CONCAT(DISTINCT dificuldade ORDER BY dificuldade ASC) AS dificuldades 
-FROM 
-    receitas 
-GROUP BY 
-    fkCategoria;
-select * from cadastro;
-select * from categoria;
-
-select *
-from receitas as r
-join categoria as c on r.fkCategoria = c.idCategoria
-where r.fkCategoria = 2
-and (
-  ingrediente1 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente2 in ('Tomate', 'Queijo', 'Presunto') OR
-  ingrediente3 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente4 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente5 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente6 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente7 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente8 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente9 in ('Tomate', 'Queijo', 'Presunto') or
-  ingrediente10 in ('Tomate', 'Queijo', 'Presunto')
-  )
-  limit 1;
-
-
-select c.nome as categoria, count(ca.idcadastro) as quantidade
-from cadastro as ca
-join categoria as c on ca.fkcategoria = c.idcategoria
-group by c.idcategoria
-order by quantidade desc
-limit 1;
-
-select concat(cidade, ', ', estado) as regiao
-from cadastro
-group by cidade, estado
-order by count(idcadastro) desc
-limit 1;
-
-select count(idreceitas) as quantidadereceitas
-from receitas;
-
-select c.nome as categoria, count(r.idreceitas) as quantidade
-from receitas as r
-join categoria as c on r.fkcategoria = c.idcategoria
-group by c.idcategoria
-order by quantidade desc
-limit 5;
-
-
-
-
-
-
-
-
-
+select * from comentario as c
+join cadastro as ca on c.fkCadastro = ca.idcadastro;
 
 -- novos selects (Alterado 27/12/24)
 
@@ -287,7 +247,6 @@ join categoria as c on r.fkCategoria = c.idCategoria
 where r.fkCategoria = 3 and r.dificuldade = 1
 order by rand() -- ordena a consulta de forma aleatoria, para aparecer diferentes receitas (Alterado 29/12/24)
 ;
-select * from curtida;
 
 -- novos inserts (Alterado 29/12/24)
   insert into curtida (fkReceita, fkCategoria) values

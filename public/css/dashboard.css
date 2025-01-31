@@ -10,7 +10,7 @@
 :root{
     --tamanho-header: 80px;
     --tamanho-footer: 65px;
-    --tamanho-banner: calc(72vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-banner: calc(58vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-container: calc(100% - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-border-radius: 2px;
 }
@@ -28,6 +28,8 @@ body{
     flex-direction: row;
     width: 100%;
     height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -81,11 +83,12 @@ body .side{
     align-items: center;
     justify-content: space-evenly;
 }
+/* almentando tamanho da hover do menu (alterado 30/01/25) */
 .menu div:hover{
     background-color: #E08E37;
     color: #08415c;
     border-radius: var(--tamanho-border-radius);
-    width: 45%;
+    width: 90%;
     height: 28%;
     display: flex;
     justify-content: center;
@@ -134,38 +137,33 @@ a span{
     justify-content: center;
 }
 
+/* ajustando tamanho da div pai da dashboard alterado (30/01/25) */
 .dashboard{
-    width: 80%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-.grafico-esquerda{
+    width: 90%;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 96%;
-    height: 93vh;
-    border-radius: var(--tamanho-border-radius);
 }
 .kpi{
     width: 97%;
-    height: 23vh;
+    height: 15vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-evenly;
 }
 .kpi .box-kpi{
+    color: #000000;
     width: 28%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .box-kpi .titulo{
-    color: #ffffff;
+    color: #000000;
     font-size: 80%;
     width: auto;
     height: 3vh;
@@ -178,9 +176,11 @@ a span{
 }
 .box-kpi .kpi-num,
 .box-kpi .kpi-sub-texto{
+    color: #000000;
     display: flex;
 }
 .box-kpi .kpi-num{
+    color: #000000;
     justify-content: center;
     align-items: center;
     height: 12vh;
@@ -191,7 +191,7 @@ a span{
     border-top-right-radius: var(--tamanho-border-radius); /* Arredonda o canto inferior direito */
 }
 .box-kpi .kpi-num,.box-kpi .kpi-sub-texto{
-    color: white;
+    color: #000000;
 }
 .kpi-sub-texto{
     justify-content: space-evenly;
@@ -201,9 +201,18 @@ a span{
     border-bottom-left-radius: var(--tamanho-border-radius); /* Arredonda o canto inferior esquerdo */
     border-bottom-right-radius: var(--tamanho-border-radius); /* Arredonda o canto inferior direito */
 }
-.grafico, .grafico div{
-    background-color: #ffffff;
+.grafico{
     width: 97%;
+    height: 62vh;
+    border-radius: var(--tamanho-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.grafico div{
+    background-color: #ffffff;
+    width: 47%;
     height: 62vh;
     border-radius: var(--tamanho-border-radius);
     display: flex;

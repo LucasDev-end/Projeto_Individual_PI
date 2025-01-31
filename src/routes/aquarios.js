@@ -27,6 +27,15 @@ router.post("/classificar", function (req, res){
   aquarioController.classificar(req, res);
 });
 
+// criando rota para listar comentarios (alterado 30/01/25)
+router.post("/listar_comentarios", function (req,res){
+  aquarioController.listar_comentarios(req,res);
+});
+// criando rota para cadastrar comentario (alterado 30/01/25)
+router.post("/cadastrar_comentario", function (req,res){
+  aquarioController.cadastrar_comentario(req,res);
+});
+
 router.get("/plotarkpi1", function (req, res) {
   aquarioController.plotarkpi1(req, res);
 });
@@ -35,6 +44,13 @@ router.get("/plotarkpi2", function (req, res) {
 });
 router.get("/plotarkpi3", function (req, res) {
   aquarioController.plotarkpi3(req, res);
+});
+
+router.get("/plotarkpi4", function (req, res) {
+  aquarioController.plotarkpi4(req, res);
+});
+router.get("/plotarkpi5", function (req, res) {
+  aquarioController.plotarkpi5(req, res);
 });
 router.get("/plotarDadosDoGrafico", function (req, res) {
   aquarioController.plotarDadosDoGrafico(req, res);
