@@ -52,6 +52,9 @@ router.get("/plotarkpi4", function (req, res) {
 router.get("/plotarkpi5", function (req, res) {
   aquarioController.plotarkpi5(req, res);
 });
+router.get("/plotarDadosDoGrafico2", function (req, res) {
+  aquarioController.plotarDadosDoGrafico2(req, res);
+});
 router.get("/plotarDadosDoGrafico", function (req, res) {
   aquarioController.plotarDadosDoGrafico(req, res);
 });

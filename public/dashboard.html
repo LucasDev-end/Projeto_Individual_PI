@@ -9,75 +9,64 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>DashBoard</title>
 </head>
-<body onload="plotarkpi1(), plotarkpi2(), plotarkpi3(), gerarGrafico(), gerarGrafico2()">
+<body onload="plotarkpi1(), plotarkpi2(), plotarkpi3(), plotarkpi4(), plotarkpi5(), gerarGrafico(), gerarGrafico2()">
     <div class="container">
         <div class="dashboard">
-            <div class="kpi">
-                <!-- editando largura da primeira kpi (alterado 30/01/25) -->
-                <!-- alterando cor de fundo das kpi's para branco kpi (alterado 30/01/25) -->
-                <div class="box-kpi" id="kpi1" style="width: 35%;">
-                    <div class="titulo" style="background-color: #ffffff;">
-                        <h2>Categoria mais escolhida pelos usuarios</h2>
+            <div class="header-kpi">
+                <div class="kpi">
+                    <!-- editando largura da primeira kpi (alterado 30/01/25) -->
+                    <!-- alterando cor de fundo das kpi's para branco kpi (alterado 30/01/25) -->
+                    <div class="box-kpi" id="kpi1" style="width: 40%;">
+                        <div class="titulo" style="background-color: #ffffff;">
+                            <h2>Categoria mais escolhida pelos usuarios</h2>
+                        </div>
+                        <div class="kpi-num" id="kpi-categoriaMaisEscolhida" style="background-color: #ffffff;">
+                            
+                        </div>
                     </div>
-                    <div class="kpi-num" id="kpi-categoriaMaisEscolhida" style="background-color: #ffffff;">
-                        
+                    <div class="box-kpi" id="kpi2" style="height: 100%; width: 27%;">
+                        <div class="titulo" style="background-color: #ffffff;">
+                            <h2>Região com mais usuarios</h2>
+                        </div>
+                        <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #ffffff;font-size: 25px;">
+                            
+                        </div>
                     </div>
-                    <div class="kpi-sub-texto" style="background-color: #ffffff;">
-                    </div>
-                </div>
-                <div class="box-kpi" id="kpi2">
-                    <div class="titulo" style="background-color: #ffffff;">
-                        <h2>Região com mais usuarios</h2>
-                    </div>
-                    <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #ffffff;font-size: 25px;">
-                        
-                    </div>
-                    <div class="kpi-sub-texto" style="background-color: #ffffff;">
-                    </div>
-                </div>
-                <div class="box-kpi" id="kpi3">
-                    <div class="titulo" style="background-color: #ffffff;">
-                        <h2>Total de receitas cadastradas</h2>
-                    </div>
-                    <div class="kpi-num" id="kpi-QtdReceitas" style="background-color: #ffffff;">
-                        
-                    </div>
-                    <div class="kpi-sub-texto" style="background-color: #ffffff;">
+                    <div class="box-kpi" id="kpi3">
+                        <div class="titulo" style="background-color: #ffffff;">
+                            <h2>Total de receitas cadastradas</h2>
+                        </div>
+                        <div class="kpi-num" id="kpi-QtdReceitas" style="background-color: #ffffff;">
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="kpi">
-                <div class="box-kpi" id="kpi1">
-                    <div class="titulo" style="background-color: #ffffff;">
-                        <h2>Categoria mais escolhida</h2>
+                <!-- adcionando metricas de rankink e de Percentual (alterado em ) -->
+                <div class="kpi">
+                    <div class="box-kpi" id="kpi4" style="width: 43%;">
+                        <div class="titulo" style="background-color: #ffffff;">
+                            <h2>Percentual Geral de aprovação de receitas</h2>
+                        </div>
+                        <div class="kpi-num" id="kpi-aprovacaodereceita" style="background-color: #ffffff;">
+                        </div>
                     </div>
-                    <div class="kpi-num" id="kpi-categoriaMaisEscolhida" style="background-color: #ffffff;">
-                        
-                    </div>
-                    <div class="kpi-sub-texto" style="background-color: #ffffff;">
-                    </div>
-                </div>
-                <div class="box-kpi" id="kpi2">
-                    <div class="titulo" style="background-color: #ffffff;">
-                        <h2>Região com mais cadastros</h2>
-                    </div>
-                    <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #ffffff;font-size: 25px;">
-                        
-                    </div>
-                    <div class="kpi-sub-texto" style="background-color: #ffffff;">
+                    <div class="box-kpi" id="kpi5" style="width: 56%; height: 96%;">
+                        <div class="titulo" style="background-color: #ffffff;">
+                            <h2>Ranking de suarios mais engajados</h2>
+                        </div>
+                        <div class="kpi-num"  id="kpi-usuariomaisativo" style="background-color: #ffffff;font-size: 25px; justify-content: space-around;">
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="grafico">
-                <div id="grafico-geral">
+                <div id="grafico-geral" style="width: 47%; height: 62vh;">
                     <h2>Quantidade de receitas por categoria</h2>
                     <canvas id="myChart-grafico" style="width:300px; height: 225px;"></canvas>
                 </div>
-                <div id="grafico-geral2">
-                    <h2>teste</h2>
-                    <canvas id="myChart-grafico2" style="width:300px; height: 110px;"></canvas>
+                <div id="grafico-geral2" style="width: 50%; height: 50vh">
+                    <h2>Receitas que mais tiveram avaliações altas</h2>
+                    <canvas id="myChart-grafico2"></canvas>
                 </div>
             </div>
         </div>
@@ -161,23 +150,67 @@ function plotarkpi1 (){
             console.error("Erro ao buscar dados:", erro);
     });
     }
+    // adicionando funções para as metricas de percentual e de ranking (alterado 31/01/25)
     function plotarkpi4 (){
-            fetch('/aquarios/plotarkpi3')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados);
-            document.getElementById('kpi-QtdReceitas').innerHTML = dados[0].quantidadereceitas;
-        })
-        .catch((erro) => {
+        fetch("/aquarios/plotarkpi4", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(function (resposta) {
+        if (resposta.ok) {
+            return resposta.json();
+        } else {
+            throw "Houve um erro na API!";
+        }
+    })
+    .then(function (dados) {
+        // Agora, dados contém o JSON da resposta da API
+        var totalClassificacoes = dados.length;
+        var somaClassificacoes = 0;
+
+        for (var i = 0; i < dados.length; i++) {
+            somaClassificacoes += dados[i].classificacao;
+        }
+
+        var mediaClassificacoes = somaClassificacoes / totalClassificacoes;
+        var percentualGeral = (mediaClassificacoes / 5) * 100;
+        document.getElementById('kpi-aprovacaodereceita').innerHTML = percentualGeral.toFixed(2);
+
+        if (dados.length === 0) {
+            console.log("Nenhum resultado encontrado!");
+        }
+    }).catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
     });
     }
+    // adicionando funções para as metricas de percentual e de ranking (alterado 31/01/25)
     function plotarkpi5 (){
-            fetch('/aquarios/plotarkpi3')
-        .then((response) => response.json())
-        .then((dados) => {
-            console.log(dados);
-            document.getElementById('kpi-QtdReceitas').innerHTML = dados[0].quantidadereceitas;
+        fetch("/aquarios/plotarkpi5", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(function (resposta) {
+        if (resposta.ok) {
+            return resposta.json();
+        } else {
+            throw "Houve um erro na API!";
+        }
+        }).then(function (resposta) {
+            var mensagem = "";
+
+            for(var i = 0; i < resposta.length; i++){
+                var ranking = resposta[i];
+                var usuario = ranking.nome;
+                var comentarios = ranking.total;
+
+                mensagem +=`
+                            <div class="lugar${i}">${i+1}.º Lugar: ${usuario}</div>
+                            `;
+            }
+            
+            document.getElementById('kpi-usuariomaisativo').innerHTML = mensagem;
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
@@ -188,9 +221,7 @@ function plotarkpi1 (){
     fetch('/aquarios/plotarDadosDoGrafico')
         .then((response) => response.json())
         .then((dados) => {
-            console.log(dados)
             var tamanho = dados.length
-            console.log("tamanho: ",tamanho)
             let categorias = [];
             let quantidades = [];
 
@@ -206,27 +237,58 @@ function plotarkpi1 (){
                 quantidades.push(quantidade)
                 
             }
-            
-            // Exibindo os arrays no console (para verificar se estão corretos)
-            console.log("Categorias:", categorias);
-            console.log("Quantidades:", quantidades);
-
-            // chart.data.datasets[0].titles = categorias;
-            // chart.data.datasets[0].data = quantidades;  // Atualize os dados com lista_qtd
-            // chart.update();
 
             chart.data.labels = categorias; 
             chart.data.datasets[0].data = quantidades;
             chart.update(); 
-
-            
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
         });
-}
+    }
 
-function calcular_media(){
-    
+    function plotarDadosDoGrafico2() {
+        fetch("/aquarios/plotarDadosDoGrafico2", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(function (resposta) {
+            console.log("comentarios:", JSON.stringify(resposta));
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw "Houve um erro na API!";
+            }
+        }).then(function (resposta) {
+            alert("estou aqui")
+        console.log("comentarios:", JSON.stringify(resposta));
+        console.log('Dados recebidos:', dados);
+
+        let categorias = [];
+        let quantidades = [];
+
+        // Usando for para processar os dados
+        for (let i = 0; i < dados.length; i++) {
+        const item = dados[i];
+        categorias.push(item.nomeReceitas);  // Receitas
+        quantidades.push(item.total);  // Quantidades de classificações >= 4
+        }
+
+        // Exibindo as categorias e quantidades para garantir que estão corretas
+        console.log("Categorias:", categorias);
+        console.log("Quantidades:", quantidades);
+
+        // Atualizando o gráfico com os dados recebidos
+        chart1.data.labels = categorias;
+        chart1.data.datasets[0].data = quantidades;
+        chart1.update();  // Atualiza o gráfico
+        })
+        .catch((erro) => {
+        console.error('Erro ao buscar dados:', erro);
+        })
+    .catch((erro) => {
+      console.error('Erro ao buscar dados:', erro);
+    });
 }
 </script>

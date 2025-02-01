@@ -94,6 +94,33 @@ insert into dificuldade values
 (default, "Média"),
 (default, "Difícil");
 
+-- adicionando dados para tabela de cadastro (alterado em 31/01/25)
+insert into cadastro (nome, email, cidade, estado, senha, fkCategoria) values
+('Jairo', 'jairo@email.com', 'Campinas', 'SP', 'Password1!', 4),
+('antonio', 'antonio@email.com', 'São Bernardo do Campo', 'SP', 'BlueSky2@', 7),
+('guilherme', 'guilherme@email.com', 'Santo André', 'SP', 'GreenLeaf3#', 1),
+('alana', 'alana@email.com', 'Guarulhos', 'SP', 'RedRose4$', 10),
+('vilma', 'vilma@email.com', 'Osasco', 'SP', 'YellowSun5%', 3),
+('Eduardo', 'eduardo@email.com', 'São José dos Campos', 'SP', 'PurpleMoon6^', 6),
+('jose', 'jose@email.com', 'Ribeirão Preto', 'SP', 'OrangeStar7&', 8),
+('Lucas', 'email@email.com', 'Diadema', 'SP', 'Senha123!', 5),
+('Taiga', 'taiga@email.com', 'Sorocaba', 'SP', 'WhiteSnow9$', 2),
+('arthur', 'arthur@email.com', 'Mogi das Cruzes', 'SP', 'BlackNight0*', 9),
+('Fernanda', 'fernanda@email.com', 'Jundiaí', 'SP', 'SilverTree1!', 6),
+('david', 'david@email.com', 'São Paulo', 'SP', 'GoldenFish2@', 4),
+('aline', 'aline@email.com', 'São Paulo', 'SP', 'BrightLight3#', 1),
+('carlos', 'carlos@email.com', 'Rio de Janeiro', 'RJ', 'ShinyGem4$', 7),
+('Marcos', 'Marcos@email.com', 'Belo Horizonte', 'MG', 'DarkForest5%', 10),
+('Emely', 'Emely@email.com', 'Salvador', 'BA', 'HappyDay6^', 3),
+('Mariana', 'Mariana@email.com', 'Curitiba', 'PR', 'LovelyBird7&', 5),
+('Maria', 'Maria@email.com', 'Fortaleza', 'CE', 'BraveHeart8*', 8),
+('Patrícia', 'patricia.@email.com', 'Recife', 'PE', 'CoolBreeze9&', 2),
+('Rafael', 'rafael.@email.com', 'Porto Alegre', 'RS', 'LuckyCharm0%', 9),
+('Tatiane', 'tatiane.@email.com', 'Manaus', 'AM', 'MagicDream1!', 10),
+('Rodrigo', 'rodrigo.@email.com', 'Brasília', 'DF', 'SweetHome2@', 3),
+('Juliana', 'juliana.@email.com', 'Goiânia', 'GO', 'TrueFriend3#', 7),
+('Leandro', 'leandro.@email.com', 'Florianópolis', 'SC', 'FastRunner4$', 1);
+
 -- adicionando dado de dificuldade em cada receita (alteração feita em 21/12/2024)
 insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
 ('Bolo de Chocolate', 1, '60 minutos', '2 xícaras de farinha de trigo', '2 xícaras de açúcar', '1 xícara de chocolate em pó', '4 ovos', '1 xícara de leite', 1, 
@@ -211,22 +238,53 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
  'caqui 1 unidade', 'perulito', 'conhaque 50ml', 'creme de jaca 200ml', 'Alegria 5ml', 1,'teste');
 
 -- inserindo algumas informacoes para teste (alterado 30/01/25)
- insert into comentario (fkCadastro, fkReceita, comentario) values
- (1, 14,"excelente receita"),
- (1, 14,"faria mais vezes"),
- (1, 14,"melhor bolo que ja comi"),
- (1, 14,"todos adoraram"),
- (1, 3,"exelente receita"),
- (1, 3,"faria mais vezes"),
- (1, 3,"melhor bolo que ja comi"),
- (1, 3,"todos adoraram");
- -- inserindo algumas informacoes para teste (alterado 30/01/25)
 insert into comentario (fkCadastro, fkReceita, comentario) values
-(1, 33,"Que delicia"),
-(1, 33,"Adorei, ficou bom"),
-(1, 33,"Muito Bom"),
-(1, 33,"Incrivel"),
-(1, 33,"Maravilhoso");
+(1, 14,"excelente receita"),(3, 14,"excelente receita"),(3, 14,"excelente receita"),
+(3, 14,"faria mais vezes"),(3, 14,"faria mais vezes"),(3, 14,"faria mais vezes"),
+(8, 14,"melhor bolo que ja comi"),(3, 14,"melhor bolo que ja comi"),(8, 14,"melhor bolo que ja comi"),
+(1, 14,"todos adoraram"),(3, 14,"todos adoraram"),(8, 14,"todos adoraram"),
+(8, 3,"exelente receita"),(3, 3,"exelente receita"),(3, 3,"exelente receita"),
+(1, 3,"faria mais vezes"),(3, 3,"faria mais vezes"),(8, 3,"faria mais vezes"),
+(3, 3,"melhor bolo que ja comi"),(3, 3,"melhor bolo que ja comi"),(8, 3,"melhor bolo que ja comi"),
+(1, 3,"todos adoraram"),(3, 3,"todos adoraram"),(8, 3,"todos adoraram"),
+(1, 33,"Que delicia"),(3, 33,"Que delicia"),(3, 33,"Que delicia"),
+(3, 33,"Adorei, ficou bom"),(3, 33,"Adorei, ficou bom"),(8, 33,"Adorei, ficou bom"),
+(3, 33,"Muito Bom"),(3, 33,"Muito Bom"),(3, 33,"Muito Bom"),
+(1, 33,"Incrivel"),(3, 33,"Incrivel"),(8, 33,"Incrivel"),
+(8, 33,"Maravilhoso"),(3, 33,"Maravilhoso"),(3, 33,"Maravilhoso");
+
+-- inserindo algumas informacoes para tabela de classificacao (alterado 31/01/25)
+insert into classificacao(classificacao, fkReceita, fkCadastro) values
+(3, 12, 1), (1, 23, 5), (5, 17, 4), (3, 6, 8),
+(3, 12, 1), (1, 23, 5), (5, 17, 4), (3, 6, 8),
+(2, 30, 2), (5, 14, 6), (3, 12, 3), (2, 5, 7),
+(2, 25, 4), (5, 17, 8), (1, 31, 5), (2, 20, 9),
+(5, 12, 6), (1, 30, 8), (1, 15, 7), (5, 17, 1),
+(4, 12, 8), (4, 14, 2), (2, 32, 9), (4, 14, 3),
+(1, 6, 3), (5, 17, 4), (5, 21, 1), (4, 14, 5),
+(2, 30, 2), (5, 14, 6), (3, 12, 3), (2, 5, 7),
+(2, 25, 4), (5, 17, 8), (1, 31, 5), (2, 20, 9),
+(5, 12, 6), (1, 30, 8), (1, 15, 7), (5, 17, 1),
+(4, 12, 8), (4, 14, 2), (2, 32, 9), (4, 14, 3),
+(1, 6, 3), (5, 17, 4), (5, 21, 1), (4, 14, 5),
+(2, 12, 2), (2, 15, 1), (3, 30, 3), (4, 31, 7),
+(1, 12, 5), (5, 21, 9), (1, 25, 8), (5, 14, 8),
+(1, 12, 8), (1, 32, 1), (5, 21, 3), (3, 25, 2),
+(4, 14, 9), (3, 23, 3), (1, 12, 10), (5, 21, 4),
+(5, 14, 1), (5, 14, 5), (2, 6, 2), (5, 17, 6),
+(3, 30, 3), (3, 15, 4), (2, 32, 4), (3, 12, 8),
+(1, 6, 5), (4, 14, 8), (3, 5, 6), (4, 31, 10),
+(4, 25, 7), (5, 21, 1), (3, 23, 8), (2, 12, 2),
+(2, 30, 9), (3, 30, 3), (1, 23, 8), (2, 25, 4),
+(5, 14, 1), (5, 14, 5), (2, 30, 2), (3, 6, 9),
+(5, 21, 3), (3, 15, 7), (4, 17, 4), (4, 12, 8),
+(3, 12, 8), (4, 21, 3), (4, 14, 1), (3, 30, 8),
+(3, 12, 8), (2, 15, 3), (5, 21, 1), (3, 25, 7),
+(3, 12, 3), (4, 17, 7), (2, 30, 2), (3, 6, 3),
+(3, 23, 8), (4, 12, 3), (2, 31, 4), (3, 6, 8),
+(4, 14, 2), (1, 23, 1), (3, 5, 3), (1, 30, 7),
+(1, 30, 5), (2, 15, 9), (2, 31, 8), (1, 25, 8),
+(4, 12, 4), (4, 14, 3), (2, 25, 1), (3, 15, 7);
 
 select * from receitas;
 select * from cadastro;
@@ -245,9 +303,68 @@ join cadastro as ca on c.fkCadastro = ca.idcadastro;
 select * from receitas as r
 join categoria as c on r.fkCategoria = c.idCategoria
 where r.fkCategoria = 3 and r.dificuldade = 1
-order by rand() -- ordena a consulta de forma aleatoria, para aparecer diferentes receitas (Alterado 29/12/24)
-;
+order by rand(); -- ordena a consulta de forma aleatoria, para aparecer diferentes receitas (Alterado 29/12/24)
 
 -- novos inserts (Alterado 29/12/24)
   insert into curtida (fkReceita, fkCategoria) values
   ( 1, 2);
+  
+  -- select para kpi de percentual (alteração feita em 31/01/25)
+select avg(Classificacao) * 20 as class from Classificacao;
+-- --------------------------------------------------------------------------------------------------------
+-- select para usuario mais ativo (alteração feita em 31/01/25)
+select cl.classificacao, cl.fkReceita, cl.fkCadastro  from Classificacao as cl
+join cadastro as ca on cl.fkCadastro = ca.idcadastro;
+-- ---------------------------------------------------------------------------------------------------------
+select * from comentario as c
+join cadastro as cad on c.fkCadastro = cad.idcadastro;
+-- ----------------------------------------------------------------------------------------------------------
+select cl.classificacao, cl.fkreceita, cl.fkcadastro,
+    (
+        select c.comentario  -- ou o campo desejado de comentario
+        from comentario c
+        join cadastro cad on c.fkcadastro = cad.idcadastro
+        where cad.idcadastro = cl.fkcadastro  -- relaciona com o cadastro da classificacao
+        limit 1
+    ) as comentario
+from classificacao cl
+join cadastro ca on cl.fkcadastro = ca.idcadastro;
+-- ----------------------------------------------------------------------------------------------------------
+select c.nome, c.email, count(*) as total_atividade
+from cadastro as c
+left join classificacao as cl on c.idcadastro = cl.fkcadastro
+left join comentario as com on c.idcadastro = com.fkcadastro
+group by c.idcadastro
+order by total_atividade desc
+limit 1;
+
+
+
+-- ---------------------- select para usuario mais ativo (alteração feita em 31/01/25) ---------------------------------------------
+-- Usuários que mais fizeram avaliações:
+-- por nome
+select cad.nome, COUNT(cla.idClassificacao) as total
+from classificacao as cla
+join cadastro as cad on cla.fkCadastro = cad.idcadastro
+group by cad.nome
+order by total desc;
+
+
+-- Percentual Geral de aprovação de receitas -- metrica1
+select avg(Classificacao) * 20 as media from Classificacao;
+select fkReceita, classificacao from classificacao;
+
+-- usuario que mais fez comentarios -- metrica2
+select cad.nome, count(com.idcomentario) as total_comentarios
+from comentario as com
+join cadastro as cad on com.fkcadastro = cad.idcadastro
+group by cad.nome
+order by total_comentarios desc;
+
+-- Receitas que mais tiveram avaliações altas: metrica 3
+select re.nomeReceitas, count(cla.classificacao) as total
+from classificacao as cla
+join receitas as re on cla.fkreceita = re.idReceitas
+where cla.classificacao >= 4
+group by re.nomeReceitas
+order by total desc;

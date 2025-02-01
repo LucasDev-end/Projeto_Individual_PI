@@ -50,7 +50,7 @@ function listar_dificuldades(){
 // alterando idCategoria para idCadastro (alterdo 29/01/25)
 function classificar(avaliacao, idReceita, idCadastro) {
   var instrucaoSql = `
-  insert into classificacao (classificacao, fkReceita, fkCategoria) values
+  insert into classificacao (classificacao, fkReceita, fkCadastro) values
   (${avaliacao},${idReceita}, ${idCadastro});
   `;
 
@@ -116,21 +116,25 @@ function plotarkpi3() {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-
+// adicionando select do percentual (alterado 31/01/25)
 function plotarkpi4() {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarkpi3()");
   var instrucaoSql = `
-                      select count(idreceitas) as quantidadereceitas
-                      from receitas;
+                      select fkReceita, classificacao from classificacao;
                       `;
+  // select avg(Classificacao) * 20 as media from Classificacao;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+// adicionando select do ranking (alterado 31/01/25)
 function plotarkpi5() {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarkpi3()");
   var instrucaoSql = `
-                      select count(idreceitas) as quantidadereceitas
-                      from receitas;
+                      select cad.nome, count(com.idcomentario) as total
+                      from comentario as com
+                      join cadastro as cad on com.fkcadastro = cad.idcadastro
+                      group by cad.nome
+                      order by total desc;
                       `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -148,6 +152,19 @@ function plotarDadosDoGrafico() {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+function plotarDadosDoGrafico2() {
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function plotarDadosDoGrafico()");
+  var instrucaoSql = `
+                      select re.nomeReceitas, count(cla.classificacao) as total
+                      from classificacao as cla
+                      join receitas as re on cla.fkreceita = re.idReceitas
+                      where cla.classificacao >= 4
+                      group by re.nomeReceitas
+                      order by total desc;
+                    `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
 module.exports = {
   cadastrar,
@@ -160,5 +177,8 @@ module.exports = {
   plotarkpi1,
   plotarkpi2,
   plotarkpi3,
+  plotarkpi4,
+  plotarkpi5,
+  plotarDadosDoGrafico2,
   plotarDadosDoGrafico
 }

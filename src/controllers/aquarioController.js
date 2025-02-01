@@ -232,6 +232,7 @@ function plotarkpi3(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
+// ciando funcao para metrica de percentual (aletrado 31/01/25)
 function plotarkpi4(req, res) {
   aquarioModel.plotarkpi4()
     .then(function (resultado) {
@@ -247,8 +248,24 @@ function plotarkpi4(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
+// ciando funcao para metrica de ranking (aletrado 31/01/25)
 function plotarkpi5(req, res) {
   aquarioModel.plotarkpi5()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os dados: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function plotarDadosDoGrafico2(req, res) {
+  aquarioModel.plotarDadosDoGrafico2()
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -292,5 +309,6 @@ module.exports = {
   plotarkpi3,
   plotarkpi4,
   plotarkpi5,
+  plotarDadosDoGrafico2,
   plotarDadosDoGrafico
 }

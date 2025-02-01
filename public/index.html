@@ -172,6 +172,7 @@ fetch("/aquarios/listar_categorias", {
     console.log(`#ERRO: ${erro}`);
   });
 
+var consulta_dificuldade = [];
 
   // Adicionando variável onde ira ficar armazenado as opções do select de dificuldades (Alterado 24/01/2025).
 var dificuldades = "";
@@ -207,6 +208,7 @@ fetch("/aquarios/listar_dificuldades", {
           var id = dificuldade.idDificuldade;
           var nomeDificuldade = dificuldade.nome;
           dificuldades += `<option value="${id}">${nomeDificuldade}</option>`;
+          consulta_dificuldade.push(nomeDificuldade);
           console.log(`id: ${i}; Categoria: ${JSON.stringify(dificuldade)}`);
         }
 
@@ -299,6 +301,7 @@ fetch("/aquarios/listar", {
         var id = receitas.idReceitas;
         var nome = receitas.nomeReceitas;
         var dificuldade = receitas.dificuldade;
+        var nomeDificuldade = consulta_dificuldade[dificuldade -1];
         var tempoPreparo = receitas.tempoPreparo;
         var idCategoria = receitas.fkCategoria;
         var Categoria = receitas.nome;
@@ -381,9 +384,9 @@ fetch("/aquarios/listar", {
                               <div class="receita-info">
                                 <b>${nome}</b><br>
                                 <span>Dificuldade de preparo da receita:</span>
-                                <p>${dificuldade}</p>
+                                <p>${nomeDificuldade}</p>
                                 <span>Tempo de preparo:</span>
-                                <p>${tempoPreparo} minutos</p>
+                                <p>${tempoPreparo}</p>
                                 <span>Categoria:</span>
                                 <p>${Categoria}</p>
                                 <span>Ingredientes Necessários:</span>
@@ -398,7 +401,7 @@ fetch("/aquarios/listar", {
                                   <img id="estrela3_receita${i}" onclick="preencherEstrela(3,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
                                   <img id="estrela4_receita${i}" onclick="preencherEstrela(4,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
                                   <img id="estrela5_receita${i}" onclick="preencherEstrela(5,${i})" src="./assets/imgs/estrela_vazia.png" alt="estrela vazia">
-                                  <p id="qtd_classificacao">
+                                  <p id="qtd_classificacao${i}">
                                   </p>
                                 </div>
                                 <div class="comentarios" id="div_comentarios${i}">
@@ -520,7 +523,7 @@ function preencherEstrela(estrela,receita){
         document.getElementById(`estrela${i}_receita${receita}`).style.cursor = "default";
     }
 
-    qtd_classificacao.innerHTML = `
+    document.getElementById(`qtd_classificacao${receita}`).innerHTML = `
                                   <br>
                                   <b>Você avaliou com ${estrela} estrelas!</b>
                                   `;
