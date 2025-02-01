@@ -28,7 +28,7 @@
                         <div class="titulo" style="background-color: #ffffff;">
                             <h2>Região com mais usuarios</h2>
                         </div>
-                        <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #ffffff;font-size: 25px;">
+                        <div class="kpi-num"  id="kpi-regiaoMaisCadastrada" style="background-color: #ffffff;font-size: 233%;">
                             
                         </div>
                     </div>
@@ -52,21 +52,21 @@
                     </div>
                     <div class="box-kpi" id="kpi5" style="width: 56%; height: 96%;">
                         <div class="titulo" style="background-color: #ffffff;">
-                            <h2>Ranking de suarios mais engajados</h2>
+                            <h2>Ranking de usuarios mais engajados</h2>
                         </div>
                         <div class="kpi-num"  id="kpi-usuariomaisativo" style="background-color: #ffffff;font-size: 25px; justify-content: space-around;">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="grafico">
-                <div id="grafico-geral" style="width: 47%; height: 62vh;">
+            <div class="grafico" style="display: flex; justify-content: space-between; gap: 2%; margin-top: 20px;">
+                <div id="grafico-geral" style="flex: 1; height: 57vh;">
                     <h2>Quantidade de receitas por categoria</h2>
-                    <canvas id="myChart-grafico" style="width:300px; height: 225px;"></canvas>
+                    <canvas id="myChart-grafico" style="width: 100%; height: 100%;"></canvas>
                 </div>
-                <div id="grafico-geral2" style="width: 50%; height: 50vh">
+                <div id="grafico-geral2" style="flex: 1; height: 57vh;">
                     <h2>Receitas que mais tiveram avaliações altas</h2>
-                    <canvas id="myChart-grafico2"></canvas>
+                    <canvas id="myChart-grafico2" style="width: 100%; height: 100%;"></canvas>
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@ function plotarkpi1 (){
         .then((response) => response.json())
         .then((dados) => {
             console.log("Dados recebidos:", dados);
-            document.getElementById('kpi-regiaoMaisCadastrada').innerHTML = dados[0].regiao.toUpperCase();
+            document.getElementById('kpi-regiaoMaisCadastrada').innerHTML = `${dados[0].regiao.toUpperCase()}`;
         })
         .catch((erro) => {
             console.error("Erro ao buscar dados:", erro);
@@ -248,47 +248,28 @@ function plotarkpi1 (){
     }
 
     function plotarDadosDoGrafico2() {
-        fetch("/aquarios/plotarDadosDoGrafico2", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        }).then(function (resposta) {
-            console.log("comentarios:", JSON.stringify(resposta));
-            if (resposta.ok) {
-                return resposta.json();
-            } else {
-                throw "Houve um erro na API!";
-            }
-        }).then(function (resposta) {
-            alert("estou aqui")
-        console.log("comentarios:", JSON.stringify(resposta));
-        console.log('Dados recebidos:', dados);
+        fetch('/aquarios/plotarDadosDoGrafico2')
+        .then((response) => response.json())
+        .then((resposta) => {
+            var categorias = [];
+        var quantidades = [];
 
-        let categorias = [];
-        let quantidades = [];
+        for (let container = 0; container < resposta.length-2; container++) {
+            var categoria_selecionada = resposta[container];
 
-        // Usando for para processar os dados
-        for (let i = 0; i < dados.length; i++) {
-        const item = dados[i];
-        categorias.push(item.nomeReceitas);  // Receitas
-        quantidades.push(item.total);  // Quantidades de classificações >= 4
+            var nome = categoria_selecionada.nomeReceitas;
+            var total = categoria_selecionada.total;
+
+            categorias.push(nome.toUpperCase()); // Agora estamos usando 'nome' e convertendo para maiúsculas
+            quantidades.push(total); // 'total' está correto
         }
 
-        // Exibindo as categorias e quantidades para garantir que estão corretas
-        console.log("Categorias:", categorias);
-        console.log("Quantidades:", quantidades);
-
-        // Atualizando o gráfico com os dados recebidos
-        chart1.data.labels = categorias;
-        chart1.data.datasets[0].data = quantidades;
-        chart1.update();  // Atualiza o gráfico
+        chart2.data.labels = categorias; // Atualiza os rótulos do gráfico
+        chart2.data.datasets[0].data = quantidades; // Atualiza os dados do gráfico
+        chart2.update();  // Atualiza o gráfico
         })
         .catch((erro) => {
-        console.error('Erro ao buscar dados:', erro);
-        })
-    .catch((erro) => {
-      console.error('Erro ao buscar dados:', erro);
-    });
+            console.error("Erro ao buscar resposta:", erro);
+        });
 }
 </script>

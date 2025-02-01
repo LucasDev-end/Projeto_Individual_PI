@@ -415,7 +415,7 @@ fetch("/aquarios/listar", {
         // alterando a atribuição dos valores id, para adicionar com o "push()" (alterado 02/01/25)
         receitaAtual.push(id);
         categoriaAtual.push(idCategoria);
-        alert(`id da receita: ${receitaAtual[i]}, e id da categoria: ${categoriaAtual[i]};`);
+        // alert(`id da receita: ${receitaAtual[i]}, e id da categoria: ${categoriaAtual[i]};`);
       }
       // Mostrando o titulo das receitas (alterado 08/01/25)
       receita_public.innerHTML = titulos_receitas;
@@ -484,7 +484,7 @@ function classificar(numero_receita,estrela) {
     }),
   })
   .then(function (resposta) {
-    console.log("resposta: ", resposta);
+    // console.log("resposta: ", resposta);
     
     if (resposta.ok) {
       alert("Sua classificação foi realizada com sucesso!");
@@ -573,7 +573,7 @@ function mostrar_comentarios(receita,id){
                       </span>
                     </div>
                     `;
-        console.log(`usuario: ${usuario}; comentario:${texto};`);
+        // console.log(`usuario: ${usuario}; comentario:${texto};`);
       }
       // adicionando input para cadastrar novos comentarios (alterado 30/01/25)
       mostrar += `

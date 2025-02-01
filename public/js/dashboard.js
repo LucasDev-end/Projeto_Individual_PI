@@ -38,7 +38,7 @@ function gerarGrafico(){
             display: true,
             text: 'Quantidade', // Título do eixo X
             font: {
-              size: 20, // Tamanho da fonte
+              size: 25, // Tamanho da fonte
               family: 'Roboto', // Fonte
               weight: 'bold' // Negrito
             },
@@ -46,7 +46,7 @@ function gerarGrafico(){
           },
           ticks: {
             font: {
-                size: 18 // Tamanho da fonte
+                size: 10 // Tamanho da fonte
             }
         },
           beginAtZero: true // Inicia no zero
@@ -57,7 +57,7 @@ function gerarGrafico(){
 
             text: 'Categoria',// Título do eixo Y
             font: {
-              size: 20,
+              size: 25,
               family: 'Roboto',
               weight: 'bold'
             },
@@ -65,7 +65,7 @@ function gerarGrafico(){
           },
           ticks: {
             font: {
-              size: 12, // Tamanho da fonte dos rótulos
+              size: 16, // Tamanho da fonte dos rótulos
               family: 'Roboto',
               weight: 'bold'
             },
@@ -86,7 +86,7 @@ function gerarGrafico(){
 
 // adicionando gracico de rosca (alterado 31/01/25)
 function gerarGrafico2(){
-  const ctx2 = document.getElementById('myChart-grafico2').getContext('2d');
+  const ctx3 = document.getElementById('myChart-grafico2').getContext('2d');
   
   const data2 = {
     labels: [], // Rótulos do eixo Y (ranking)
@@ -113,7 +113,6 @@ function gerarGrafico2(){
   // Configurações do gráfico
   const barOptions = {
     responsive: true,
-    indexAxis: 'y',
     plugins: {
       legend: {
         display: false, // Oculta a legenda do dataset
@@ -123,9 +122,9 @@ function gerarGrafico2(){
       x: {
         title: {
           display: true,
-          text: 'Quantidade', // Título do eixo X
+          text: 'Receitas', // Título do eixo X
           font: {
-            size: 20, // Tamanho da fonte
+            size: 25, // Tamanho da fonte
             family: 'Roboto', // Fonte
             weight: 'bold' // Negrito
           },
@@ -133,18 +132,17 @@ function gerarGrafico2(){
         },
         ticks: {
           font: {
-              size: 18 // Tamanho da fonte
+              size: 12 // Tamanho da fonte
           }
-      },
+        },
         beginAtZero: true // Inicia no zero
       },
       y: {
         title: { 
           display: true,
-
-          text: 'Categoria',// Título do eixo Y
+          text: 'Avaliações', // Título do eixo Y
           font: {
-            size: 20,
+            size: 25,
             family: 'Roboto',
             weight: 'bold'
           },
@@ -163,12 +161,12 @@ function gerarGrafico2(){
   };
   
   // Criação do gráfico
-  chart = new Chart(ctx2, {
+  chart2 = new Chart(ctx3, {
     type: 'bar', // Tipo de gráfico
     data: data2,
     options: barOptions // Configurações do gráfico
   });
-  plotarDadosDoGrafico()
+  plotarDadosDoGrafico2()
 }
 
 

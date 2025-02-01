@@ -172,9 +172,9 @@ a span{
 
 .box-kpi .titulo{
     color: #000000;
-    font-size: 115%;
+    font-size: 105%;
     width: auto;
-    height: 3vh;
+    height: 6vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,7 +236,7 @@ a span{
 
 .lugar0{
     background-color: #18996e;
-    font-size: 115%;
+    font-size: 100%;
     width: 30%;
     height: 85%;
     display: flex;
@@ -246,7 +246,7 @@ a span{
 }
 .lugar1{
     background-color: #2cb402;
-    font-size: 115%;
+    font-size: 100%;
     width: 30%;
     height: 85%;
     display: flex;
@@ -256,11 +256,15 @@ a span{
 }
 .lugar2{
     background-color: #2ee756;
-    font-size: 115%;
+    font-size: 100%;
     width: 30%;
     height: 85%;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
+}
+
+.grafico div h2{
+    font-size: 160%;
 }

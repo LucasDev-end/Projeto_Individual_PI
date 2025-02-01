@@ -229,13 +229,13 @@ insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ing
  'lagosta 1kg', 'cenoura 2 unidades', 'cebola 1 unidade', 'conhaque 50ml', 'creme de leite 200ml', 6, 
  'Comece cozinhando a lagosta em água fervente com sal por 5-7 minutos, até que esteja parcialmente cozida. Retire a carne da casca, reservando as cascas para o caldo. Em uma panela grande, refogue as cascas da lagosta com um pouco de azeite, cenoura e cebola picadas. Flambe com conhaque para realçar o sabor, tomando cuidado ao acender a chama. Adicione água suficiente para cobrir as cascas e deixe cozinhar por cerca de 40 minutos para obter um caldo concentrado. Coe o caldo, descartando os sólidos, e retorne o líquido à panela. Acrescente creme de leite e reduza o fogo, mexendo até que o bisque esteja levemente espesso. Adicione pedaços da carne da lagosta, temperando com sal, pimenta e uma pitada de páprica. Sirva em pratos fundos, decorado com ervas frescas e um fio de azeite de oliva.');
 
-insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
-('teste de receita', 1, '1 minuto',
- 'cenoura 2 unidades', 'cebola 1 unidade', 'conhaque 50ml', 'creme de leite 200ml', 'Alegria', 3,'teste');
+-- insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
+-- ('teste de receita', 1, '1 minuto',
+--  'cenoura 2 unidades', 'cebola 1 unidade', 'conhaque 50ml', 'creme de leite 200ml', 'Alegria', 3,'teste');
  
- insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
-('teste de receita', 2, '8 Horas',
- 'caqui 1 unidade', 'perulito', 'conhaque 50ml', 'creme de jaca 200ml', 'Alegria 5ml', 1,'teste');
+--  insert into receitas (nomeReceitas, dificuldade, tempoPreparo, ingrediente1, ingrediente2, ingrediente3, ingrediente4, ingrediente5, fkCategoria, descricao) values
+-- ('teste de receita', 2, '8 Horas',
+--  'caqui 1 unidade', 'perulito', 'conhaque 50ml', 'creme de jaca 200ml', 'Alegria 5ml', 1,'teste');
 
 -- inserindo algumas informacoes para teste (alterado 30/01/25)
 insert into comentario (fkCadastro, fkReceita, comentario) values
@@ -294,7 +294,7 @@ select * from comentario;
 select * from comentario
 where fkReceita = 14
 limit 4;
-
+DELETE FROM receitas WHERE idReceitas IN (33, 34);
 select * from comentario as c
 join cadastro as ca on c.fkCadastro = ca.idcadastro;
 
